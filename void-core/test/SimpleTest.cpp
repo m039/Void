@@ -20,3 +20,8 @@ TEST_CASE("Testing Library") {
         CHECK(v.number == 14);
     }
 }
+
+TEST_CASE("Testing1", "Test2") {
+    int n = 1;
+    REQUIRE(n == 1);
+}
