@@ -1,6 +1,6 @@
 # How to use
 
-Preparations:
+## Preparations
 
     # 1. Clone the repository
     git clone git@gitlab.com:m0391n/void-cinder.git --recursive
