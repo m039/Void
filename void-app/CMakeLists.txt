@@ -10,4 +10,3 @@ ci_make_app (
         SOURCES     ${FILES}
         CINDER_PATH ${CINDER_PATH}
 )
-
