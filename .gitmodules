@@ -1,3 +1,0 @@
-[submodule "libCinder"]
-	path = third-party/libCinder
-	url = https://github.com/cinder/Cinder.git
