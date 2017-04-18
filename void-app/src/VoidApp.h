@@ -23,15 +23,23 @@ namespace vd {
 
     private:
 
-        void displayChange();
+        void onResize();
 
         std::unique_ptr<DebugInfoText> _infoText;
+
+        ci::CameraPersp _camera;
+
+        //region Fonts
 
         ci::gl::TextureFontRef _headlineFont;
 
         ci::gl::TextureFontRef _textFont;
 
         ci::gl::TextureFontRef loadFont(const std::string &name, float size);
+
+        //endregion
+
+        void setupCamera();
     };
 
 }

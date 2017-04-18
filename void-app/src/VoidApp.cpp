@@ -30,11 +30,14 @@ CINDER_APP( VoidApp, app::RendererGl, prepareSettings)
 void VoidApp::setup() {
     app::AppBase::setup();
 
-    _headlineFont = loadFont(_HeadlineFontName, 40);
+    _headlineFont = loadFont(_HeadlineFontName, 30);
     _textFont = loadFont(_TextFontName, 20);
     _infoText = std::make_unique<DebugInfoText>(*this, _headlineFont);
 
-    getWindow()->getSignalDisplayChange().connect(std::bind( &VoidApp::displayChange, this));
+    setupCamera();
+
+    getWindow()->getSignalResize()
+            .connect(std::bind(&VoidApp::onResize, this));
 }
 
 void VoidApp::update() {
@@ -48,6 +51,16 @@ void VoidApp::draw() {
     gl::color(Color::black());
 
     _infoText->Draw();
+
+    // draw 3d
+
+    gl::pushMatrices();
+
+    gl::setMatrices(_camera);
+
+    gl::drawCube( vec3(), vec3( 1 ) );
+
+    gl::popMatrices();
 }
 
 void VoidApp::keyDown(KeyEvent event) {
@@ -69,13 +82,22 @@ void VoidApp::keyDown(KeyEvent event) {
 
 //region Misc
 
-void VoidApp::displayChange() {
-}
-
 ci::gl::TextureFontRef VoidApp::loadFont(const std::string &name, float size) {
     auto font = Font(loadAsset("Fonts/" + name), size);
 
     return gl::TextureFont::create(font, gl::TextureFont::Format().enableMipmapping());
+}
+
+void VoidApp::onResize() {
+    setupCamera();
+}
+
+void VoidApp::setupCamera() {
+    auto windowSize = getWindow()->getSize();
+    auto aspectRatio = (float) windowSize.x / (float) windowSize.y;
+
+    _camera.lookAt(vec3(3, 3, 3), vec3(0));
+    _camera.setPerspective(35, aspectRatio, 0.1f, 1000);
 }
 
 //endregion
