@@ -4,21 +4,38 @@
 
 #pragma once
 
+#include "DebugInfoText.h"
+
 #include "cinder/app/App.h"
 
-class VoidApp : public ci::app::App {
+namespace vd {
 
-public:
-    void setup() override;
+    class VoidApp : public ci::app::App {
 
-    void update() override;
+    public:
+        void setup() override;
 
-    void draw() override;
+        void update() override;
 
-private:
+        void draw() override;
 
-    void displayChange();
-};
+        void keyDown(ci::app::KeyEvent event) override;
+
+    private:
+
+        void displayChange();
+
+        std::unique_ptr<DebugInfoText> _infoText;
+
+        ci::gl::TextureFontRef _headlineFont;
+
+        ci::gl::TextureFontRef _textFont;
+
+        ci::gl::TextureFontRef loadFont(const std::string &name, float size);
+    };
+
+}
+
 
 
 

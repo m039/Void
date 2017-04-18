@@ -8,6 +8,17 @@
 #include "VoidApp.h"
 
 using namespace ci;
+using namespace ci::app;
+
+using namespace vd;
+
+//region Consts
+
+const std::string _HeadlineFontName = "CaviarDreamsR.ttf";
+
+const std::string _TextFontName = "CrimsonTextRo.ttf";
+
+//endregion
 
 void prepareSettings(VoidApp::Settings *settings) {
     settings->setHighDensityDisplayEnabled();
@@ -19,9 +30,11 @@ CINDER_APP( VoidApp, app::RendererGl, prepareSettings)
 void VoidApp::setup() {
     app::AppBase::setup();
 
-    console() << "Setup " << std::endl;
+    _headlineFont = loadFont(_HeadlineFontName, 40);
+    _textFont = loadFont(_TextFontName, 20);
+    _infoText = std::make_unique<DebugInfoText>(*this, _headlineFont);
 
-    getWindow()->getSignalDisplayChange().connect( std::bind( &VoidApp::displayChange, this ) );
+    getWindow()->getSignalDisplayChange().connect(std::bind( &VoidApp::displayChange, this));
 }
 
 void VoidApp::update() {
@@ -29,15 +42,40 @@ void VoidApp::update() {
 }
 
 void VoidApp::draw() {
-    app::AppBase::draw();
+    AppBase::draw();
 
-    gl::clear( Color::black() );
-    
-    std::string s = ( getWindowContentScale() > 1 ) ? "Retina" : "Non-Retina";
+    gl::clear(Color::white());
+    gl::color(Color::black());
 
-    gl::drawString("Hello, world. " + s + ".", vec2(40, 40));
+    _infoText->Draw(getWindow());
 }
+
+void VoidApp::keyDown(KeyEvent event) {
+    AppBase::keyDown(event);
+
+    auto code = event.getCode();
+
+    switch (code) {
+        case KeyEvent::KEY_f:
+            setFullScreen(!isFullScreen());
+            break;
+        case KeyEvent::KEY_q:
+            quit();
+            break;
+        default:
+            break;
+    }
+}
+
+//region Misc
 
 void VoidApp::displayChange() {
-
 }
+
+ci::gl::TextureFontRef VoidApp::loadFont(const std::string &name, float size) {
+    auto font = Font(loadAsset("Fonts/" + name), size);
+
+    return gl::TextureFont::create(font, gl::TextureFont::Format().enableMipmapping());
+}
+
+//endregion

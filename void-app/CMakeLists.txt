@@ -1,7 +1,9 @@
 get_filename_component (CINDER_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../Third-Party/Cinder/" ABSOLUTE)
 get_filename_component (APP_PATH "${CMAKE_CURRENT_SOURCE_DIR}" ABSOLUTE)
 
-set (FILES ${APP_PATH}/src/VoidApp.cpp)
+set (FILES
+        ${APP_PATH}/src/VoidApp.cpp
+        ${APP_PATH}/src/DebugInfoText.cpp)
 
 include ("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
