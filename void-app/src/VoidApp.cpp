@@ -47,7 +47,7 @@ void VoidApp::draw() {
     gl::clear(Color::white());
     gl::color(Color::black());
 
-    _infoText->Draw(getWindow());
+    _infoText->Draw();
 }
 
 void VoidApp::keyDown(KeyEvent event) {

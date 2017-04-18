@@ -12,7 +12,8 @@ namespace vd {
     class DebugInfoText {
 
     public:
-        DebugInfoText(const ci::app::App &app, const ci::gl::TextureFontRef &font) : _textFont(font) {
+        DebugInfoText(const ci::app::App &app, const ci::gl::TextureFontRef &font)
+                : _app(app), _textFont(font) {
             std::string text;
 
             text.append("Void, ");
@@ -23,7 +24,7 @@ namespace vd {
             _textSize = font->measureString(_text);
         }
 
-        void Draw(ci::app::WindowRef window);
+        void Draw();
 
     private:
 
@@ -32,6 +33,8 @@ namespace vd {
         ci::vec2 _textSize;
 
         const ci::gl::TextureFontRef &_textFont;
+
+        const ci::app::App &_app;
     };
 
 }
