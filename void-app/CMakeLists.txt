@@ -14,6 +14,6 @@ ci_make_app (
 if (APPLE)
     set_target_properties(VoidCinder PROPERTIES
             OUTPUT_NAME CMake
-            MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/resources/Info.plist.in"
+            MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/resources/macosx/Info.plist.in"
             )
 endif()

@@ -32,8 +32,10 @@ void VoidApp::draw() {
     app::AppBase::draw();
 
     gl::clear( Color::black() );
+    
+    std::string s = ( getWindowContentScale() > 1 ) ? "Retina" : "Non-Retina";
 
-    gl::drawString("Hello, world", vec2(40, 40));
+    gl::drawString("Hello, world. " + s + ".", vec2(40, 40));
 }
 
 void VoidApp::displayChange() {
