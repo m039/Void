@@ -5,6 +5,7 @@
 #pragma once
 
 #include "DebugInfoText.h"
+#include "UnlitShader.h"
 
 #include "cinder/app/App.h"
 
@@ -13,6 +14,7 @@ namespace vd {
     class VoidApp : public ci::app::App {
 
     public:
+
         void setup() override;
 
         void update() override;
@@ -27,7 +29,9 @@ namespace vd {
 
         std::unique_ptr<DebugInfoText> _infoText;
 
-        ci::CameraPersp _camera;
+        ci::gl::BatchRef _batch;
+
+        void setupBatch(const ci::gl::GlslProgRef &shader);
 
         //region Fonts
 
@@ -39,7 +43,21 @@ namespace vd {
 
         //endregion
 
+        //region Shader
+
+        std::unique_ptr<UnlitShader> _shader;
+
+        void setupShader();
+
+        //endregion
+
+        //region Camera
+
+        ci::CameraPersp _camera;
+
         void setupCamera();
+
+        //endregion
     };
 
 }

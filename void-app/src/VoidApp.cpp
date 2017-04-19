@@ -34,7 +34,9 @@ void VoidApp::setup() {
     _textFont = loadFont(_TextFontName, 20);
     _infoText = std::make_unique<DebugInfoText>(*this, _headlineFont);
 
+    setupShader();
     setupCamera();
+    setupBatch(*_shader);
 
     getWindow()->getSignalResize()
             .connect(std::bind(&VoidApp::onResize, this));
@@ -55,10 +57,10 @@ void VoidApp::draw() {
     // draw 3d
 
     gl::pushMatrices();
-
     gl::setMatrices(_camera);
 
-    gl::drawCube( vec3(), vec3( 1 ) );
+    _shader->SetMainColor(vec4(1.0f, 0.0f, 1.0f, 1.0f));
+    _batch->draw();
 
     gl::popMatrices();
 }
@@ -82,14 +84,14 @@ void VoidApp::keyDown(KeyEvent event) {
 
 //region Misc
 
+void VoidApp::onResize() {
+    setupCamera();
+}
+
 ci::gl::TextureFontRef VoidApp::loadFont(const std::string &name, float size) {
     auto font = Font(loadAsset("Fonts/" + name), size);
 
     return gl::TextureFont::create(font, gl::TextureFont::Format().enableMipmapping());
-}
-
-void VoidApp::onResize() {
-    setupCamera();
 }
 
 void VoidApp::setupCamera() {
@@ -98,6 +100,20 @@ void VoidApp::setupCamera() {
 
     _camera.lookAt(vec3(3, 3, 3), vec3(0));
     _camera.setPerspective(35, aspectRatio, 0.1f, 1000);
+}
+
+void VoidApp::setupBatch(const ci::gl::GlslProgRef &shader) {
+    _batch = gl::Batch::create(geom::Cube(), shader);
+}
+
+void VoidApp::setupShader() {
+    _shader = std::make_unique<UnlitShader>(*this);
+
+    _shader->SetFogEnabled(true);
+    _shader->SetFogColor(Color::black());
+    _shader->SetFogStartPosition(0);
+    _shader->SetFogDensity(0.1f);
+    _shader->SetMinFogFactor(0.0f);
 }
 
 //endregion
