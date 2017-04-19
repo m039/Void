@@ -18,6 +18,8 @@
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
 		341433571EA79CB200BBD9E7 /* DebugInfoText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 341433531EA79CB200BBD9E7 /* DebugInfoText.cpp */; };
 		341433581EA79CB200BBD9E7 /* UnlitShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 341433551EA79CB200BBD9E7 /* UnlitShader.cpp */; };
+		342494A31EA7CA9D004B875C /* AdaptiveFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3424949E1EA7CA9D004B875C /* AdaptiveFont.cpp */; };
+		342494A41EA7CA9D004B875C /* AdaptiveTextureFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 342494A01EA7CA9D004B875C /* AdaptiveTextureFont.cpp */; };
 		346D77881EA60C5500DE9590 /* VoidApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 346D77861EA60C5500DE9590 /* VoidApp.cpp */; };
 		346D778B1EA60C6C00DE9590 /* VoidCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 346D77891EA60C6C00DE9590 /* VoidCore.cpp */; };
 		346D778F1EA60DD400DE9590 /* CinderApp.png in Resources */ = {isa = PBXBuildFile; fileRef = 346D778E1EA60DD400DE9590 /* CinderApp.png */; };
@@ -45,6 +47,11 @@
 		341433541EA79CB200BBD9E7 /* DebugInfoText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugInfoText.h; path = "../../void-app/src/DebugInfoText.h"; sourceTree = "<group>"; };
 		341433551EA79CB200BBD9E7 /* UnlitShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UnlitShader.cpp; path = "../../void-app/src/UnlitShader.cpp"; sourceTree = "<group>"; };
 		341433561EA79CB200BBD9E7 /* UnlitShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnlitShader.h; path = "../../void-app/src/UnlitShader.h"; sourceTree = "<group>"; };
+		3424949E1EA7CA9D004B875C /* AdaptiveFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AdaptiveFont.cpp; path = "../../void-app/src/AdaptiveFont.cpp"; sourceTree = "<group>"; };
+		3424949F1EA7CA9D004B875C /* AdaptiveFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdaptiveFont.h; path = "../../void-app/src/AdaptiveFont.h"; sourceTree = "<group>"; };
+		342494A01EA7CA9D004B875C /* AdaptiveTextureFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AdaptiveTextureFont.cpp; path = "../../void-app/src/AdaptiveTextureFont.cpp"; sourceTree = "<group>"; };
+		342494A11EA7CA9D004B875C /* AdaptiveTextureFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdaptiveTextureFont.h; path = "../../void-app/src/AdaptiveTextureFont.h"; sourceTree = "<group>"; };
+		342494A21EA7CA9D004B875C /* AppObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppObject.h; path = "../../void-app/src/AppObject.h"; sourceTree = "<group>"; };
 		346D77861EA60C5500DE9590 /* VoidApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VoidApp.cpp; path = "../../void-app/src/VoidApp.cpp"; sourceTree = "<group>"; };
 		346D77871EA60C5500DE9590 /* VoidApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VoidApp.h; path = "../../void-app/src/VoidApp.h"; sourceTree = "<group>"; };
 		346D77891EA60C6C00DE9590 /* VoidCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VoidCore.cpp; path = "../../void-core/src/VoidCore.cpp"; sourceTree = "<group>"; };
@@ -158,6 +165,11 @@
 		346D778D1EA60C8000DE9590 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				3424949E1EA7CA9D004B875C /* AdaptiveFont.cpp */,
+				3424949F1EA7CA9D004B875C /* AdaptiveFont.h */,
+				342494A01EA7CA9D004B875C /* AdaptiveTextureFont.cpp */,
+				342494A11EA7CA9D004B875C /* AdaptiveTextureFont.h */,
+				342494A21EA7CA9D004B875C /* AppObject.h */,
 				341433531EA79CB200BBD9E7 /* DebugInfoText.cpp */,
 				341433541EA79CB200BBD9E7 /* DebugInfoText.h */,
 				341433551EA79CB200BBD9E7 /* UnlitShader.cpp */,
@@ -253,8 +265,10 @@
 			files = (
 				341433571EA79CB200BBD9E7 /* DebugInfoText.cpp in Sources */,
 				346D778B1EA60C6C00DE9590 /* VoidCore.cpp in Sources */,
+				342494A41EA7CA9D004B875C /* AdaptiveTextureFont.cpp in Sources */,
 				346D77881EA60C5500DE9590 /* VoidApp.cpp in Sources */,
 				341433581EA79CB200BBD9E7 /* UnlitShader.cpp in Sources */,
+				342494A31EA7CA9D004B875C /* AdaptiveFont.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
