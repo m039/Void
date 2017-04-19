@@ -15,7 +15,7 @@ public:
 
     UnlitShader(const ci::app::App &app);
 
-    ci::gl::GlslProgRef GetShader() const {
+    ci::gl::GlslProgRef GetInternalShader() const {
         return _shader;
     }
 
@@ -32,10 +32,6 @@ public:
     void SetFogColor(const ci::ColorAf &color);
 
     void SetMinFogFactor(float minFogFactor);
-
-    operator const ci::gl::GlslProgRef &() {
-        return _shader;
-    }
 
 private:
     ci::gl::GlslProgRef _shader;

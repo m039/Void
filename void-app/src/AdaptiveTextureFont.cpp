@@ -18,7 +18,8 @@ vec2 AdaptiveTextureFont::measureString(const std::string &str,
     return _font->measureString(str, options) / app.getWindowContentScale();
 }
 
-void AdaptiveTextureFont::drawString(const std::string &str, const ci::vec2 &baseline,
+void AdaptiveTextureFont::drawString(const std::string &str,
+                                     const ci::vec2 &baseline,
                                      const gl::TextureFont::DrawOptions &options) {
     auto scale = options.getScale();
 

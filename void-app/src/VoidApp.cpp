@@ -36,7 +36,7 @@ void VoidApp::setup() {
 
     setupShader();
     setupCamera();
-    setupBatch(*_shader);
+    setupBatch(_shader->GetInternalShader());
 
     getWindow()->getSignalResize().connect(std::bind(&VoidApp::onResize, this));
 

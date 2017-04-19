@@ -30,7 +30,7 @@ void UnlitShader::setupShader(const ci::app::App &app) {
 
     _shader = gl::GlslProg::create(format);
 
-    // Get uniform variables location.
+    // Get uniform variable locations.
 
     std::unordered_map<GLint*, std::string> pairs {
             { &_mainColorLocation, "cMainColor" },
