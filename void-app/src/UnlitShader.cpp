@@ -5,6 +5,7 @@
 #include "UnlitShader.h"
 
 using namespace ci;
+using namespace vd;
 
 UnlitShader::UnlitShader(const ci::app::App &app) {
     setupShader(app);
@@ -28,6 +29,8 @@ void UnlitShader::setupShader(const ci::app::App &app) {
             .fragment(cApp.loadAsset(_FragmentShaderFilename));
 
     _shader = gl::GlslProg::create(format);
+
+    // Get uniform variables location.
 
     std::unordered_map<GLint*, std::string> pairs {
             { &_mainColorLocation, "cMainColor" },

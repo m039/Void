@@ -7,34 +7,26 @@
 #include "cinder/app/App.h"
 #include "cinder/gl/gl.h"
 
+#include "AppObject.h"
+#include "AdaptiveTextureFont.h"
+
 namespace vd {
 
-    class DebugInfoText {
+class DebugInfoText : public AppObject {
 
-    public:
-        DebugInfoText(const ci::app::App &app, const ci::gl::TextureFontRef &font)
-                : _app(app), _textFont(font) {
-            std::string text;
+public:
 
-            text.append("Void, ");
-            text.append((app.getWindowContentScale() > 1)? "retina" : "non-retina");
-            text.append(". ");
+    DebugInfoText(const ci::app::App &app, const AdaptiveTextureFontRef &font);
 
-            _text = text;
-            _textSize = font->measureString(_text);
-        }
+    void Draw();
 
-        void Draw();
+private:
 
-    private:
+    std::string _text;
 
-        std::string _text;
+    ci::vec2 _textSize;
 
-        ci::vec2 _textSize;
-
-        const ci::gl::TextureFontRef &_textFont;
-
-        const ci::app::App &_app;
-    };
+    const AdaptiveTextureFontRef &_textFont;
+};
 
 }

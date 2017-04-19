@@ -30,7 +30,7 @@ CINDER_APP( VoidApp, app::RendererGl, prepareSettings)
 void VoidApp::setup() {
     app::AppBase::setup();
 
-    _headlineFont = loadFont(_HeadlineFontName, 30);
+    _headlineFont = loadFont(_HeadlineFontName, 34);
     _textFont = loadFont(_TextFontName, 20);
     _infoText = std::make_unique<DebugInfoText>(*this, _headlineFont);
 
@@ -38,8 +38,9 @@ void VoidApp::setup() {
     setupCamera();
     setupBatch(*_shader);
 
-    getWindow()->getSignalResize()
-            .connect(std::bind(&VoidApp::onResize, this));
+    getWindow()->getSignalResize().connect(std::bind(&VoidApp::onResize, this));
+
+    gl::enableAlphaBlending();
 }
 
 void VoidApp::update() {
@@ -54,16 +55,7 @@ void VoidApp::draw() {
 
     _infoText->Draw();
 
-    // draw 3d
-
-    gl::pushMatrices();
-    gl::setMatrices(_camera);
-
-    _shader->SetMatrices(_camera);
-    _shader->SetMainColor(vec4(1.0f, 0.0f, 1.0f, 1.0f));
-    _batch->draw();
-
-    gl::popMatrices();
+    drawCube();
 }
 
 void VoidApp::keyDown(KeyEvent event) {
@@ -89,10 +81,9 @@ void VoidApp::onResize() {
     setupCamera();
 }
 
-ci::gl::TextureFontRef VoidApp::loadFont(const std::string &name, float size) {
-    auto font = Font(loadAsset("Fonts/" + name), size);
-
-    return gl::TextureFont::create(font, gl::TextureFont::Format().enableMipmapping());
+AdaptiveTextureFontRef VoidApp::loadFont(const std::string &name, float size) {
+    auto font = AdaptiveFont(*this, loadAsset("Fonts/" + name), size);
+    return AdaptiveTextureFont::create(*this, font);
 }
 
 void VoidApp::setupCamera() {
@@ -115,6 +106,18 @@ void VoidApp::setupShader() {
     _shader->SetFogStartPosition(0);
     _shader->SetFogDensity(0.1f);
     _shader->SetMinFogFactor(0.0f);
+}
+
+//! Draw cube by hand
+void VoidApp::drawCube() {
+    gl::pushMatrices();
+    gl::setMatrices(_camera);
+
+    _shader->SetMatrices(_camera);
+    _shader->SetMainColor(vec4(1.0f, 0.0f, 1.0f, 1.0f));
+    _batch->draw();
+
+    gl::popMatrices();
 }
 
 //endregion

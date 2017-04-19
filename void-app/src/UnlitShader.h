@@ -7,6 +7,8 @@
 #include "cinder/app/App.h"
 #include "cinder/gl/gl.h"
 
+namespace vd {
+
 class UnlitShader {
 
 public:
@@ -31,7 +33,7 @@ public:
 
     void SetMinFogFactor(float minFogFactor);
 
-    operator const ci::gl::GlslProgRef&() {
+    operator const ci::gl::GlslProgRef &() {
         return _shader;
     }
 
@@ -59,6 +61,7 @@ private:
     void setupShader(const ci::app::App &app);
 };
 
+}
 
 
 

@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "AdaptiveTextureFont.h"
 #include "DebugInfoText.h"
 #include "UnlitShader.h"
 
@@ -11,54 +12,56 @@
 
 namespace vd {
 
-    class VoidApp : public ci::app::App {
+class VoidApp : public ci::app::App {
 
-    public:
+public:
 
-        void setup() override;
+    void setup() override;
 
-        void update() override;
+    void update() override;
 
-        void draw() override;
+    void draw() override;
 
-        void keyDown(ci::app::KeyEvent event) override;
+    void keyDown(ci::app::KeyEvent event) override;
 
-    private:
+private:
 
-        void onResize();
+    void onResize();
 
-        std::unique_ptr<DebugInfoText> _infoText;
+    std::unique_ptr<DebugInfoText> _infoText;
 
-        ci::gl::BatchRef _batch;
+    ci::gl::BatchRef _batch;
 
-        void setupBatch(const ci::gl::GlslProgRef &shader);
+    void setupBatch(const ci::gl::GlslProgRef &shader);
 
-        //region Fonts
+    //region Fonts
 
-        ci::gl::TextureFontRef _headlineFont;
+    AdaptiveTextureFontRef _headlineFont;
 
-        ci::gl::TextureFontRef _textFont;
+    AdaptiveTextureFontRef _textFont;
 
-        ci::gl::TextureFontRef loadFont(const std::string &name, float size);
+    AdaptiveTextureFontRef loadFont(const std::string &name, float size);
 
-        //endregion
+    //endregion
 
-        //region Shader
+    //region Shader
 
-        std::unique_ptr<UnlitShader> _shader;
+    std::unique_ptr<UnlitShader> _shader;
 
-        void setupShader();
+    void setupShader();
 
-        //endregion
+    //endregion
 
-        //region Camera
+    //region Camera
 
-        ci::CameraPersp _camera;
+    ci::CameraPersp _camera;
 
-        void setupCamera();
+    void setupCamera();
 
-        //endregion
-    };
+    //endregion
+
+    void drawCube();
+};
 
 }
 
