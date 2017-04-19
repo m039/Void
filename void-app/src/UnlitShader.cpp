@@ -19,12 +19,32 @@ void UnlitShader::setupShader(const ci::app::App &app) {
 
     _shader = gl::GlslProg::create(format);
 
-    _mainColorLocation = _shader->getUniformLocation("cMainColor");
-    _fogEnabledLocation = _shader->getUniformLocation("c_FogEnabled");
-    _fogStartPositionLocation = _shader->getUniformLocation("c_FogStartPosition");
-    _fogDensityLocation = _shader->getUniformLocation("c_FogDensity");
-    _fogColorLocation = _shader->getUniformLocation("c_FogColor");
-    _minFogFactorLocation = _shader->getUniformLocation("c_MinFogFactor");
+    std::unordered_map<GLint*, std::string> pairs {
+            { &_mainColorLocation, "cMainColor" },
+            { &_fogEnabledLocation, "c_FogEnabled" },
+            { &_fogStartPositionLocation, "c_FogStartPosition" },
+            { &_fogDensityLocation, "c_FogDensity" },
+            { &_fogColorLocation, "c_FogColor" },
+            { &_minFogFactorLocation, "c_MinFogFactor" },
+            { &_modelLocation, "cModel" },
+            { &_viewLocation, "cView" },
+            { &_projViewLocation, "cProjView" }
+    };
+
+    for (const auto& p: pairs) {
+        *p.first = _shader->getUniformLocation(p.second);
+    }
+}
+
+void UnlitShader::SetMatrices(const ci::Camera &camera) {
+    const auto &model = gl::getModelMatrix();
+    const auto &view = camera.getViewMatrix();
+    const auto &proj = camera.getProjectionMatrix();
+    auto projView = proj * view;
+
+    _shader->uniform(_modelLocation, model);
+    _shader->uniform(_viewLocation, view);
+    _shader->uniform(_projViewLocation, projView);
 }
 
 void UnlitShader::SetMainColor(const ci::ColorAf &color) {

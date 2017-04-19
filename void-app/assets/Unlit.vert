@@ -1,21 +1,18 @@
 #version 150
 
-uniform mat4	ciModelViewProjection;
-uniform mat3	ciNormalMatrix;
+uniform mat4 cModel;
+uniform mat4 cView;
+uniform mat4 cProjView;
 
-in vec4		ciPosition;
-in vec2		ciTexCoord0;
-in vec3		ciNormal;
-in vec4		ciColor;
+in vec4 ciPosition;
 
-out highp vec2	TexCoord;
-out lowp vec4	Color;
-out highp vec3	Normal;
+out float _viewSpaceVertex;
 
 void main(void)
 {
-	gl_Position	= ciModelViewProjection * ciPosition;
-	Color 		= ciColor;
-	TexCoord	= ciTexCoord0;
-	Normal		= ciNormalMatrix * ciNormal;
+  mat4 mvp = cProjView * cModel;
+  mat4 mv =  cView * cModel;
+
+  gl_Position = mvp * ciPosition;
+  _viewSpaceVertex = abs((mv * ciPosition).z);
 }

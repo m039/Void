@@ -59,6 +59,7 @@ void VoidApp::draw() {
     gl::pushMatrices();
     gl::setMatrices(_camera);
 
+    _shader->SetMatrices(_camera);
     _shader->SetMainColor(vec4(1.0f, 0.0f, 1.0f, 1.0f));
     _batch->draw();
 

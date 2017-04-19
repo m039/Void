@@ -17,6 +17,8 @@ public:
         return _shader;
     }
 
+    void SetMatrices(const ci::Camera &camera);
+
     void SetMainColor(const ci::ColorAf &color);
 
     void SetFogEnabled(bool value);
@@ -29,7 +31,7 @@ public:
 
     void SetMinFogFactor(float minFogFactor);
 
-    operator ci::gl::GlslProgRef&() {
+    operator const ci::gl::GlslProgRef&() {
         return _shader;
     }
 
@@ -47,6 +49,12 @@ private:
     GLint _fogColorLocation;
 
     GLint _minFogFactorLocation;
+
+    GLint _modelLocation;
+
+    GLint _viewLocation;
+
+    GLint _projViewLocation;
 
     void setupShader(const ci::app::App &app);
 };
