@@ -1,4 +1,6 @@
-#version 150
+#version 100
+
+precision highp float;
 
 uniform int c_FogEnabled;
 uniform float c_FogStartPosition;
@@ -8,9 +10,7 @@ uniform float c_MinFogFactor;
 
 uniform vec4 cMainColor;
 
-in float _viewSpaceVertex;
-
-out vec4 	oColor;
+varying float _viewSpaceVertex;
 
 void main(void)
 {
@@ -30,5 +30,5 @@ void main(void)
 
     fogFactor = max(c_MinFogFactor, fogFactor);
 
-    oColor = mix(c_FogColor, cMainColor, fogFactor);
+    gl_FragColor = mix(c_FogColor, cMainColor, fogFactor);
 }

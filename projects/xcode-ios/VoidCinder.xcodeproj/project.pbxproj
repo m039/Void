@@ -16,6 +16,8 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
+		341433571EA79CB200BBD9E7 /* DebugInfoText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 341433531EA79CB200BBD9E7 /* DebugInfoText.cpp */; };
+		341433581EA79CB200BBD9E7 /* UnlitShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 341433551EA79CB200BBD9E7 /* UnlitShader.cpp */; };
 		346D77881EA60C5500DE9590 /* VoidApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 346D77861EA60C5500DE9590 /* VoidApp.cpp */; };
 		346D778B1EA60C6C00DE9590 /* VoidCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 346D77891EA60C6C00DE9590 /* VoidCore.cpp */; };
 		346D778F1EA60DD400DE9590 /* CinderApp.png in Resources */ = {isa = PBXBuildFile; fileRef = 346D778E1EA60DD400DE9590 /* CinderApp.png */; };
@@ -39,6 +41,10 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		28FD14FF0DC6FC520079059D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		341433531EA79CB200BBD9E7 /* DebugInfoText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DebugInfoText.cpp; path = "../../void-app/src/DebugInfoText.cpp"; sourceTree = "<group>"; };
+		341433541EA79CB200BBD9E7 /* DebugInfoText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugInfoText.h; path = "../../void-app/src/DebugInfoText.h"; sourceTree = "<group>"; };
+		341433551EA79CB200BBD9E7 /* UnlitShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UnlitShader.cpp; path = "../../void-app/src/UnlitShader.cpp"; sourceTree = "<group>"; };
+		341433561EA79CB200BBD9E7 /* UnlitShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnlitShader.h; path = "../../void-app/src/UnlitShader.h"; sourceTree = "<group>"; };
 		346D77861EA60C5500DE9590 /* VoidApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VoidApp.cpp; path = "../../void-app/src/VoidApp.cpp"; sourceTree = "<group>"; };
 		346D77871EA60C5500DE9590 /* VoidApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VoidApp.h; path = "../../void-app/src/VoidApp.h"; sourceTree = "<group>"; };
 		346D77891EA60C6C00DE9590 /* VoidCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VoidCore.cpp; path = "../../void-core/src/VoidCore.cpp"; sourceTree = "<group>"; };
@@ -152,6 +158,10 @@
 		346D778D1EA60C8000DE9590 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				341433531EA79CB200BBD9E7 /* DebugInfoText.cpp */,
+				341433541EA79CB200BBD9E7 /* DebugInfoText.h */,
+				341433551EA79CB200BBD9E7 /* UnlitShader.cpp */,
+				341433561EA79CB200BBD9E7 /* UnlitShader.h */,
 				346D77861EA60C5500DE9590 /* VoidApp.cpp */,
 				346D77871EA60C5500DE9590 /* VoidApp.h */,
 			);
@@ -241,8 +251,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				341433571EA79CB200BBD9E7 /* DebugInfoText.cpp in Sources */,
 				346D778B1EA60C6C00DE9590 /* VoidCore.cpp in Sources */,
 				346D77881EA60C5500DE9590 /* VoidApp.cpp in Sources */,
+				341433581EA79CB200BBD9E7 /* UnlitShader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +331,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CINDER_PATH = "../../third-party/Cinder";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				DEVELOPMENT_TEAM = GQ463A6ZJL;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = VoidCinder_Prefix.pch;
@@ -342,6 +355,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CINDER_PATH = "../../third-party/Cinder";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				DEVELOPMENT_TEAM = GQ463A6ZJL;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = VoidCinder_Prefix.pch;

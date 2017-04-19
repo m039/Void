@@ -7,12 +7,13 @@
 
 ## Assets
 
-* Use PascalCase for a font name. The end of the name may contain these parts:
+* Use PascalCase for a font filename. The end of the name may contain these parts:
   * R == Regular
   * Ro == Roman
   * B == Bold
   * I == Italic
-  
+* Use PascalCase for a shader filename. The end of the name may contain:
+  * Es2 == OpenGLES2 Shader
   
 ## Code
 

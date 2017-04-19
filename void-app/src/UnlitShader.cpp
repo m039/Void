@@ -10,12 +10,22 @@ UnlitShader::UnlitShader(const ci::app::App &app) {
     setupShader(app);
 }
 
+const std::string _ShaderFolder = "Shaders/";
+
+#if defined( CINDER_GL_ES )
+const std::string _VertixShaderFilename = _ShaderFolder + "UnlitEs2.vert";
+const std::string _FragmentShaderFilename = _ShaderFolder + "UnlitEs2.frag";
+#else
+const std::string _VertixShaderFilename = _ShaderFolder + "Unlit.vert";
+const std::string _FragmentShaderFilename = _ShaderFolder + "Unlit.frag";
+#endif
+
 void UnlitShader::setupShader(const ci::app::App &app) {
     ci::app::App& cApp = const_cast<ci::app::App&>(app);
 
     auto format = gl::GlslProg::Format()
-            .vertex(cApp.loadAsset("Unlit.vert"))
-            .fragment(cApp.loadAsset("Unlit.frag"));
+            .vertex(cApp.loadAsset(_VertixShaderFilename))
+            .fragment(cApp.loadAsset(_FragmentShaderFilename));
 
     _shader = gl::GlslProg::create(format);
 
