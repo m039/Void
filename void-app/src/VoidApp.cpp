@@ -4,6 +4,7 @@
 
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
+#include "cinder/audio/audio.h"
 
 #include "VoidApp.h"
 #include "DrawHelper.h"
@@ -15,9 +16,11 @@ using namespace vd;
 
 //region Consts
 
-const std::string _HeadlineFontName = "CaviarDreamsR.ttf";
+const std::string _HeadlineFontFilename = "CaviarDreamsR.ttf";
 
-const std::string _TextFontName = "CrimsonTextRo.ttf";
+const std::string _TextFontFilename = "CrimsonTextRo.ttf";
+
+const std::string _MusicFilename = "Void.ogg";
 
 //endregion
 
@@ -31,12 +34,16 @@ CINDER_APP( VoidApp, app::RendererGl, prepareSettings)
 void VoidApp::setup() {
     AppBase::setup();
 
-    _headlineFont = loadFont(_HeadlineFontName, 34);
-    _textFont = loadFont(_TextFontName, 20);
+    _headlineFont = loadFont(_HeadlineFontFilename, 34);
+    _textFont = loadFont(_TextFontFilename, 20);
     _infoText = std::make_unique<DebugInfoText>(*this, _headlineFont);
+
+    ci::audio::VoiceRef voice;
+    ci::audio::BufferPlayerNodeRef node;
 
     setupShader();
     setupCamera();
+    setupAudio();
 
     getWindow()->getSignalResize().connect(std::bind(&VoidApp::onResize, this));
 
@@ -84,6 +91,16 @@ void VoidApp::onResize() {
 AdaptiveTextureFontRef VoidApp::loadFont(const std::string &name, float size) {
     auto font = AdaptiveFont(*this, loadAsset("Fonts/" + name), size);
     return AdaptiveTextureFont::create(*this, font);
+}
+
+void VoidApp::setupAudio() {
+    auto context = audio::Context::master();
+    auto sourceFile = audio::load(loadAsset("Music/" + _MusicFilename), context->getSampleRate());
+
+    _audioPlayer = context->makeNode(new audio::FilePlayerNode(sourceFile));
+    _audioPlayer >> context->getOutput();
+
+    context->enable();
 }
 
 void VoidApp::setupCamera() {
@@ -139,7 +156,7 @@ void VoidApp::drawCube() {
             20,21,22,20,22,23
     };
 
-    DrawHelper::draw(*this, vertices, elements);
+    DrawHelper::Draw(*this, vertices, elements);
 
     gl::popMatrices();
 }

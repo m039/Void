@@ -8,7 +8,7 @@
 using namespace ci;
 using namespace vd;
 
-void DrawHelper::draw(const VoidApp &app, std::vector<GLfloat> vertices, std::vector<GLubyte> elements) {
+void DrawHelper::Draw(const VoidApp &app, std::vector<GLfloat> vertices, std::vector<GLubyte> elements) {
     auto* context = gl::context();
     auto numberOfElements = static_cast<GLuint>(elements.size());
     auto sizeOfVertices = vertices.size();

@@ -9,6 +9,7 @@
 #include "UnlitShader.h"
 
 #include "cinder/app/App.h"
+#include "cinder/audio/audio.h"
 
 namespace vd {
 
@@ -33,6 +34,14 @@ private:
     void onResize();
 
     std::unique_ptr<DebugInfoText> _infoText;
+
+    //region Audio
+
+    ci::audio::SamplePlayerNodeRef _audioPlayer;
+
+    void setupAudio();
+
+    //endregion
 
     //region Fonts
 
