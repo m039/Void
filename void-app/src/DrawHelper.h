@@ -15,7 +15,7 @@ class DrawHelper {
 public:
 
     //! Stripped version of ci::gl::drawCube.
-    static void Draw(const VoidApp &app, std::vector<GLfloat> vertices, std::vector<GLubyte> elements);
+    static void Draw(const VoidApp &app, std::vector<GLfloat> &vertices, std::vector<GLubyte> &elements);
 
 };
 

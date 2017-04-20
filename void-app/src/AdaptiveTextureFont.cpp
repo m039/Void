@@ -10,7 +10,7 @@ using namespace vd;
 AdaptiveTextureFont::AdaptiveTextureFont(const ci::app::App &app, const AdaptiveFont &font)
     : AppObject(app)
 {
-    _font = gl::TextureFont::create(font.getFont(), gl::TextureFont::Format().enableMipmapping(true));
+    _font = gl::TextureFont::create(*font.getInternalFont(), gl::TextureFont::Format().enableMipmapping(true));
 }
 
 vec2 AdaptiveTextureFont::measureString(const std::string &str,

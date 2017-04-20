@@ -6,8 +6,8 @@
 
 using namespace vd;
 
-AdaptiveFont::AdaptiveFont(const cinder::app::App &app, ci::DataSourceRef dataSource, float size)
+AdaptiveFont::AdaptiveFont(const cinder::app::App &app, const ci::DataSourceRef &dataSource, float size)
         : AppObject(app)
 {
-    _font = std::make_unique<ci::Font>(dataSource, size * app.getWindowContentScale());
+    _font = std::make_shared<ci::Font>(dataSource, size * app.getWindowContentScale());
 }

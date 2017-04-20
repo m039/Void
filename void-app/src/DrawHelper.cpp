@@ -8,11 +8,11 @@
 using namespace ci;
 using namespace vd;
 
-void DrawHelper::Draw(const VoidApp &app, std::vector<GLfloat> vertices, std::vector<GLubyte> elements) {
+void DrawHelper::Draw(const VoidApp &app, std::vector<GLfloat> &vertices, std::vector<GLubyte> &elements) {
     auto* context = gl::context();
     auto numberOfElements = static_cast<GLuint>(elements.size());
     auto sizeOfVertices = vertices.size();
-    auto glslProg = app.getShader().GetInternalShader();
+    auto glslProg = app.getShader()->GetInternalShader();
 
     gl::ScopedGlslProg glslScp(glslProg);
 

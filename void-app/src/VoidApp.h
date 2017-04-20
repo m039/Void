@@ -25,8 +25,8 @@ public:
 
     void keyDown(ci::app::KeyEvent event) override;
 
-    UnlitShader& getShader() const {
-        return *_shader;
+    std::shared_ptr<UnlitShader> getShader() const {
+        return _shader;
     }
 
 private:
@@ -55,7 +55,7 @@ private:
 
     //region Shader
 
-    std::unique_ptr<UnlitShader> _shader;
+    std::shared_ptr<UnlitShader> _shader;
 
     void setupShader();
 

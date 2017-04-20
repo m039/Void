@@ -38,9 +38,6 @@ void VoidApp::setup() {
     _textFont = loadFont(_TextFontFilename, 20);
     _infoText = std::make_unique<DebugInfoText>(*this, _headlineFont);
 
-    ci::audio::VoiceRef voice;
-    ci::audio::BufferPlayerNodeRef node;
-
     setupShader();
     setupCamera();
     setupAudio();
@@ -108,7 +105,7 @@ void VoidApp::setupCamera() {
     auto aspectRatio = (float) windowSize.x / (float) windowSize.y;
 
     _camera.lookAt(vec3(3, 3, 3), vec3(0));
-    _camera.setPerspective(35, aspectRatio, 0.1f, 1000);
+    _camera.setPerspective(35, aspectRatio, 0.1f, 1000.0f);
 }
 
 void VoidApp::setupShader() {

@@ -26,7 +26,7 @@ private:
 
     ci::vec2 _textSize;
 
-    const AdaptiveTextureFontRef &_textFont;
+    const AdaptiveTextureFontRef _textFont;
 };
 
 }
