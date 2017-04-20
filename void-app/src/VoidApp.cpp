@@ -6,6 +6,7 @@
 #include "cinder/gl/gl.h"
 
 #include "VoidApp.h"
+#include "DrawHelper.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -28,7 +29,7 @@ void prepareSettings(VoidApp::Settings *settings) {
 CINDER_APP( VoidApp, app::RendererGl, prepareSettings)
 
 void VoidApp::setup() {
-    app::AppBase::setup();
+    AppBase::setup();
 
     _headlineFont = loadFont(_HeadlineFontName, 34);
     _textFont = loadFont(_TextFontName, 20);
@@ -36,7 +37,6 @@ void VoidApp::setup() {
 
     setupShader();
     setupCamera();
-    setupBatch(_shader->GetInternalShader());
 
     getWindow()->getSignalResize().connect(std::bind(&VoidApp::onResize, this));
 
@@ -94,10 +94,6 @@ void VoidApp::setupCamera() {
     _camera.setPerspective(35, aspectRatio, 0.1f, 1000);
 }
 
-void VoidApp::setupBatch(const ci::gl::GlslProgRef &shader) {
-    _batch = gl::Batch::create(geom::Cube(), shader);
-}
-
 void VoidApp::setupShader() {
     _shader = std::make_unique<UnlitShader>(*this);
 
@@ -115,7 +111,35 @@ void VoidApp::drawCube() {
 
     _shader->SetMatrices(_camera);
     _shader->SetMainColor(vec4(1.0f, 0.0f, 1.0f, 1.0f));
-    _batch->draw();
+
+    // draw a cube by hand
+
+    vec3 c {0.0f};
+    vec3 size {1.0f};
+
+    GLfloat sx = size.x * 0.5f;
+    GLfloat sy = size.y * 0.5f;
+    GLfloat sz = size.z * 0.5f;
+
+    static std::vector<GLfloat> vertices {
+            c.x+1.0f*sx,c.y+1.0f*sy,c.z+1.0f*sz,	c.x+1.0f*sx,c.y+-1.0f*sy,c.z+1.0f*sz,	c.x+1.0f*sx,c.y+-1.0f*sy,c.z+-1.0f*sz,	c.x+1.0f*sx,c.y+1.0f*sy,c.z+-1.0f*sz,		// +X
+            c.x+1.0f*sx,c.y+1.0f*sy,c.z+1.0f*sz,	c.x+1.0f*sx,c.y+1.0f*sy,c.z+-1.0f*sz,	c.x+-1.0f*sx,c.y+1.0f*sy,c.z+-1.0f*sz,	c.x+-1.0f*sx,c.y+1.0f*sy,c.z+1.0f*sz,		// +Y
+            c.x+1.0f*sx,c.y+1.0f*sy,c.z+1.0f*sz,	c.x+-1.0f*sx,c.y+1.0f*sy,c.z+1.0f*sz,	c.x+-1.0f*sx,c.y+-1.0f*sy,c.z+1.0f*sz,	c.x+1.0f*sx,c.y+-1.0f*sy,c.z+1.0f*sz,		// +Z
+            c.x+-1.0f*sx,c.y+1.0f*sy,c.z+1.0f*sz,	c.x+-1.0f*sx,c.y+1.0f*sy,c.z+-1.0f*sz,	c.x+-1.0f*sx,c.y+-1.0f*sy,c.z+-1.0f*sz,	c.x+-1.0f*sx,c.y+-1.0f*sy,c.z+1.0f*sz,	// -X
+            c.x+-1.0f*sx,c.y+-1.0f*sy,c.z+-1.0f*sz,	c.x+1.0f*sx,c.y+-1.0f*sy,c.z+-1.0f*sz,	c.x+1.0f*sx,c.y+-1.0f*sy,c.z+1.0f*sz,	c.x+-1.0f*sx,c.y+-1.0f*sy,c.z+1.0f*sz,	// -Y
+            c.x+1.0f*sx,c.y+-1.0f*sy,c.z+-1.0f*sz,	c.x+-1.0f*sx,c.y+-1.0f*sy,c.z+-1.0f*sz,	c.x+-1.0f*sx,c.y+1.0f*sy,c.z+-1.0f*sz,	c.x+1.0f*sx,c.y+1.0f*sy,c.z+-1.0f*sz	// -Z
+    };
+
+    static std::vector<GLubyte> elements {
+            0, 1, 2, 0, 2, 3,
+            4, 5, 6, 4, 6, 7,
+            8, 9,10, 8, 10,11,
+            12,13,14,12,14,15,
+            16,17,18,16,18,19,
+            20,21,22,20,22,23
+    };
+
+    DrawHelper::draw(*this, vertices, elements);
 
     gl::popMatrices();
 }

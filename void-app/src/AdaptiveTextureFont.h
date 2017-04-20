@@ -26,7 +26,8 @@ public:
     ci::vec2 measureString(const std::string &str,
                            const ci::gl::TextureFont::DrawOptions &options = ci::gl::TextureFont::DrawOptions()) const;
 
-    void drawString(const std::string &str, const ci::vec2 &baseline,
+    void drawString(const std::string &str,
+                    const ci::vec2 &baseline,
                     const ci::gl::TextureFont::DrawOptions &options = ci::gl::TextureFont::DrawOptions());
 
 protected:

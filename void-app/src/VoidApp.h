@@ -24,15 +24,15 @@ public:
 
     void keyDown(ci::app::KeyEvent event) override;
 
+    UnlitShader& getShader() const {
+        return *_shader;
+    }
+
 private:
 
     void onResize();
 
     std::unique_ptr<DebugInfoText> _infoText;
-
-    ci::gl::BatchRef _batch;
-
-    void setupBatch(const ci::gl::GlslProgRef &shader);
 
     //region Fonts
 
