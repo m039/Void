@@ -13,4 +13,5 @@ if(Boost_FOUND)
     target_link_libraries(TestVoidCore ${Boost_LIBRARIES})
 endif()
 
+include_directories(VoidCore)
 target_link_libraries (TestVoidCore VoidCore)
