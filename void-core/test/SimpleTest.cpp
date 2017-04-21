@@ -25,7 +25,7 @@ TEST_CASE("Testing Library") {
 
 typedef boost::coroutines2::coroutine<int> coro;
 
-static int j = 0;
+static int j = 30;
 
 void xrange_impl(coro::push_type &yield, int limit) {
     j = 0;
