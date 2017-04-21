@@ -32,7 +32,7 @@ private:
 };
 
 TEST_CASE("WaitForSeconds", "[Coroutine]") {
-    auto coroutine = WaitForSeconds(0.1f);
+    auto coroutine = WaitForSeconds(0.3f);
 
     REQUIRE(!coroutine.IsDone());
 
@@ -40,7 +40,7 @@ TEST_CASE("WaitForSeconds", "[Coroutine]") {
 
     do {
         coroutine.Update();
-    } while (Time::GetTime() - start <= 1.2f);
+    } while (Time::GetTime() - start <= 0.2f);
 
     REQUIRE(coroutine.IsDone());
 }

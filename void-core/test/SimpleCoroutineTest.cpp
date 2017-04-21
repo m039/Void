@@ -22,13 +22,13 @@ void xrange_impl(coro::push_type &yield, int limit) {
     }
 }
 
-TEST_CASE("Testing1", "Test2") {
+TEST_CASE("Testing1", "[Sandbox]") {
     j = -11;
 
     coro::pull_type xrange(std::bind(xrange_impl, std::placeholders::_1, 2));
 
     REQUIRE(j == -11);
-    REQUIRE(xrange);
+    REQUIRE(true);
 
     xrange();
 
