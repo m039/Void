@@ -12,25 +12,6 @@
 using namespace vd;
 using namespace std::chrono;
 
-class PrettyCoutScope {
-
-public:
-
-    PrettyCoutScope() {
-        _flags = std::cout.flags();
-        std::cout << std::fixed;
-    }
-
-    ~PrettyCoutScope() {
-        std::cout.flags(_flags);
-    }
-
-private:
-
-    uint _flags;
-
-};
-
 TEST_CASE("WaitForSeconds", "[Coroutine]") {
     auto coroutine = WaitForSeconds(0.1f);
 

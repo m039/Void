@@ -8,10 +8,8 @@ namespace vd {
 
 class CoroutineManager {
 
+    // Todo
+
 };
 
 }
-
-
-
-

@@ -18,15 +18,15 @@ public:
 
     typedef InternalRepresentation::push_type YieldHandler;
 
-    typedef std::function<void(vd::Coroutine::YieldHandler&)> EnumeratorFunction;
+    typedef std::function<void(vd::Coroutine::YieldHandler&)> EnumerationFunction;
 
-    Coroutine(const EnumeratorFunction enumerator);
+    Coroutine(const EnumerationFunction enumerator);
 
     void Update() override;
 
     bool IsDone() const override;
 
-    //region Internal usage (may be to add friend declaration instead?)
+    //region Internal usage (May be to add friend declaration instead?)
 
     bool IsValid();
 
@@ -38,7 +38,7 @@ public:
 
 private:
 
-    const EnumeratorFunction _enumerator;
+    const EnumerationFunction _enumerator;
 
     std::unique_ptr<InternalRepresentation::pull_type>  _coroutine;
 

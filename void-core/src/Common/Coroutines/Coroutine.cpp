@@ -4,11 +4,12 @@
 
 #include <iostream>
 
+#include "Common/Debug.h"
 #include "Coroutine.h"
 
 using namespace vd;
 
-Coroutine::Coroutine(const EnumeratorFunction enumerator)
+Coroutine::Coroutine(const EnumerationFunction enumerator)
         : _enumerator(enumerator),
           _canceled(false),
           _started(false),
@@ -18,8 +19,7 @@ Coroutine::Coroutine(const EnumeratorFunction enumerator)
 
 void Coroutine::Update() {
     if (!IsValid()) {
-        // Todo: add Debug.Log
-        std::cout << "Coroutine is canceled or finished." << std::endl;
+        Debug::Log("Coroutine is canceled or finished.");
         return;
     }
 
