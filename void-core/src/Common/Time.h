@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <chrono>
+
 namespace vd {
 
 class Time {

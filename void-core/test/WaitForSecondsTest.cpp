@@ -32,7 +32,7 @@ private:
 };
 
 TEST_CASE("WaitForSeconds", "[Coroutine]") {
-    auto coroutine = WaitForSeconds(0.3f);
+    auto coroutine = WaitForSeconds(0.1f);
 
     REQUIRE(!coroutine.IsDone());
 
