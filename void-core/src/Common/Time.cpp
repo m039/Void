@@ -3,3 +3,9 @@
 //
 
 #include "Time.h"
+
+using namespace vd;
+
+void dumb() {
+
+}

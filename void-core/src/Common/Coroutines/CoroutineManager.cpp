@@ -3,3 +3,9 @@
 //
 
 #include "CoroutineManager.h"
+
+using namespace vd;
+
+void dumb() {
+
+}
