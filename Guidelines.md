@@ -1,9 +1,12 @@
 # Guidelines
+Todo: correct English.
+
 ## Project structure
 
 * Use `-` as a delimiter in lowercase names.
 * Use `lowercase` for a high level folder name.
 * Within a high level folder use `PascalCase` or `lowercase`. E.g., `assets`, `Fonts`.
+* Use lowercase with underscore for folders within `src` folder.
 
 ## Assets
 

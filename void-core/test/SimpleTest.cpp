@@ -21,7 +21,34 @@ TEST_CASE("Testing Library") {
     }
 }
 
+#include "boost/coroutine2/coroutine.hpp"
+
+typedef boost::coroutines2::coroutine<int> coro;
+
+static int j = 0;
+
+void xrange_impl(coro::push_type &yield, int limit) {
+    j = 0;
+    for (int i = 0; i < limit; i++) {
+        yield(i);
+        j++;
+    }
+}
+
 TEST_CASE("Testing1", "Test2") {
-    int n = 1;
-    REQUIRE(n == 1);
+    coro::pull_type xrange(std::bind(xrange_impl, std::placeholders::_1, 2));
+
+    j = 1;
+
+    xrange();
+
+    REQUIRE(j == 0);
+
+    xrange();
+
+    REQUIRE(j == 1);
+
+    xrange();
+
+    REQUIRE(j == 1);
 }

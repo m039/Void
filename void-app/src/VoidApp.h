@@ -35,6 +35,8 @@ private:
 
     std::unique_ptr<DebugInfoText> _infoText;
 
+    void drawCube();
+
     //region Audio
 
     ci::audio::SamplePlayerNodeRef _audioPlayer;
@@ -68,8 +70,6 @@ private:
     void setupCamera();
 
     //endregion
-
-    void drawCube();
 };
 
 }
