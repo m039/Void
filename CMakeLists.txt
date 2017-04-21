@@ -14,6 +14,9 @@ if (Boost_NO_SYSTEM_PATHS)
     endif()
 endif()
 
+# Include third party headers
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third-party/include)
+
 set (VoidCinder_VERSION_MAJOR 1)
 set (VoidCinder_VERSION_MINOR 0)
 
