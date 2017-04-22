@@ -12,6 +12,8 @@ namespace vd {
 
 class Coroutine : public IYieldInstruction {
 
+    friend class CoroutineManager;
+
     typedef boost::coroutines2::coroutine<std::shared_ptr<IYieldInstruction>> InternalRepresentation;
 
 public:
@@ -20,13 +22,15 @@ public:
 
     typedef std::function<void(vd::Coroutine::YieldHandler&)> EnumerationFunction;
 
-    Coroutine(const EnumerationFunction enumerator);
+    Coroutine(const EnumerationFunction& enumerator);
 
     void Update() override;
 
     bool IsDone() const override;
 
-    //region Internal usage (May be to add friend declaration instead?)
+private:
+
+    //region Functions used by CoroutineManager
 
     bool IsValid();
 
@@ -35,8 +39,6 @@ public:
     void Stop();
 
     //endregion
-
-private:
 
     const EnumerationFunction _enumerator;
 
@@ -51,5 +53,7 @@ private:
     bool _canceled;
 
 };
+
+typedef std::shared_ptr<Coroutine> CoroutineRef;
 
 }

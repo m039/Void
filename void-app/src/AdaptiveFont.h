@@ -13,15 +13,21 @@ namespace vd {
 //! Helper class which is needed for AdaptiveTextureFont to handle rendering on retina displays.
 class AdaptiveFont : public AppObject {
 
+    friend class AdaptiveTextureFont;
+
 public:
 
     AdaptiveFont(const cinder::app::App &app, const ci::DataSourceRef &dataSource, float size);
+
+private:
+
+    //region Functions used by AdaptiveTextureFont
 
     const std::shared_ptr<ci::Font> getInternalFont() const {
         return _font;
     }
 
-private:
+    //endregion
 
     std::shared_ptr<ci::Font> _font;
 

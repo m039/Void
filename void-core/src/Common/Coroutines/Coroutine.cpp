@@ -9,7 +9,7 @@
 
 using namespace vd;
 
-Coroutine::Coroutine(const EnumerationFunction enumerator)
+Coroutine::Coroutine(const EnumerationFunction& enumerator)
         : _enumerator(enumerator),
           _canceled(false),
           _started(false),
