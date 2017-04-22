@@ -6,6 +6,10 @@
 
 using namespace vd;
 
+CoroutineManager::CoroutineManager() :
+        _inUpdate(false) {
+}
+
 CoroutineRef CoroutineManager::Start(const Coroutine::EnumerationFunction &enumerator) {
     auto coroutine = std::make_shared<Coroutine>(enumerator);
 
@@ -18,20 +22,6 @@ CoroutineRef CoroutineManager::Start(const Coroutine::EnumerationFunction &enume
     }
 
     return coroutine;
-}
-
-void CoroutineManager::StopAll() {
-    if (!_inUpdate) {
-        for (auto& c: _coroutines) {
-            c->Stop();
-        }
-
-        _coroutines.clear();
-    } else {
-        _pendingOperations.push_back([&] () {
-            CoroutineManager::StopAll();
-        });
-    }
 }
 
 void CoroutineManager::Stop(const CoroutineRef &coroutine) {
@@ -51,6 +41,20 @@ void CoroutineManager::Stop(const CoroutineRef &coroutine) {
     } else {
         _pendingOperations.push_back([&]() {
             CoroutineManager::Stop(coroutine);
+        });
+    }
+}
+
+void CoroutineManager::StopAll() {
+    if (!_inUpdate) {
+        for (auto& c: _coroutines) {
+            c->Stop();
+        }
+
+        _coroutines.clear();
+    } else {
+        _pendingOperations.push_back([&] () {
+            CoroutineManager::StopAll();
         });
     }
 }
@@ -81,8 +85,4 @@ void CoroutineManager::Update() {
         }
         _pendingOperations.clear();
     }
-}
-
-CoroutineManager::CoroutineManager() :
-        _inUpdate(false) {
 }

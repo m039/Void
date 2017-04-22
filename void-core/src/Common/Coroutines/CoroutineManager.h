@@ -20,9 +20,9 @@ public:
 
     CoroutineRef Start(const Coroutine::EnumerationFunction &enumerator);
 
-    void StopAll();
-
     void Stop(const CoroutineRef& coroutine);
+
+    void StopAll();
 
     void Update();
 
