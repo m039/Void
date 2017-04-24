@@ -5,6 +5,7 @@
 #pragma once
 
 #include <Game/MusicSystem.h>
+#include <Game/GameHut.h>
 #include "AdaptiveTextureFont.h"
 #include "DebugInfoText.h"
 #include "UnlitShader.h"
@@ -38,6 +39,8 @@ private:
 
     void drawCube();
 
+    std::unique_ptr<GameHut> _game;
+
     //region Audio
 
     std::shared_ptr<IAudioPlayer> setupAudio();
@@ -69,8 +72,6 @@ private:
     void setupCamera();
 
     //endregion
-
-    std::unique_ptr<MusicSystem> _musicSystem;
 };
 
 }

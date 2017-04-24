@@ -16,7 +16,7 @@ using namespace ci::app;
 
 using namespace vd;
 
-//region Consts
+//region Constants
 
 const std::string _HeadlineFontFilename = "CaviarDreamsR.ttf";
 
@@ -43,22 +43,22 @@ void VoidApp::setup() {
     setupShader();
     setupCamera();
     auto audio = setupAudio();
-    _musicSystem = std::make_unique<MusicSystem>(audio);
+
+    _game = std::make_unique<GameHut>(audio);
 
     getWindow()->getSignalResize().connect(std::bind(&VoidApp::onResize, this));
 
     gl::enableAlphaBlending();
 
     // Start the game.
-
-    _musicSystem->Start();
+    _game->Start();
 }
 
 void VoidApp::update() {
     app::AppBase::update();
-    Time::Update();
 
-    _musicSystem->Update();
+    // Update the game.
+    _game->Update();
 }
 
 void VoidApp::draw() {
