@@ -4,6 +4,11 @@
 
 #pragma once
 
+#include <memory>
+#include <Common/Components/IAudioPlayer.h>
+#include <Common/Coroutines/Coroutine.h>
+#include <Common/Components/GameComponent.h>
+
 namespace vd {
 
 class IMusicSystem {
@@ -15,21 +20,50 @@ public:
     virtual void Stop(bool fadeIn) = 0;
 
     //! Time in seconds for the next level.
-    virtual float TimeForNextLevel(int levelIndex) = 0;
+    virtual sec_t TimeForNextLevel(int levelIndex) = 0;
 
     virtual ~IMusicSystem() {}
 };
 
 
-class MusicSystem : public IMusicSystem {
+class MusicSystem :
+        public GameComponent,
+        public IMusicSystem
+{
 
 public:
 
+    MusicSystem(std::shared_ptr<IAudioPlayer>& audioPlayer);
+
+    //region Implementation of IMusicSystem.
+
     void Play(int levelIndex, bool fadeIn) override;
 
-    void Stop(bool fadeIn) override;
+    void Stop(bool fadeOut) override;
 
-    float TimeForNextLevel(int levelIndex) override;
+    sec_t TimeForNextLevel(int levelIndex) override;
+
+    //endregion
+
+    //region Overridden GameComponent methods.
+
+    void OnStart() override;
+
+    //endregion
+
+private:
+
+    const std::shared_ptr<IAudioPlayer> _audioPlayer;
+
+    CoroutineRef _fadeCoroutine;
+
+    bool _mute;
+
+    void ChangeVolume(double volume);
+
+    void StartFade(bool fadeInOrFadeOut, const Action& endCallback);
+
+    const Coroutine::EnumerationFunction DoFade(bool fadeInOrFadeOut, const Action& endCallback);
 
 };
 

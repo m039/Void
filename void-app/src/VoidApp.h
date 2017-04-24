@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <Game/MusicSystem.h>
 #include "AdaptiveTextureFont.h"
 #include "DebugInfoText.h"
 #include "UnlitShader.h"
@@ -39,9 +40,7 @@ private:
 
     //region Audio
 
-    ci::audio::SamplePlayerNodeRef _audioPlayer;
-
-    void setupAudio();
+    std::shared_ptr<IAudioPlayer> setupAudio();
 
     //endregion
 
@@ -70,6 +69,8 @@ private:
     void setupCamera();
 
     //endregion
+
+    std::unique_ptr<MusicSystem> _musicSystem;
 };
 
 }

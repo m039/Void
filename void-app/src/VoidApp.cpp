@@ -2,12 +2,14 @@
 // Created by Dmitry Mozgin on 17/04/2017.
 //
 
+#include <Common/Time.h>
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "cinder/audio/audio.h"
 
 #include "VoidApp.h"
 #include "DrawHelper.h"
+#include "Impl/Common/Components/AudioPlayer.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -40,15 +42,23 @@ void VoidApp::setup() {
 
     setupShader();
     setupCamera();
-    setupAudio();
+    auto audio = setupAudio();
+    _musicSystem = std::make_unique<MusicSystem>(audio);
 
     getWindow()->getSignalResize().connect(std::bind(&VoidApp::onResize, this));
 
     gl::enableAlphaBlending();
+
+    // Start the game.
+
+    _musicSystem->Start();
 }
 
 void VoidApp::update() {
     app::AppBase::update();
+    Time::Update();
+
+    _musicSystem->Update();
 }
 
 void VoidApp::draw() {
@@ -90,14 +100,18 @@ AdaptiveTextureFontRef VoidApp::loadFont(const std::string &name, float size) {
     return AdaptiveTextureFont::create(*this, font);
 }
 
-void VoidApp::setupAudio() {
+std::shared_ptr<IAudioPlayer> VoidApp::setupAudio() {
     auto context = audio::Context::master();
     auto sourceFile = audio::load(loadAsset("Music/" + _MusicFilename), context->getSampleRate());
 
-    _audioPlayer = context->makeNode(new audio::FilePlayerNode(sourceFile));
-    _audioPlayer >> context->getOutput();
+    auto player = context->makeNode(new audio::FilePlayerNode(sourceFile));
+    auto gain = context->makeNode(new audio::GainNode(1.0f));
+
+    player >> gain >> context->getOutput();
 
     context->enable();
+
+    return std::make_shared<AudioPlayer>(player, gain);
 }
 
 void VoidApp::setupCamera() {
