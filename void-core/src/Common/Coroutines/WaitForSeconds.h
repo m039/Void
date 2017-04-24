@@ -22,9 +22,9 @@ private:
 
     const double _seconds;
 
-    double _endTime;
-
     bool _done;
+
+    double _endTime;
 
 };
 

@@ -11,9 +11,9 @@ using namespace vd;
 
 Coroutine::Coroutine(const EnumerationFunction& enumerator)
         : _enumerator(enumerator),
-          _canceled(false),
           _started(false),
           _done(false),
+          _canceled(false),
           _current(nullptr) {
 }
 

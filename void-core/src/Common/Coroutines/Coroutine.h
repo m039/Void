@@ -44,13 +44,13 @@ private:
 
     std::unique_ptr<InternalRepresentation::pull_type>  _coroutine;
 
-    std::shared_ptr<IYieldInstruction> _current;
-
     bool _started;
 
     bool _done;
 
     bool _canceled;
+
+    std::shared_ptr<IYieldInstruction> _current;
 
 };
 
