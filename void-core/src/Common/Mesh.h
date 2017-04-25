@@ -14,7 +14,7 @@ namespace vd {
 class IMesh {
 public:
 
-    virtual ~IMesh() = 0;
+    virtual ~IMesh() {}
 
 };
 

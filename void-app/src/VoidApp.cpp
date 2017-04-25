@@ -10,6 +10,7 @@
 #include "VoidApp.h"
 #include "DrawHelper.h"
 #include "Impl/Common/Components/AudioPlayer.h"
+#include "Impl/Common/MeshFactory.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -49,7 +50,7 @@ void VoidApp::setup() {
     gl::enableAlphaBlending();
 
     // Create and start the game.
-    _game = std::make_unique<VoidGameHut>(nullptr, audio);
+    _game = std::make_unique<VoidGameHut>(std::make_shared<MeshFactory>(), audio);
     _game->Start();
 }
 

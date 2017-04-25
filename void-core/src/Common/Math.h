@@ -10,21 +10,33 @@
 
 namespace vd {
 
+template <typename T>
 class Math {
 
 public:
 
-    template <typename T>
     static T SmoothStep(T edge0, T edge1, T x) {
         T t = boost::algorithm::clamp((x - edge0) / (edge1 - edge0), 0, 1);
         return t * t * (3 - 2 * t);
     }
 
-    template <typename T>
+    static constexpr T Pi = M_PI;
+
     static inline T Sqrt(T v) {
         return sqrt(v);
     }
+    static inline T Sin(T v) {
+        return sin(v);
+    }
+
+    static inline T Cos(T v) {
+        return cos(v);
+    }
 
 };
+
+typedef Math<float> MathF;
+
+typedef Math<double> MathD;
 
 }

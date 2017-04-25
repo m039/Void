@@ -136,13 +136,13 @@ const Coroutine::EnumerationFunction MusicSystem::DoFade(bool fadeInOrFadeOut, c
             while (t < 1) {
                 t += Time::GetDeltaTime() / Config::FadeTime;
                 yield(nullptr);
-                ChangeVolume(Math::SmoothStep<double>(0, 1, t));
+                ChangeVolume(MathD::SmoothStep(0, 1, t));
             }
         } else {
             while (t < 1) {
                 t += Time::GetDeltaTime() / Config::FadeTime;
                 yield(nullptr);
-                ChangeVolume(1 - Math::SmoothStep<double>(0, 1, t));
+                ChangeVolume(1 - MathD::SmoothStep(0, 1, t));
             }
         }
 

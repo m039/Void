@@ -4,9 +4,10 @@
 
 #pragma once
 
-#include "MusicSystem.h"
 #include "Common/GameHut.h"
 #include "Common/Mesh.h"
+
+#include "MusicSystem.h"
 
 namespace vd {
 
@@ -18,6 +19,14 @@ public:
             const IMeshFactoryRef& meshFactory,
             IAudioPlayerRef& audioPlayer
     );
+
+    // Todo: remove temporary code.
+    virtual void Start() override;
+
+private:
+
+    // Todo: remove temporary code.
+    IMeshRef _mesh;
 
 };
 

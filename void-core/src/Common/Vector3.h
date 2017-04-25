@@ -40,7 +40,7 @@ public:
         this->z = z;
     }
 
-    Vector3T<T> operator-() {
+    Vector3T<T> operator-() const {
         return Vector3T<T>(-this->x, -this->y, -this->z);
     }
 
@@ -49,7 +49,7 @@ public:
         auto dy = v2.y - v1.y;
         auto dz = v2.z - v1.z;
 
-        return Math::Sqrt<T>(dx * dx + dy * dy + dz * dz);
+        return Math<T>::Sqrt(dx * dx + dy * dy + dz * dz);
     }
 
     static Vector3T<T> Lerp(Vector3T<T> a, Vector3T<T> b, double blend) {

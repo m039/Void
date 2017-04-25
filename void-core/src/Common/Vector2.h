@@ -35,7 +35,7 @@ public:
         auto dx = v2.x - v1.x;
         auto dy = v2.y - v1.y;
 
-        return Math::Sqrt<T>(dx * dx + dy * dy);
+        return Math<T>::Sqrt(dx * dx + dy * dy);
     }
 
     // No implicit conversion to Vector3.
