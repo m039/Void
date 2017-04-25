@@ -8,14 +8,24 @@
 using namespace vd;
 
 GameHut::GameHut(std::shared_ptr<IAudioPlayer> &audioPlayer) {
-    _musicSystem = std::make_shared<MusicSystem>(audioPlayer);
+    auto musicSystem = std::make_shared<MusicSystem>(audioPlayer);
+
+    _components.push_back(musicSystem);
 }
 
+// Before Start the game is in undefined state.
 void GameHut::Start() {
+    Time::Update();
+
+    for (auto& c: _components) {
+        c->Start();
+    }
 }
 
 void GameHut::Update() {
     Time::Update();
 
-    _musicSystem->Update();
+    for (auto& c: _components) {
+        c->Update();
+    }
 }

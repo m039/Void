@@ -44,13 +44,12 @@ void VoidApp::setup() {
     setupCamera();
     auto audio = setupAudio();
 
-    _game = std::make_unique<GameHut>(audio);
-
     getWindow()->getSignalResize().connect(std::bind(&VoidApp::onResize, this));
 
     gl::enableAlphaBlending();
 
-    // Start the game.
+    // Create and start the game.
+    _game = std::make_unique<GameHut>(audio);
     _game->Start();
 }
 

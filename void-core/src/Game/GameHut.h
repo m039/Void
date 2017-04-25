@@ -10,8 +10,8 @@
 
 namespace vd {
 
-//! This class is the main entry point of the game.
-//! Place that stores all game components and handles game lifecycle.
+//! The main entry point of the game.
+//! Place that stores all game components and handles a game lifecycle.
 class GameHut {
 
 public:
@@ -24,7 +24,7 @@ public:
 
 private:
 
-    std::shared_ptr<MusicSystem> _musicSystem;
+    std::vector<std::shared_ptr<IGameComponent>> _components;
 
 };
 

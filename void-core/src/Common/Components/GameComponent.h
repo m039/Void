@@ -18,7 +18,7 @@ public:
 
 };
 
-class GameComponent : IGameComponent {
+class GameComponent : public IGameComponent {
 
 public:
 
