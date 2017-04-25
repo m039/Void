@@ -33,7 +33,7 @@ class MusicSystem :
 
 public:
 
-    MusicSystem(std::shared_ptr<IAudioPlayer>& audioPlayer);
+    MusicSystem(IAudioPlayerRef& audioPlayer);
 
     //region Implementation of IMusicSystem.
 
@@ -53,7 +53,7 @@ public:
 
 private:
 
-    const std::shared_ptr<IAudioPlayer> _audioPlayer;
+    const IAudioPlayerRef _audioPlayer;
 
     CoroutineRef _fadeCoroutine;
 

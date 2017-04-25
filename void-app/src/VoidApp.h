@@ -5,7 +5,7 @@
 #pragma once
 
 #include <Game/MusicSystem.h>
-#include <Game/GameHut.h>
+#include <Game/VoidGameHut.h>
 #include "AdaptiveTextureFont.h"
 #include "DebugInfoText.h"
 #include "UnlitShader.h"

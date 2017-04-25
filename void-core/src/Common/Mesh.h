@@ -4,10 +4,72 @@
 
 #pragma once
 
+#include <vector>
+#include "Vector3.h"
+#include "Vector2.h"
+
 namespace vd {
+
+//! Mesh could be hardware dependendent (OpenGL, DirectX or whatever).
+class IMesh {
+public:
+
+    virtual ~IMesh() = 0;
+
+};
+
+typedef std::shared_ptr<IMesh> IMeshRef;
+
+class IMeshFactory {
+public:
+
+    virtual IMeshRef Create(
+            const std::vector<Vector3> &vertices,
+            const std::vector<int> &triangles,
+            const std::vector<Vector3> &normals,
+            const std::vector<Vector2> &uv
+    ) = 0;
+
+};
+
+typedef std::shared_ptr<IMeshFactory> IMeshFactoryRef;
 
 class Mesh {
 
+public:
+
+    static IMeshRef Create(
+            const std::vector<Vector3>& vertices,
+            const std::vector<int>& triangles,
+            const std::vector<Vector3>& normals
+    );
+
+    //! Factory method to create a mesh (or model).
+    static IMeshRef Create(
+            const std::vector<Vector3>& vertices,
+            const std::vector<int>& triangles,
+            const std::vector<Vector3>& normals,
+            const std::vector<Vector2>& uv
+    );
+
 };
+
+// Hide factory methods (which are implementation dependent) somewhere no one sees.
+namespace internal {
+
+class Mesh {
+    friend vd::Mesh;
+
+public:
+
+    static void RegisterMeshFactory(const IMeshFactoryRef& factory);
+
+private:
+
+    static IMeshFactoryRef _Factory;
+
+};
+
+}
 
 }

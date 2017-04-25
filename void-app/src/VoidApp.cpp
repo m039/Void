@@ -49,7 +49,7 @@ void VoidApp::setup() {
     gl::enableAlphaBlending();
 
     // Create and start the game.
-    _game = std::make_unique<GameHut>(audio);
+    _game = std::make_unique<VoidGameHut>(nullptr, audio);
     _game->Start();
 }
 
