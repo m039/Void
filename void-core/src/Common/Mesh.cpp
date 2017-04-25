@@ -2,7 +2,9 @@
 // Created by Dmitry Mozgin on 25/04/2017.
 //
 
-#include "Game.h"
+#include "Mesh.h"
+
+using namespace vd;
 
 void dumb() {
 }

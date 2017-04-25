@@ -3,6 +3,7 @@
 //
 
 #include <Common/Time.h>
+
 #include "GameHut.h"
 
 using namespace vd;
@@ -13,7 +14,7 @@ GameHut::GameHut(std::shared_ptr<IAudioPlayer> &audioPlayer) {
     _components.push_back(musicSystem);
 }
 
-// Before Start the game is in undefined state.
+// Before the call to GameHut::Start the game is in undefined state.
 void GameHut::Start() {
     Time::Update();
 
