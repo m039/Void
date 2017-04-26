@@ -10,18 +10,22 @@ using namespace vd;
 
 VoidGameHut::VoidGameHut(
         const IMeshFactoryRef& meshFactory,
-        IAudioPlayerRef& audioPlayer
+        const IAudioPlayerRef& audioPlayer,
+        const IObjectPoolRef& objectPool
 )
         : GameHut(meshFactory)
 {
     auto musicSystem = std::make_shared<MusicSystem>(audioPlayer);
     Components.push_back(musicSystem);
+
+    _objectPool = objectPool;
+    _objectPool->Init();
 }
 
 void VoidGameHut::Start() {
     GameHut::Start();
 
-    _mesh = MeshGenerator::Generate(Triangle, false);
-
-    auto a = 12;
+    auto object = _objectPool->GetObject();
+    object->GetTransform().SetPosition(Vector3());
+    object->Show();
 }

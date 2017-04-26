@@ -18,6 +18,8 @@ public:
 
     ~AudioPlayer() override;
 
+    //region Implementation of IAudioPlayer
+
     sec_t GetTime() override;
 
     void SetTime(sec_t time) override;
@@ -31,6 +33,8 @@ public:
     void Play() override;
 
     void Stop() override;
+
+    //endregion
 
 private:
 

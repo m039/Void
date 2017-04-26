@@ -24,9 +24,13 @@ public:
 
     Coroutine(const EnumerationFunction& enumerator);
 
+    //region Implementation of IYieldInstruction
+
     void Update() override;
 
     bool IsDone() const override;
+
+    //endregion
 
 private:
 

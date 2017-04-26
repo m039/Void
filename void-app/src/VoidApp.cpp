@@ -3,6 +3,7 @@
 //
 
 #include <Common/Time.h>
+
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "cinder/audio/audio.h"
@@ -50,7 +51,11 @@ void VoidApp::setup() {
     gl::enableAlphaBlending();
 
     // Create and start the game.
-    _game = std::make_unique<VoidGameHut>(std::make_shared<MeshFactory>(), audio);
+    _game = std::make_unique<VoidGameHut>(
+            std::make_shared<MeshFactory>(),
+            audio,
+            std::make_shared<ObjectPool>()
+    );
     _game->Start();
 }
 
@@ -64,8 +69,8 @@ void VoidApp::update() {
 void VoidApp::draw() {
     AppBase::draw();
 
-    gl::clear(Color::white());
-    gl::color(Color::black());
+    gl::clear(ci::Color::white());
+    gl::color(ci::Color::black());
 
     _infoText->Draw();
 
@@ -126,7 +131,7 @@ void VoidApp::setupShader() {
     _shader = std::make_unique<UnlitShader>(*this);
 
     _shader->SetFogEnabled(true);
-    _shader->SetFogColor(Color::black());
+    _shader->SetFogColor(ci::Color::black());
     _shader->SetFogStartPosition(0);
     _shader->SetFogDensity(0.1f);
     _shader->SetMinFogFactor(0.0f);

@@ -59,7 +59,7 @@ static std::array<sec_t, 44> _Syncs {{
         196.774f + 3 * 4.8f
 }};
 
-MusicSystem::MusicSystem(IAudioPlayerRef& audioPlayer)
+MusicSystem::MusicSystem(const IAudioPlayerRef& audioPlayer)
         : _audioPlayer(audioPlayer),
           _mute(false)
 {

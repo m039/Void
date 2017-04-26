@@ -35,7 +35,6 @@ public:
 typedef std::shared_ptr<IMeshFactory> IMeshFactoryRef;
 
 class Mesh {
-
 public:
 
     static IMeshRef Create(

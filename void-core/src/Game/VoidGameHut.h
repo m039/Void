@@ -8,6 +8,7 @@
 #include "Common/Mesh.h"
 
 #include "MusicSystem.h"
+#include "ObjectPool.h"
 
 namespace vd {
 
@@ -17,16 +18,21 @@ public:
 
     VoidGameHut(
             const IMeshFactoryRef& meshFactory,
-            IAudioPlayerRef& audioPlayer
+            const IAudioPlayerRef& audioPlayer,
+            const IObjectPoolRef& objectPool
     );
+
+    //region Implementation of GameHut
 
     // Todo: remove temporary code.
     virtual void Start() override;
 
+    //endregion
+
 private:
 
     // Todo: remove temporary code.
-    IMeshRef _mesh;
+    IObjectPoolRef _objectPool;
 
 };
 

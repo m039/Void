@@ -33,7 +33,7 @@ class MusicSystem :
 
 public:
 
-    MusicSystem(IAudioPlayerRef& audioPlayer);
+    MusicSystem(const IAudioPlayerRef& audioPlayer);
 
     //region Implementation of IMusicSystem.
 

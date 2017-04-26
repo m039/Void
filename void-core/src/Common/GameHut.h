@@ -5,8 +5,10 @@
 #pragma once
 
 #include <memory>
+
 #include <Common/Components/IAudioPlayer.h>
 #include <Common/Components/GameComponent.h>
+
 #include "Mesh.h"
 
 namespace vd {
