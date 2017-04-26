@@ -29,16 +29,12 @@ IVoidTrackObjectRef ObjectPool::GetObject() {
     return CreateObject(); // Out of objects, it shouldn't happen.
 }
 
-void ObjectPool::PutObject(IVoidTrackObjectRef object) {
+void ObjectPool::PutObject(const IVoidTrackObjectRef& object) {
     // Todo: implement.
 }
 
-void ObjectPool::PutObjects(std::vector<IVoidTrackObjectRef> objects) {
+void ObjectPool::PutObjects(const std::vector<IVoidTrackObjectRef>& objects) {
     // Todo: implement.
-}
-
-void ObjectPool::PrecreateObjects() {
-
 }
 
 const IVoidTrackObjectRef ObjectPool::CreateObject() {

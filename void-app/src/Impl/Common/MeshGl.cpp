@@ -9,3 +9,7 @@ using namespace vd;
 MeshGl::~MeshGl() {
 
 }
+
+void MeshGl::Draw() {
+
+}

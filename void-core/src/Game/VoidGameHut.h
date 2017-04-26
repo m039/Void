@@ -34,6 +34,10 @@ private:
     // Todo: remove temporary code.
     IObjectPoolRef _objectPool;
 
+    // Todo: remove temporary code.
+    IVoidTrackObjectRef _object;
+
+
 };
 
 }

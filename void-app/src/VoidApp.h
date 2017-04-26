@@ -12,6 +12,7 @@
 
 #include "cinder/app/App.h"
 #include "cinder/audio/audio.h"
+#include "Impl/Game/ObjectPoolGl.h"
 
 namespace vd {
 
@@ -40,6 +41,8 @@ private:
     void drawCube();
 
     std::unique_ptr<GameHut> _game;
+
+    std::shared_ptr<ObjectPoolGl> _objectPool;
 
     //region Audio
 

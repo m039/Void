@@ -12,6 +12,8 @@ class MeshGl : public IMesh {
 
 public:
 
+    void Draw();
+
     virtual ~MeshGl() override;
 
 };

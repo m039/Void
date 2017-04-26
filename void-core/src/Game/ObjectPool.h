@@ -6,12 +6,25 @@
 
 #include <vector>
 #include "VoidTrackObject.h"
-#include "VoidObject.h"
 
 namespace vd {
 
 class IObjectPool {
 public:
+
+    class IDrawQueue {
+
+    public:
+
+        //! Insert the object into drawing queue.
+        virtual void Insert(const VoidObject& object) = 0;
+
+        //! Remove the object from the drawing queue.
+        virtual void Remove(const VoidObject& object) = 0;
+
+        ~IDrawQueue() {}
+
+    };
 
     IObjectPool() {}
 
@@ -20,22 +33,16 @@ public:
 
     virtual IVoidTrackObjectRef GetObject() = 0;
 
-    virtual void PutObject(IVoidTrackObjectRef object) = 0;
+    virtual void PutObject(const IVoidTrackObjectRef& object) = 0;
 
-    virtual void PutObjects(std::vector<IVoidTrackObjectRef> objects) = 0;
+    virtual void PutObjects(const std::vector<IVoidTrackObjectRef>& objects) = 0;
+
+    //! Returns DrawQueue, it may be null if pool doesn't provide it.
+    virtual IDrawQueue* GetDrawQueue() const {
+        return nullptr;
+    }
 
     virtual ~IObjectPool() {}
-
-};
-
-class IDrawableObjectPool : public virtual IObjectPool {
-public:
-
-    virtual void InsertInDrawQueue(const VoidObject& object) = 0;
-
-    virtual void RemoveFromDrawQueue(const VoidObject& object) = 0;
-
-    virtual ~IDrawableObjectPool() {}
 
 };
 
@@ -50,9 +57,9 @@ public:
 
     virtual IVoidTrackObjectRef GetObject() override;
 
-    virtual void PutObject(IVoidTrackObjectRef object) override;
+    virtual void PutObject(const IVoidTrackObjectRef& object) override;
 
-    virtual void PutObjects(std::vector<IVoidTrackObjectRef> objects) override;
+    virtual void PutObjects(const std::vector<IVoidTrackObjectRef>& objects) override;
 
     //endregion
 
@@ -66,9 +73,8 @@ private:
 
     const IVoidTrackObjectRef CreateObject();
 
-    void PrecreateObjects();
-
     static void SetDefaults(const IVoidTrackObjectRef& object);
+
 };
 
 typedef std::shared_ptr<IObjectPool> IObjectPoolRef;

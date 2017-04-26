@@ -16,10 +16,11 @@ namespace vd {
 class IMeshGenerator;
 
 //!
-//! The main entry point of the game:
+//! The main entry point of the game, design goals:
 //!
 //! - Place that stores all game components and handles a game lifecycle.
 //! - It doesn't depend on a particular game.
+//! - No graphics code, cause almost always graphics are implementation dependent.
 //!
 class GameHut {
 
@@ -29,6 +30,8 @@ public:
     virtual void Start();
 
     virtual void Update();
+
+    // <s>virtual void Draw();</s>
 
 protected:
 

@@ -36,11 +36,9 @@ public:
 
     virtual bool IsHidden() const = 0;
 
-    virtual void SetHidden(bool value) = 0;
-
     virtual ITransform& GetTransform() = 0;
 
-    virtual const IMeshRef& GetMesh() const = 0;
+    virtual const IMeshRef GetMesh() const = 0;
 
     virtual void SetMesh(const IMeshRef& mesh) = 0;
 
@@ -57,8 +55,7 @@ public:
 
 class IObjectPool;
 
-class VoidObject
-        : public virtual IVoidObject
+class VoidObject : public virtual IVoidObject
 {
     class Transform : public ITransform {
 
@@ -93,7 +90,9 @@ public:
      * \param pool a pool to which this object belongs to.
      * \param name the object's name (currently used only for debugging).
      */
-    VoidObject(const IObjectPool& pool, const std::string& name);
+    VoidObject(IObjectPool& pool, const std::string& name);
+
+    ~VoidObject();
 
     //region Implementation of IVoidObject.
 
@@ -110,12 +109,10 @@ public:
     void SetEnabled(bool value) override;
     
     bool IsHidden() const override;
-    
-    void SetHidden(bool value) override;
-    
+
     ITransform& GetTransform() override;
     
-    const IMeshRef& GetMesh() const override;
+    const IMeshRef GetMesh() const override;
     
     void SetMesh(const IMeshRef& mesh) override;
     
@@ -129,6 +126,8 @@ public:
 
 private:
 
+    void RemoveFromDrawQueue();
+
     void InitDefault();
 
     IMeshRef _mesh;
@@ -139,7 +138,11 @@ private:
 
     std::string _name;
 
+    IObjectPool& _objectPool;
+
     bool _isEnabled;
+
+    bool _isHidden;
 
 };
 

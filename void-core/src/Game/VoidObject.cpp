@@ -4,9 +4,16 @@
 
 #include "VoidObject.h"
 
+#include "Game/ObjectPool.h"
+
 using namespace vd;
 
-VoidObject::VoidObject(const IObjectPool &pool, const std::string &name) {
+VoidObject::VoidObject(IObjectPool &pool, const std::string &name)
+        : _objectPool(pool),
+          _isEnabled(false),
+          _isHidden(true),
+          _name(name),
+          _mesh(nullptr) {
     InitDefault();
 }
 
@@ -39,19 +46,14 @@ void VoidObject::SetEnabled(bool value) {
 }
 
 bool VoidObject::IsHidden() const {
-    // Todo: implement.
-    return false;
-}
-
-void VoidObject::SetHidden(bool value) {
-    // Todo: implement.
+    return _isHidden;
 }
 
 ITransform &VoidObject::GetTransform() {
     return _transform;
 }
 
-const IMeshRef &VoidObject::GetMesh() const {
+const IMeshRef VoidObject::GetMesh() const {
     return _mesh;
 }
 
@@ -60,15 +62,33 @@ void VoidObject::SetMesh(const IMeshRef &mesh) {
 }
 
 void VoidObject::Hide() {
-    // Todo: implement.
+    RemoveFromDrawQueue();
+
+    _isHidden = true;
 }
 
 void VoidObject::Show() {
-    // Todo: implement.
+    _isHidden = false;
+
+    auto drawQueue = _objectPool.GetDrawQueue();
+    if (drawQueue != nullptr) {
+        drawQueue->Insert(*this);
+    }
 }
 
 void VoidObject::Destroy() {
     // Todo: implement.
+}
+
+VoidObject::~VoidObject() {
+   RemoveFromDrawQueue();
+}
+
+void VoidObject::RemoveFromDrawQueue() {
+    auto drawQueue = _objectPool.GetDrawQueue();
+    if (drawQueue != nullptr) {
+        drawQueue->Remove(*this);
+    }
 }
 
 VoidObject::Transform::Transform()

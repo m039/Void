@@ -25,7 +25,7 @@ VoidGameHut::VoidGameHut(
 void VoidGameHut::Start() {
     GameHut::Start();
 
-    auto object = _objectPool->GetObject();
-    object->GetTransform().SetPosition(Vector3());
-    object->Show();
+    _object = _objectPool->GetObject();
+    _object->GetTransform().SetPosition(Vector3());
+    _object->Show();
 }

@@ -50,11 +50,13 @@ void VoidApp::setup() {
 
     gl::enableAlphaBlending();
 
+    _objectPool = std::make_shared<ObjectPoolGl>();
+
     // Create and start the game.
     _game = std::make_unique<VoidGameHut>(
             std::make_shared<MeshFactory>(),
             audio,
-            std::make_shared<ObjectPool>()
+            _objectPool
     );
     _game->Start();
 }
@@ -74,7 +76,7 @@ void VoidApp::draw() {
 
     _infoText->Draw();
 
-    drawCube();
+    _objectPool->Draw();
 }
 
 void VoidApp::keyDown(KeyEvent event) {
