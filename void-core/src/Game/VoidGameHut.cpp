@@ -6,6 +6,7 @@
 
 #include "VoidGameHut.h"
 #include "Player.h"
+#include "Game.h"
 
 using namespace vd;
 
@@ -36,6 +37,8 @@ VoidGameHut::VoidGameHut(
     _object->Show();
 
     auto track = std::make_shared<VoidTrack>(1, 1);
+
+    auto game = std::make_shared<Game>(nullptr, nullptr, nullptr, nullptr, nullptr);
 
     player->MoveToTrack(track);
 }

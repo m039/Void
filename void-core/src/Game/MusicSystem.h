@@ -25,6 +25,7 @@ public:
     virtual ~IMusicSystem() {}
 };
 
+typedef std::shared_ptr<IMusicSystem> IMusicSystemRef;
 
 class MusicSystem :
         public GameComponent,

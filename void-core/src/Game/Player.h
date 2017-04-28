@@ -50,6 +50,8 @@ public:
     virtual ~IPlayer() {}
 };
 
+typedef std::shared_ptr<IPlayer> IPlayerRef;
+
 class Player : public GameComponent, public IPlayer {
 public:
 
