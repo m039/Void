@@ -19,6 +19,9 @@ public:
         return _shader;
     }
 
+    //! Takes an OpenGL model matrix and sets it to the internal shader.
+    void ResetToCurrentModelMatrix();
+
     void SetMatrices(const ci::Camera &camera);
 
     void SetMainColor(const ci::ColorAf &color);
@@ -56,6 +59,8 @@ private:
 
     void setupShader(const ci::app::App &app);
 };
+
+typedef std::shared_ptr<UnlitShader> UnlitShaderRef;
 
 }
 

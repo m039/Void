@@ -11,11 +11,11 @@ namespace vd {
 class ITransform {
 public:
 
-    virtual const Vector3& GetLocalScale() const = 0;
+    virtual const Vector3 GetLocalScale() const = 0;
 
     virtual void SetLocaleScale(const Vector3& scale) = 0;
 
-    virtual const Vector3& GetPosition() const = 0;
+    virtual const Vector3 GetPosition() const = 0;
 
     virtual void SetPosition(const Vector3& position) = 0;
 
@@ -30,5 +30,7 @@ public:
 
     ~ITransform() {}
 };
+
+typedef std::shared_ptr<ITransform> ITransformRef;
 
 }

@@ -22,9 +22,9 @@ class IVoidObject {
 
 public:
 
-    virtual const Color& GetColor() const = 0;
+    virtual const Color GetColor() const = 0;
 
-    virtual void SetColor(Color& color) = 0;
+    virtual void SetColor(const Color& color) = 0;
 
     virtual const std::string& GetName() const = 0;
 
@@ -36,7 +36,7 @@ public:
 
     virtual bool IsHidden() const = 0;
 
-    virtual ITransform& GetTransform() = 0;
+    virtual const ITransformRef GetTransform() const = 0;
 
     virtual const IMeshRef GetMesh() const = 0;
 
@@ -65,11 +65,11 @@ class VoidObject : public virtual IVoidObject
 
         //region Implementation of ITransform.
 
-        virtual const Vector3& GetLocalScale() const override;
+        virtual const Vector3 GetLocalScale() const override;
 
         virtual void SetLocaleScale(const Vector3& scale) override;
 
-        virtual const Vector3& GetPosition() const override;
+        virtual const Vector3 GetPosition() const override;
 
         virtual void SetPosition(const Vector3& position) override;
 
@@ -96,9 +96,9 @@ public:
 
     //region Implementation of IVoidObject.
 
-    const Color& GetColor() const override;
+    const Color GetColor() const override;
     
-    void SetColor(Color& color) override;
+    void SetColor(const Color& color) override;
     
     const std::string& GetName() const override;
     
@@ -110,7 +110,7 @@ public:
     
     bool IsHidden() const override;
 
-    ITransform& GetTransform() override;
+    const ITransformRef GetTransform() const override;
     
     const IMeshRef GetMesh() const override;
     
@@ -130,10 +130,6 @@ private:
 
     void InitDefault();
 
-    Color _color;
-
-    Transform _transform;
-
     IObjectPool& _objectPool;
 
     bool _isEnabled;
@@ -144,6 +140,9 @@ private:
 
     IMeshRef _mesh;
 
+    Color _color;
+
+     ITransformRef _transform;
 };
 
 }

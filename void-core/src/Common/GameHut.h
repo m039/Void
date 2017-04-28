@@ -22,16 +22,18 @@ class IMeshGenerator;
 //! - It doesn't depend on a particular game.
 //! - No graphics code, cause almost always graphics are implementation dependent.
 //!
+//! Note: a small shelter for a game, hence the name GameHut.
+//!
 class GameHut {
 
 public:
 
-    // Before the call to GameHut::Start the game is in undefined state.
+    // Before the call to GameHut::Start a game is in undefined state.
     virtual void Start();
 
     virtual void Update();
 
-    // <s>virtual void Draw();</s>
+    // <strikethrough>virtual void Draw();</strikethrough>
 
 protected:
 

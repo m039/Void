@@ -49,13 +49,17 @@ void UnlitShader::setupShader(const ci::app::App &app) {
     }
 }
 
-void UnlitShader::SetMatrices(const ci::Camera &camera) {
+void UnlitShader::ResetToCurrentModelMatrix() {
     const auto &model = gl::getModelMatrix();
+
+    _shader->uniform(_modelLocation, model);
+}
+
+void UnlitShader::SetMatrices(const ci::Camera &camera) {
     const auto &view = camera.getViewMatrix();
     const auto &proj = camera.getProjectionMatrix();
     auto projView = proj * view;
 
-    _shader->uniform(_modelLocation, model);
     _shader->uniform(_viewLocation, view);
     _shader->uniform(_projViewLocation, projView);
 }

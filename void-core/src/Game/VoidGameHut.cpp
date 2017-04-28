@@ -26,6 +26,8 @@ void VoidGameHut::Start() {
     GameHut::Start();
 
     _object = _objectPool->GetObject();
-    _object->GetTransform().SetPosition(Vector3());
+    _object->SetColor(Color::Blue);
+    _object->GetTransform()->SetPosition(Vector3(0, 0, -4));
+    _object->GetTransform()->SetLocaleScale(Vector3(0.3f, 0.3f, 0.3f));
     _object->Show();
 }

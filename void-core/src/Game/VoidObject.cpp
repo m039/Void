@@ -13,7 +13,9 @@ VoidObject::VoidObject(IObjectPool &pool, const std::string &name)
           _isEnabled(false),
           _isHidden(true),
           _name(name),
-          _mesh(nullptr) {
+          _mesh(nullptr),
+          _color(Color::Red),
+          _transform(std::make_shared<Transform>()) {
     InitDefault();
 }
 
@@ -21,12 +23,12 @@ void VoidObject::InitDefault() {
     // Todo: implement.
 }
 
-const Color &VoidObject::GetColor() const {
+const Color VoidObject::GetColor() const {
     return _color;
 }
 
-void VoidObject::SetColor(Color &color) {
-    // Todo: implement.
+void VoidObject::SetColor(const Color &color) {
+    _color = color;
 }
 
 const std::string &VoidObject::GetName() const {
@@ -49,7 +51,7 @@ bool VoidObject::IsHidden() const {
     return _isHidden;
 }
 
-ITransform &VoidObject::GetTransform() {
+const ITransformRef VoidObject::GetTransform() const {
     return _transform;
 }
 
@@ -98,7 +100,7 @@ VoidObject::Transform::Transform()
     // Todo: implement.
 }
 
-const Vector3 &VoidObject::Transform::GetLocalScale() const {
+const Vector3 VoidObject::Transform::GetLocalScale() const {
     return _localScale;
 }
 
@@ -106,7 +108,7 @@ void VoidObject::Transform::SetLocaleScale(const Vector3 &scale) {
     _localScale = scale;
 }
 
-const Vector3 &VoidObject::Transform::GetPosition() const {
+const Vector3 VoidObject::Transform::GetPosition() const {
     return _position;
 }
 
