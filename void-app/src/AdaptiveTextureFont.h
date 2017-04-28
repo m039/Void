@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "AppObject.h"
+#include "VoidAppObject.h"
 #include "AdaptiveFont.h"
 
 #include "cinder/gl/gl.h"
@@ -15,11 +15,11 @@ namespace vd {
 typedef std::shared_ptr<class AdaptiveTextureFont>	AdaptiveTextureFontRef;
 
 //! Wrapper for TextureFont that handles rendering on retina displays.
-class AdaptiveTextureFont : public AppObject {
+class AdaptiveTextureFont : public VoidAppObject {
 
 public:
 
-    static AdaptiveTextureFontRef create(const ci::app::App &app, const AdaptiveFont &font) {
+    static AdaptiveTextureFontRef create(const VoidApp &app, const AdaptiveFont &font) {
         return AdaptiveTextureFontRef(new AdaptiveTextureFont(app, font));
     }
 
@@ -32,7 +32,7 @@ public:
 
 protected:
 
-    AdaptiveTextureFont(const ci::app::App &app, const AdaptiveFont &font);
+    AdaptiveTextureFont(const VoidApp &app, const AdaptiveFont &font);
 
 private:
 

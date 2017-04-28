@@ -49,7 +49,7 @@ void UnlitShader::setupShader(const ci::app::App &app) {
     }
 }
 
-void UnlitShader::ResetToCurrentModelMatrix() {
+void UnlitShader::LoadModelMatrix() {
     const auto &model = gl::getModelMatrix();
 
     _shader->uniform(_modelLocation, model);

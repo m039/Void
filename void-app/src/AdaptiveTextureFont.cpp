@@ -4,11 +4,13 @@
 
 #include "AdaptiveTextureFont.h"
 
+#include "VoidApp.h"
+
 using namespace ci;
 using namespace vd;
 
-AdaptiveTextureFont::AdaptiveTextureFont(const ci::app::App &app, const AdaptiveFont &font)
-    : AppObject(app)
+AdaptiveTextureFont::AdaptiveTextureFont(const VoidApp &app, const AdaptiveFont &font)
+    : VoidAppObject(app)
 {
     _font = gl::TextureFont::create(*font.getInternalFont(), gl::TextureFont::Format().enableMipmapping(true));
 }

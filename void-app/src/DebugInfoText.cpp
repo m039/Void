@@ -4,10 +4,12 @@
 
 #include "DebugInfoText.h"
 
+#include "VoidApp.h"
+
 using namespace vd;
 
-DebugInfoText::DebugInfoText(const ci::app::App &app, const AdaptiveTextureFontRef &font)
-        : AppObject(app), _textFont(font) {
+DebugInfoText::DebugInfoText(const VoidApp &app, const AdaptiveTextureFontRef &font)
+        : VoidAppObject(app), _textFont(font) {
     std::string text;
 
     text.append("Void, ");

@@ -11,12 +11,16 @@ using namespace vd;
 VoidGameHut::VoidGameHut(
         const IMeshFactoryRef& meshFactory,
         const IAudioPlayerRef& audioPlayer,
-        const IObjectPoolRef& objectPool
+        const IObjectPoolRef& objectPool,
+        const ICameraRef& camera
 )
         : GameHut(meshFactory)
 {
     auto musicSystem = std::make_shared<MusicSystem>(audioPlayer);
     Components.push_back(musicSystem);
+
+    _camera = camera;
+    _camera->GetTransform()->SetPosition(Vector3(0, 0, -2));
 
     _objectPool = objectPool;
     _objectPool->Init();

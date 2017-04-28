@@ -13,6 +13,7 @@
 #include "cinder/app/App.h"
 #include "cinder/audio/audio.h"
 #include "Impl/Game/ObjectPoolGl.h"
+#include "Impl/Game/Camera.h"
 
 namespace vd {
 
@@ -38,15 +39,15 @@ private:
 
     std::unique_ptr<DebugInfoText> _infoText;
 
-    void drawPool();
-
     std::unique_ptr<GameHut> _game;
 
     std::shared_ptr<ObjectPoolGl> _objectPool;
 
+    std::shared_ptr<Camera> _camera;
+
     //region Audio
 
-    std::shared_ptr<IAudioPlayer> setupAudio();
+    IAudioPlayerRef setupAudio();
 
     //endregion
 
@@ -68,13 +69,6 @@ private:
 
     //endregion
 
-    //region Camera
-
-    ci::CameraPersp _camera;
-
-    void setupCamera();
-
-    //endregion
 };
 
 }

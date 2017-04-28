@@ -4,10 +4,12 @@
 
 #include "AdaptiveFont.h"
 
+#include "VoidApp.h"
+
 using namespace vd;
 
-AdaptiveFont::AdaptiveFont(const cinder::app::App &app, const ci::DataSourceRef &dataSource, float size)
-        : AppObject(app)
+AdaptiveFont::AdaptiveFont(const VoidApp &app, const ci::DataSourceRef &dataSource, float size)
+        : VoidAppObject(app)
 {
     _font = std::make_shared<ci::Font>(dataSource, size * app.getWindowContentScale());
 }

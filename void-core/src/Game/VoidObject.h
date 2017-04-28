@@ -7,7 +7,7 @@
 #include <string>
 #include <Common/Mesh.h>
 #include <Common/Color.h>
-#include "Common/Components/ITransform.h"
+#include "Common/Components/Transform.h"
 
 namespace vd {
 
@@ -57,33 +57,6 @@ class IObjectPool;
 
 class VoidObject : public virtual IVoidObject
 {
-    class Transform : public ITransform {
-
-    public:
-
-        Transform();
-
-        //region Implementation of ITransform.
-
-        virtual const Vector3 GetLocalScale() const override;
-
-        virtual void SetLocaleScale(const Vector3& scale) override;
-
-        virtual const Vector3 GetPosition() const override;
-
-        virtual void SetPosition(const Vector3& position) override;
-
-        virtual void Rotate(float xAngle, float yAngle, float zAngle) override;
-
-        //endregion
-
-    private:
-
-        Vector3 _localScale;
-
-        Vector3 _position;
-    };
-
 public:
 
     /*!

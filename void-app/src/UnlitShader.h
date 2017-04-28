@@ -20,7 +20,7 @@ public:
     }
 
     //! Takes an OpenGL model matrix and sets it to the internal shader.
-    void ResetToCurrentModelMatrix();
+    void LoadModelMatrix();
 
     void SetMatrices(const ci::Camera &camera);
 

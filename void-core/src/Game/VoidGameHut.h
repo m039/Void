@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <Common/Components/ICamera.h>
 #include "Common/GameHut.h"
 #include "Common/Mesh.h"
 
@@ -19,7 +20,8 @@ public:
     VoidGameHut(
             const IMeshFactoryRef& meshFactory,
             const IAudioPlayerRef& audioPlayer,
-            const IObjectPoolRef& objectPool
+            const IObjectPoolRef& objectPool,
+            const ICameraRef& camera
     );
 
     //region Implementation of GameHut
@@ -37,6 +39,8 @@ private:
     // Todo: remove temporary code.
     IVoidTrackObjectRef _object;
 
+    // Todo: remove temporary code.
+    ICameraRef _camera;
 
 };
 

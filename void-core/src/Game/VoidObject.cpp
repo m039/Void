@@ -95,30 +95,3 @@ void VoidObject::RemoveFromDrawQueue() {
         drawQueue->Remove(*this);
     }
 }
-
-VoidObject::Transform::Transform()
-        : _localScale(Vector3(1, 1, 1)),
-          _position(Vector3::Zero)
-{
-    // Todo: implement.
-}
-
-const Vector3 VoidObject::Transform::GetLocalScale() const {
-    return _localScale;
-}
-
-void VoidObject::Transform::SetLocaleScale(const Vector3 &scale) {
-    _localScale = scale;
-}
-
-const Vector3 VoidObject::Transform::GetPosition() const {
-    return _position;
-}
-
-void VoidObject::Transform::SetPosition(const Vector3 &position) {
-    _position = position;
-}
-
-void VoidObject::Transform::Rotate(float xAngle, float yAngle, float zAngle) {
-    // Todo: implement.
-}

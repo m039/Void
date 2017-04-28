@@ -10,14 +10,15 @@
 using namespace vd;
 using namespace ci;
 
-ObjectPoolGl::ObjectPoolGl() : _drawQueue(std::make_unique<DrawQueueGl>()) {
+ObjectPoolGl::ObjectPoolGl(const VoidApp &app)
+        : VoidAppObject(app), _drawQueue(std::make_unique<DrawQueueGl>()) {
 }
 
 IObjectPool::IDrawQueue *ObjectPoolGl::GetDrawQueue() const {
     return _drawQueue.get();
 }
 
-void ObjectPoolGl::Draw(const VoidApp& app) {
+void ObjectPoolGl::Draw() {
     for ( auto q : _drawQueue->_queue) {
         if (!q->IsHidden()) {
             gl::pushMatrices();
@@ -34,8 +35,7 @@ void ObjectPoolGl::Draw(const VoidApp& app) {
             auto s = tr->GetLocalScale();
             gl::scale(s.x, s.y, s.z);
 
-            // Update the model matrix.
-            app.getShader()->ResetToCurrentModelMatrix();
+            app.getShader()->LoadModelMatrix();
 
             // Set a color.
             auto c = q->GetColor();

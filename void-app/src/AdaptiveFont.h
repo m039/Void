@@ -4,20 +4,20 @@
 
 #pragma once
 
-#include "AppObject.h"
+#include "VoidAppObject.h"
 
 #include "cinder/gl/gl.h"
 
 namespace vd {
 
 //! Helper class which is needed for AdaptiveTextureFont to handle rendering on retina displays.
-class AdaptiveFont : public AppObject {
+class AdaptiveFont : public VoidAppObject {
 
     friend class AdaptiveTextureFont;
 
 public:
 
-    AdaptiveFont(const cinder::app::App &app, const ci::DataSourceRef &dataSource, float size);
+    AdaptiveFont(const VoidApp &app, const ci::DataSourceRef &dataSource, float size);
 
 private:
 

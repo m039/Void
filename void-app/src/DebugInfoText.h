@@ -7,16 +7,16 @@
 #include "cinder/app/App.h"
 #include "cinder/gl/gl.h"
 
-#include "AppObject.h"
+#include "VoidAppObject.h"
 #include "AdaptiveTextureFont.h"
 
 namespace vd {
 
-class DebugInfoText : public AppObject {
+class DebugInfoText : public VoidAppObject {
 
 public:
 
-    DebugInfoText(const ci::app::App &app, const AdaptiveTextureFontRef &font);
+    DebugInfoText(const VoidApp &app, const AdaptiveTextureFontRef &font);
 
     void Draw();
 

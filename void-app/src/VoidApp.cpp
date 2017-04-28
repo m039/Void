@@ -43,20 +43,21 @@ void VoidApp::setup() {
     _infoText = std::make_unique<DebugInfoText>(*this, _headlineFont);
 
     setupShader();
-    setupCamera();
     auto audio = setupAudio();
 
     getWindow()->getSignalResize().connect(std::bind(&VoidApp::onResize, this));
 
     gl::enableAlphaBlending();
 
-    _objectPool = std::make_shared<ObjectPoolGl>();
+    _objectPool = std::make_shared<ObjectPoolGl>(*this);
+    _camera = std::make_shared<Camera>(*this);
 
     // Create and start the game.
     _game = std::make_unique<VoidGameHut>(
             std::make_shared<MeshFactory>(),
             audio,
-            _objectPool
+            _objectPool,
+            _camera
     );
     _game->Start();
 }
@@ -71,12 +72,26 @@ void VoidApp::update() {
 void VoidApp::draw() {
     AppBase::draw();
 
-    gl::clear(ci::Color::white());
+    // Set background color.
+
+    auto c = _camera->GetBackgroundColor();
+
+    gl::clear(ci::vec4(c.r, c.g, c.b, c.a));
+
+    // Draw an object pool.
+
+    gl::pushMatrices();
+
+    _camera->LoadMatrices();
+    _objectPool->Draw();
+
+    gl::popMatrices();
+
+    // Draw an info text.
+
     gl::color(ci::Color::black());
 
     _infoText->Draw();
-
-    drawPool();
 }
 
 void VoidApp::keyDown(KeyEvent event) {
@@ -99,7 +114,7 @@ void VoidApp::keyDown(KeyEvent event) {
 //region Misc
 
 void VoidApp::onResize() {
-    setupCamera();
+    _camera->Setup();
 }
 
 AdaptiveTextureFontRef VoidApp::loadFont(const std::string &name, float size) {
@@ -107,7 +122,7 @@ AdaptiveTextureFontRef VoidApp::loadFont(const std::string &name, float size) {
     return AdaptiveTextureFont::create(*this, font);
 }
 
-std::shared_ptr<IAudioPlayer> VoidApp::setupAudio() {
+IAudioPlayerRef VoidApp::setupAudio() {
     auto context = audio::Context::master();
     auto sourceFile = audio::load(loadAsset("Music/" + _MusicFilename), context->getSampleRate());
 
@@ -121,14 +136,6 @@ std::shared_ptr<IAudioPlayer> VoidApp::setupAudio() {
     return std::make_shared<AudioPlayer>(player, gain);
 }
 
-void VoidApp::setupCamera() {
-    auto windowSize = getWindow()->getSize();
-    auto aspectRatio = (float) windowSize.x / (float) windowSize.y;
-
-    _camera.lookAt(vec3(0, 0, 3), vec3(0));
-    _camera.setPerspective(35, aspectRatio, 0.1f, 1000.0f);
-}
-
 void VoidApp::setupShader() {
     _shader = std::make_unique<UnlitShader>(*this);
 
@@ -137,17 +144,6 @@ void VoidApp::setupShader() {
     _shader->SetFogStartPosition(0);
     _shader->SetFogDensity(0.1f);
     _shader->SetMinFogFactor(0.0f);
-}
-
-void VoidApp::drawPool() {
-    gl::pushMatrices();
-    gl::setMatrices(_camera);
-
-    _shader->SetMatrices(_camera);
-
-    _objectPool->Draw(*this);
-
-    gl::popMatrices();
 }
 
 //endregion

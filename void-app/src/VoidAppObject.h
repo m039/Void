@@ -8,16 +8,17 @@
 
 namespace vd {
 
+class VoidApp;
+
 //! Class which lives as long as the application lives.
-class AppObject {
+class VoidAppObject {
 
 protected:
 
-    AppObject(const ci::app::App &app) : app(app) {
-
+    VoidAppObject(const VoidApp &app) : app(app) {
     }
 
-    const ci::app::App& app;
+    const VoidApp& app;
 
 };
 

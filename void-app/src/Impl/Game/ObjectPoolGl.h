@@ -5,12 +5,16 @@
 #pragma once
 
 #include <Game/ObjectPool.h>
+#include "../../VoidAppObject.h"
 
 namespace vd {
 
 class VoidApp;
 
-class ObjectPoolGl : public ObjectPool {
+class ObjectPoolGl :
+        public VoidAppObject,
+        public ObjectPool
+{
     class DrawQueueGl : public IDrawQueue {
         friend ObjectPoolGl;
 
@@ -36,11 +40,11 @@ class ObjectPoolGl : public ObjectPool {
 
 public:
 
-    ObjectPoolGl();
+    ObjectPoolGl(const VoidApp &app);
 
     virtual IDrawQueue* GetDrawQueue() const override;
 
-    void Draw(const VoidApp& app);
+    void Draw();
 
 private:
 
