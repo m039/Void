@@ -118,4 +118,6 @@ private:
      ITransformRef _transform;
 };
 
+typedef std::shared_ptr<IVoidObject> IVoidObjectRef;
+
 }

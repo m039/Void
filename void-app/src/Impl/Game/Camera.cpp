@@ -12,7 +12,7 @@ Camera::Camera(const VoidApp &app)
         : VoidAppObject(app),
           _nearClipPlane(0.1f),
           _backgroundColor(Color::White),
-          _transform(std::make_shared<Transform>()) {
+          _transform(std::make_shared<CameraTransform>(*this)) {
     Setup();
 }
 

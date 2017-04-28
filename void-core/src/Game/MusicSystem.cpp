@@ -89,7 +89,7 @@ void MusicSystem::Play(int levelIndex, bool fadeIn) {
 }
 
 void MusicSystem::Stop(bool fadeOut) {
-    Action h = [this]() {
+    Callback h = [this]() {
         _audioPlayer->Stop();
     };
 
@@ -100,7 +100,7 @@ void MusicSystem::Stop(bool fadeOut) {
     }
 }
 
-void MusicSystem::StartFade(bool fadeInOrFadeOut, const Action& endCallback)
+void MusicSystem::StartFade(bool fadeInOrFadeOut, const Callback& endCallback)
 {
     if (_fadeCoroutine != nullptr) {
         GetCoroutineManager().Stop(_fadeCoroutine);
@@ -128,7 +128,7 @@ void MusicSystem::ChangeVolume(double volume) {
     }
 }
 
-const Coroutine::EnumerationFunction MusicSystem::DoFade(bool fadeInOrFadeOut, const Action& endCallback) {
+const Coroutine::EnumerationFunction MusicSystem::DoFade(bool fadeInOrFadeOut, const Callback& endCallback) {
     return [this, fadeInOrFadeOut, endCallback](Coroutine::YieldHandler &yield) {
         sec_t t = 0.0f;
 

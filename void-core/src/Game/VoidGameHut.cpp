@@ -5,6 +5,7 @@
 #include <Game/MeshGenerators/MeshGenerator.h>
 
 #include "VoidGameHut.h"
+#include "Player.h"
 
 using namespace vd;
 
@@ -16,24 +17,28 @@ VoidGameHut::VoidGameHut(
 )
         : GameHut(meshFactory)
 {
+    _objectPool = objectPool;
+    _objectPool->Init();
+
     auto musicSystem = std::make_shared<MusicSystem>(audioPlayer);
     Components.push_back(musicSystem);
 
-    _camera = camera;
-    _camera->GetTransform()->SetPosition(Vector3(0, 0, -2));
+    auto player = std::make_shared<Player>(camera);
+    Components.push_back(player);
 
-    _objectPool = objectPool;
-    _objectPool->Init();
+    _camera = camera;
+    _camera->GetTransform()->SetPosition(Vector3(0, 0, 0));
+
+    _object = _objectPool->GetObject();
+    _object->SetShapeType(ShapeType::Square);
+    _object->GetTransform()->SetPosition(Vector3(0, 0, 20));
+    _object->SetHollow(true);
+    _object->Show();
+
+    // Todo: test Player::MoveToTrack.
 }
 
 void VoidGameHut::Start() {
     GameHut::Start();
 
-    _object = _objectPool->GetObject();
-    _object->SetShapeType(ShapeType::Square);
-    _object->SetHollow(true);
-//    _object->SetColor(Color::Blue);
-//    _object->GetTransform()->SetPosition(Vector3(0, 0, -4));
-//    _object->GetTransform()->SetLocaleScale(Vector3(0.3f, 0.3f, 0.3f));
-    _object->Show();
 }

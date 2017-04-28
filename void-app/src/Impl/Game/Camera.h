@@ -55,7 +55,11 @@ public:
 
     CameraTransform(Camera& camera);
 
+    //region Transform's overrides.
+
     virtual void SetPosition(const Vector3& position) override;
+
+    //endregion
 
 private:
 

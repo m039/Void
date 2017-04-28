@@ -61,9 +61,9 @@ private:
 
     void ChangeVolume(double volume);
 
-    void StartFade(bool fadeInOrFadeOut, const Action& endCallback);
+    void StartFade(bool fadeInOrFadeOut, const Callback& endCallback);
 
-    const Coroutine::EnumerationFunction DoFade(bool fadeInOrFadeOut, const Action& endCallback);
+    const Coroutine::EnumerationFunction DoFade(bool fadeInOrFadeOut, const Callback& endCallback);
 
 };
 

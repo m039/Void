@@ -30,7 +30,7 @@ private:
 
     std::vector<CoroutineRef> _coroutines;
 
-    std::vector<Action> _pendingOperations;
+    std::vector<Callback> _pendingOperations;
 
     bool _inUpdate;
 
