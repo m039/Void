@@ -76,7 +76,7 @@ void VoidApp::draw() {
 
     _infoText->Draw();
 
-    _objectPool->Draw();
+    drawPool();
 }
 
 void VoidApp::keyDown(KeyEvent event) {
@@ -125,7 +125,7 @@ void VoidApp::setupCamera() {
     auto windowSize = getWindow()->getSize();
     auto aspectRatio = (float) windowSize.x / (float) windowSize.y;
 
-    _camera.lookAt(vec3(3, 3, 3), vec3(0));
+    _camera.lookAt(vec3(0, 0, 3), vec3(0));
     _camera.setPerspective(35, aspectRatio, 0.1f, 1000.0f);
 }
 
@@ -139,42 +139,14 @@ void VoidApp::setupShader() {
     _shader->SetMinFogFactor(0.0f);
 }
 
-//! Draw cube by hand
-void VoidApp::drawCube() {
+void VoidApp::drawPool() {
     gl::pushMatrices();
     gl::setMatrices(_camera);
 
     _shader->SetMatrices(_camera);
     _shader->SetMainColor(vec4(1.0f, 0.0f, 1.0f, 1.0f));
 
-    // draw a cube by hand
-
-    vec3 c {0.0f};
-    vec3 size {1.0f};
-
-    GLfloat sx = size.x * 0.5f;
-    GLfloat sy = size.y * 0.5f;
-    GLfloat sz = size.z * 0.5f;
-
-    static std::vector<GLfloat> vertices {
-            c.x+1.0f*sx,c.y+1.0f*sy,c.z+1.0f*sz,	c.x+1.0f*sx,c.y+-1.0f*sy,c.z+1.0f*sz,	c.x+1.0f*sx,c.y+-1.0f*sy,c.z+-1.0f*sz,	c.x+1.0f*sx,c.y+1.0f*sy,c.z+-1.0f*sz,		// +X
-            c.x+1.0f*sx,c.y+1.0f*sy,c.z+1.0f*sz,	c.x+1.0f*sx,c.y+1.0f*sy,c.z+-1.0f*sz,	c.x+-1.0f*sx,c.y+1.0f*sy,c.z+-1.0f*sz,	c.x+-1.0f*sx,c.y+1.0f*sy,c.z+1.0f*sz,		// +Y
-            c.x+1.0f*sx,c.y+1.0f*sy,c.z+1.0f*sz,	c.x+-1.0f*sx,c.y+1.0f*sy,c.z+1.0f*sz,	c.x+-1.0f*sx,c.y+-1.0f*sy,c.z+1.0f*sz,	c.x+1.0f*sx,c.y+-1.0f*sy,c.z+1.0f*sz,		// +Z
-            c.x+-1.0f*sx,c.y+1.0f*sy,c.z+1.0f*sz,	c.x+-1.0f*sx,c.y+1.0f*sy,c.z+-1.0f*sz,	c.x+-1.0f*sx,c.y+-1.0f*sy,c.z+-1.0f*sz,	c.x+-1.0f*sx,c.y+-1.0f*sy,c.z+1.0f*sz,	// -X
-            c.x+-1.0f*sx,c.y+-1.0f*sy,c.z+-1.0f*sz,	c.x+1.0f*sx,c.y+-1.0f*sy,c.z+-1.0f*sz,	c.x+1.0f*sx,c.y+-1.0f*sy,c.z+1.0f*sz,	c.x+-1.0f*sx,c.y+-1.0f*sy,c.z+1.0f*sz,	// -Y
-            c.x+1.0f*sx,c.y+-1.0f*sy,c.z+-1.0f*sz,	c.x+-1.0f*sx,c.y+-1.0f*sy,c.z+-1.0f*sz,	c.x+-1.0f*sx,c.y+1.0f*sy,c.z+-1.0f*sz,	c.x+1.0f*sx,c.y+1.0f*sy,c.z+-1.0f*sz	// -Z
-    };
-
-    static std::vector<GLubyte> elements {
-            0, 1, 2, 0, 2, 3,
-            4, 5, 6, 4, 6, 7,
-            8, 9,10, 8, 10,11,
-            12,13,14,12,14,15,
-            16,17,18,16,18,19,
-            20,21,22,20,22,23
-    };
-
-    DrawHelper::Draw(*this, vertices, elements);
+    _objectPool->Draw(*this);
 
     gl::popMatrices();
 }

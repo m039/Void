@@ -38,7 +38,7 @@ private:
 
     std::unique_ptr<DebugInfoText> _infoText;
 
-    void drawCube();
+    void drawPool();
 
     std::unique_ptr<GameHut> _game;
 

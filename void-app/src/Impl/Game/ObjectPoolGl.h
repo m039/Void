@@ -8,6 +8,8 @@
 
 namespace vd {
 
+class VoidApp;
+
 class ObjectPoolGl : public ObjectPool {
     class DrawQueueGl : public IDrawQueue {
         friend ObjectPoolGl;
@@ -25,8 +27,9 @@ class ObjectPoolGl : public ObjectPool {
         /**
          * Warning:
          *
-         * Raw pointers, no way to determine if an object is deleted or not.
-         * It should be ok for the current game.
+         * Raw pointers, no way to determine if an object is deleted or not:
+         * - It should be ok for the current game.
+         * - Not suitable for a multithreaded environment.
          */
         std::vector<const VoidObject*> _queue;
     };
@@ -37,7 +40,7 @@ public:
 
     virtual IDrawQueue* GetDrawQueue() const override;
 
-    void Draw();
+    void Draw(const VoidApp& app);
 
 private:
 

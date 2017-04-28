@@ -8,9 +8,10 @@
 using namespace vd;
 
 IMeshRef MeshFactory::Create(
-        const std::vector<vd::Vector3, std::allocator<vd::Vector3>> &vertices,
+        const std::vector<Vector3> &vertices,
         const std::vector<int> &triangles,
-        const std::vector<vd::Vector3, std::allocator<vd::Vector3>> &normals,
-        const std::vector<vd::Vector2, std::allocator<vd::Vector2>> &uv) {
-    return std::make_shared<MeshGl>();
+        const std::vector<Vector3> &normals,
+        const std::vector<Vector2> &uv) {
+    // Note: normals and uv are ignored for the current game.
+    return std::make_shared<MeshGl>(vertices, triangles);
 }

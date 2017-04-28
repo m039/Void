@@ -15,11 +15,11 @@ IObjectPool::IDrawQueue *ObjectPoolGl::GetDrawQueue() const {
     return _drawQueue.get();
 }
 
-void ObjectPoolGl::Draw() {
+void ObjectPoolGl::Draw(const VoidApp& app) {
     for ( auto q : _drawQueue->_queue) {
         if (!q->IsHidden()) {
             auto mesh = dynamic_cast<MeshGl*>(q->GetMesh().get());
-            mesh->Draw();
+            mesh->Draw(app);
         }
     }
 }

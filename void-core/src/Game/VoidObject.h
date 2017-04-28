@@ -130,19 +130,19 @@ private:
 
     void InitDefault();
 
-    IMeshRef _mesh;
-
     Color _color;
 
     Transform _transform;
-
-    std::string _name;
 
     IObjectPool& _objectPool;
 
     bool _isEnabled;
 
     bool _isHidden;
+
+    std::string _name;
+
+    IMeshRef _mesh;
 
 };
 

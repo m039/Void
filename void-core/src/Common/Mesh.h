@@ -10,7 +10,7 @@
 
 namespace vd {
 
-//! Mesh could be hardware dependendent (OpenGL, DirectX or whatever).
+//! A mesh implementation is hardware dependendent (OpenGL, DirectX or whatever).
 class IMesh {
 public:
 
