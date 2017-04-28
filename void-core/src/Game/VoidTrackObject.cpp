@@ -8,7 +8,7 @@
 using namespace vd;
 
 VoidTrackObject::VoidTrackObject(IObjectPool &pool, const std::string& name)
-        : VoidTrackObject(pool, name, Triangle, false) {}
+        : VoidTrackObject(pool, name, ShapeType::Triangle, false) {}
 
 VoidTrackObject::VoidTrackObject(IObjectPool &pool, const std::string& name, ShapeType shapeType, bool isHollow)
         : VoidObject(pool, name) {
@@ -44,7 +44,7 @@ ShapeType VoidTrackObject::GetShapeType() const {
 }
 
 void VoidTrackObject::SetShapeType(ShapeType type) {
-    RegenerateMesh(_shapeType, type);
+    RegenerateMesh(type, _isHollow);
 }
 
 void VoidTrackObject::RegenerateMesh(ShapeType shapeType, bool isHollow) {

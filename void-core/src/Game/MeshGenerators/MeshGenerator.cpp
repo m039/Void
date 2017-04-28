@@ -20,11 +20,11 @@ const std::unique_ptr<MeshGenerator> MeshGenerator::_TriangleMeshGenerator =
 
 IMeshRef MeshGenerator::Generate(ShapeType shapeType, bool isHollow) {
     switch (shapeType) {
-        case Square:
+        case ShapeType::Square:
             return _SquareMeshGenerator->GenMesh(isHollow);
-        case Circle:
+        case ShapeType::Circle:
             return _CircleMeshGenerator->GenMesh(isHollow);
-        case Triangle:
+        case ShapeType::Triangle:
             return _TriangleMeshGenerator->GenMesh(isHollow);
         default:
             throw std::invalid_argument("Invalid shape type.");

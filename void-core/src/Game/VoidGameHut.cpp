@@ -26,8 +26,10 @@ void VoidGameHut::Start() {
     GameHut::Start();
 
     _object = _objectPool->GetObject();
-    _object->SetColor(Color::Blue);
-    _object->GetTransform()->SetPosition(Vector3(0, 0, -4));
-    _object->GetTransform()->SetLocaleScale(Vector3(0.3f, 0.3f, 0.3f));
+    _object->SetShapeType(ShapeType::Square);
+    _object->SetHollow(true);
+//    _object->SetColor(Color::Blue);
+//    _object->GetTransform()->SetPosition(Vector3(0, 0, -4));
+//    _object->GetTransform()->SetLocaleScale(Vector3(0.3f, 0.3f, 0.3f));
     _object->Show();
 }

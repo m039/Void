@@ -22,8 +22,6 @@ protected:
 
     static constexpr float Size = 0.5f;
 
-    static constexpr float BorderSize = Size * 0.12f;
-
     virtual IMeshRef GenHollowMesh() = 0;
 
     virtual IMeshRef GenDefaultMesh() = 0;

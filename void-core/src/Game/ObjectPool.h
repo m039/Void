@@ -31,6 +31,7 @@ public:
     //! Initialization. For example, use this method to precreate objects.
     virtual void Init() = 0;
 
+    //! Returns an object from a cache, the returned object is hidden (or invisible to a scene).
     virtual IVoidTrackObjectRef GetObject() = 0;
 
     virtual void PutObject(const IVoidTrackObjectRef& object) = 0;

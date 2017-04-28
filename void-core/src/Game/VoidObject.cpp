@@ -6,6 +6,9 @@
 
 #include "Game/ObjectPool.h"
 
+#include "Colors.h"
+#include "Config.h"
+
 using namespace vd;
 
 VoidObject::VoidObject(IObjectPool &pool, const std::string &name)
@@ -14,13 +17,13 @@ VoidObject::VoidObject(IObjectPool &pool, const std::string &name)
           _isHidden(true),
           _name(name),
           _mesh(nullptr),
-          _color(Color::Red),
+          _color(Colors::Black),
           _transform(std::make_shared<Transform>()) {
     InitDefault();
 }
 
 void VoidObject::InitDefault() {
-    // Todo: implement.
+    _transform->SetLocaleScale(Vector3(Config::DefaultScale, Config::DefaultScale, 1));
 }
 
 const Color VoidObject::GetColor() const {

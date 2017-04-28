@@ -6,7 +6,7 @@
 
 namespace vd {
 
-enum ShapeType {
+enum class ShapeType {
     Square = 1,
     Circle = 2,
     Triangle = 3,
