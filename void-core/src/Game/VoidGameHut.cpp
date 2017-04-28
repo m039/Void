@@ -35,7 +35,9 @@ VoidGameHut::VoidGameHut(
     _object->SetHollow(true);
     _object->Show();
 
-    // Todo: test Player::MoveToTrack.
+    auto track = std::make_shared<VoidTrack>(1, 1);
+
+    player->MoveToTrack(track);
 }
 
 void VoidGameHut::Start() {

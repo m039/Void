@@ -3,7 +3,7 @@
 //
 
 #include <Common/Time.h>
-#include <Common/Coroutines/WaitForSeconds.h>
+
 #include "Player.h"
 #include "Config.h"
 
@@ -65,9 +65,11 @@ void Player::MoveToTrack(const VoidTrackRef &track) {
         _moveToTrackCoroutine = nullptr;
     }
 
+    auto p = track->GetPosition();
+
     _moveToTrackCoroutine = GetCoroutineManager().Start(SmoothTranslationXYCoroutine(
             _transform,
-            track->GetPosition(),
+            Vector3(p.x, p.y, 0.0f),
             Config::MoveTime,
             [this]() { _moveToTrackCoroutine = nullptr; }
     ));
