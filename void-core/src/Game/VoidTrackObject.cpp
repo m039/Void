@@ -8,10 +8,12 @@
 using namespace vd;
 
 VoidTrackObject::VoidTrackObject(IObjectPool &pool, const std::string& name)
-        : VoidTrackObject(pool, name, ShapeType::Triangle, false) {}
+        : VoidTrackObject(pool, name, ShapeType::Triangle, false) {
+}
 
 VoidTrackObject::VoidTrackObject(IObjectPool &pool, const std::string& name, ShapeType shapeType, bool isHollow)
-        : VoidObject(pool, name) {
+        : VoidObject(pool, name),
+          _animation(nullptr) {
     RegenerateMesh(shapeType, isHollow);
 }
 
@@ -21,6 +23,17 @@ void VoidTrackObject::SetRotation(float angle) {
 
 void VoidTrackObject::Rotate(float angle) {
     // Todo: implement.
+}
+
+void VoidTrackObject::SetAnimation(const AnimationRef &animation) {
+    _animation = animation;
+    if (_animation == nullptr) {
+        SetRotation(0.0f);
+    }
+}
+
+AnimationRef VoidTrackObject::GetAnimation() {
+    return _animation;
 }
 
 const std::string &VoidTrackObject::GetTag() const {

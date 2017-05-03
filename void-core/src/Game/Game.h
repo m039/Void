@@ -6,6 +6,7 @@
 
 #include <Game/Screens/VoidScreen.h>
 #include <Game/Screens/IHelpScreen.h>
+#include <Game/Levels/Level35.h>
 
 #include "Player.h"
 #include "MusicSystem.h"
@@ -39,7 +40,7 @@ public:
     virtual ~IGame() {}
 };
 
-typedef std::shared_ptr<IGame> IGameRef;
+typedef IGame* IGameRef;
 
 //! Entry point of the game's logic.
 class Game
@@ -54,7 +55,6 @@ public:
             const IInputSystemRef& inputSystem,
             const ISceneRef& scene
     );
-
 
     //region Implementation of IGame.
     
@@ -78,11 +78,19 @@ public:
     
     //endregion
 
+    //region GameComponent's overrides.
+
+    void Start() override;
+
+    void Update() override;
+
+    //endregion
+
     virtual ~Game();
 
 private:
 
-    IObjectPoolRef _objectCache;
+    IObjectPoolRef _objectPool;
 
     IPlayerRef _player;
 
@@ -91,6 +99,9 @@ private:
     IInputSystemRef _inputSystem;
 
     ISceneRef _scene;
+
+    // Todo: remove.
+    std::unique_ptr<Level35> _level;
 
 };
 

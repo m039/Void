@@ -2,6 +2,7 @@
 // Created by Dmitry Mozgin on 28/04/2017.
 //
 
+#include <string>
 #include "VoidTrack.h"
 #include "Config.h"
 
@@ -64,4 +65,9 @@ VoidTrackRef VoidTrack::GetBottomTrack() const {
 
 void VoidTrack::SetBottomTrack(const VoidTrackRef &bottomTrack) {
     _bottomTrack = bottomTrack;
+}
+
+std::string VoidTrack::ToString() const {
+    return std::string(typeid(VoidTrack).name()) +
+            "[" + std::to_string(_x) + ", " + std::to_string(_y) + "]";
 }

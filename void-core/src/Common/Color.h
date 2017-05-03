@@ -41,6 +41,14 @@ public:
         this->a = a;
     }
 
+    bool operator==(const ColorT& rhs)
+    {
+        if (this == &rhs)
+            return true;
+
+        return this->r == rhs.r && this->g == rhs.g && this->b == rhs.b; // Discard alpha.
+    }
+
 };
 
 template <typename T>

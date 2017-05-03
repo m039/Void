@@ -30,17 +30,8 @@ VoidGameHut::VoidGameHut(
     _camera = camera;
     _camera->GetTransform()->SetPosition(Vector3(0, 0, 0));
 
-    _object = _objectPool->GetObject();
-    _object->SetShapeType(ShapeType::Square);
-    _object->GetTransform()->SetPosition(Vector3(0, 0, 20));
-    _object->SetHollow(true);
-    _object->Show();
-
-    auto track = std::make_shared<VoidTrack>(1, 1);
-
-    auto game = std::make_shared<Game>(nullptr, nullptr, nullptr, nullptr, nullptr);
-
-    player->MoveToTrack(track);
+    auto game = std::make_shared<Game>(_objectPool, player, musicSystem, nullptr, nullptr);
+    Components.push_back(game);
 }
 
 void VoidGameHut::Start() {

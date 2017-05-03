@@ -5,6 +5,7 @@
 #pragma once
 
 #include <Common/Color.h>
+#include <sstream>
 
 namespace vd {
 
@@ -15,15 +16,20 @@ public:
 
     static const Color White;
 
-
     static const Color Black;
 
+    static const Color Red;
+
+    static const Color WarningRed;
+
+    static const Color Blue;
+
+    static const Color Green;
+
+private:
+
+    static Color ParseString(const std::string& colorString);
 
 };
-
-const Color Colors::White = Color::White;
-
-const Color Colors::Black = Color::Black;
-
 
 }

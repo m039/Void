@@ -30,6 +30,10 @@ public:
 
     virtual void SetShapeType(ShapeType type) = 0;
 
+    virtual void SetAnimation(const AnimationRef& animation) = 0;
+
+    virtual AnimationRef GetAnimation() = 0;
+
     virtual ~IVoidTrackObject()  {}
 
 };
@@ -62,6 +66,10 @@ public:
 
     virtual void SetShapeType(ShapeType type) override;
 
+    void SetAnimation(const AnimationRef& animation) override;
+
+    AnimationRef GetAnimation() override;
+
     //endregion
 
 private:
@@ -71,6 +79,8 @@ private:
     ShapeType _shapeType;
 
     bool _isHollow;
+
+    AnimationRef _animation;
 
     void RegenerateMesh(ShapeType shapeType, bool isHollow);
 

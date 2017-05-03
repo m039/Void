@@ -7,19 +7,12 @@
 #include <string>
 #include <Common/Mesh.h>
 #include <Common/Color.h>
+#include <Game/Animations/Rotation.h>
 #include "Common/Components/Transform.h"
 
 namespace vd {
 
 class IVoidObject {
-
-    /**
-     * Commentary:
-     *
-     * What is a good point not to return Color (or other instances) by a const reference?
-     * Or is it better to add additional getters?
-     */
-
 public:
 
     virtual const Color GetColor() const = 0;
@@ -115,7 +108,7 @@ private:
 
     Color _color;
 
-     ITransformRef _transform;
+    ITransformRef _transform;
 };
 
 typedef std::shared_ptr<IVoidObject> IVoidObjectRef;

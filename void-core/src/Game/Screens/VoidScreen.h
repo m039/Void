@@ -16,7 +16,7 @@ public:
 
 typedef std::shared_ptr<IVoidScreen> IVoidScreenRef;
 
-class VoidScreen {
+class VoidScreen : public IVoidScreen {
 
 };
 

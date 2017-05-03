@@ -3,16 +3,20 @@
 //
 
 #include "Game.h"
+#include "Levels/Level35.h"
 
 using namespace vd;
 
 Game::Game(
-        const vd::IObjectPoolRef &objectCache,
-        const vd::IPlayerRef &player,
-        const vd::IMusicSystemRef &musicSystem,
-        const vd::IInputSystemRef &inputSystem,
-        const vd::ISceneRef &scene) {
-
+        const IObjectPoolRef& objectPool,
+        const IPlayerRef& player,
+        const IMusicSystemRef& musicSystem,
+        const IInputSystemRef& inputSystem,
+        const ISceneRef& scene
+) {
+    _objectPool = objectPool;
+    _player = player;
+    _musicSystem = musicSystem;
 }
 
 Game::~Game() {
@@ -20,11 +24,11 @@ Game::~Game() {
 }
 
 IPlayerRef Game::GetPlayer() const {
-    return vd::IPlayerRef();
+    return _player;
 }
 
 IObjectPoolRef Game::GetObjectPool() const {
-    return vd::IObjectPoolRef();
+    return _objectPool;
 }
 
 IInputSystemRef Game::GetInputSystem() const {
@@ -32,7 +36,7 @@ IInputSystemRef Game::GetInputSystem() const {
 }
 
 IMusicSystemRef Game::GetMusicSystem() const {
-    return vd::IMusicSystemRef();
+    return _musicSystem;
 }
 
 IVoidScreenRef Game::GetTryAgainScreen() const {
@@ -52,5 +56,16 @@ ISceneRef Game::GetScene() const {
 }
 
 float Game::TimeForNextLevel() const {
-    return 0;
+    return 4.6f;
+}
+
+void Game::Start() {
+    GameComponent::Start();
+
+    _level = std::make_unique<Level35>();
+    _level->Initialize(this);
+}
+
+void Game::Update() {
+    GameComponent::Update();
 }

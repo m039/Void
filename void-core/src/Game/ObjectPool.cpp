@@ -46,7 +46,7 @@ const IVoidTrackObjectRef ObjectPool::CreateObject() {
 void ObjectPool::SetDefaults(const IVoidTrackObjectRef &object) {
     object->SetEnabled(false);
     object->SetName(DefaultObjectsName);
-//    object->animation = null; // Todo: implement.
+    object->SetAnimation(nullptr);
     object->SetTag("");
 }
 

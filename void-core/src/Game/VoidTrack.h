@@ -15,7 +15,6 @@ class VoidTrack;
 typedef std::shared_ptr<VoidTrack> VoidTrackRef;
 
 class VoidTrack {
-
 public:
 
     VoidTrack(int x, int y);
@@ -47,6 +46,8 @@ public:
 
     void SetBottomTrack(const VoidTrackRef& bottomTrack);
 
+    std::string ToString() const;
+
 private:
 
     VoidTrackRef _leftTrack;
@@ -64,8 +65,6 @@ private:
     Vector2 _position;
 
 };
-
-typedef std::shared_ptr<VoidTrack> VoidTrackRef;
 
 }
 
