@@ -31,9 +31,9 @@ float SimpleLevel::GetGatePositionZ() {
 }
 
 void SimpleLevel::Create() {
-    VoidLevel::Create();
-
     _backgroundColor = CreateBackgroundColor();
+
+    VoidLevel::Create();
 }
 
 void SimpleLevel::Init(

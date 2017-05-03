@@ -49,6 +49,7 @@ void VoidApp::setup() {
 
     gl::enableAlphaBlending();
 
+
     _objectPool = std::make_shared<ObjectPoolGl>(*this);
     _camera = std::make_shared<Camera>(*this);
 
@@ -78,6 +79,9 @@ void VoidApp::draw() {
 
     gl::clear(ci::vec4(c.r, c.g, c.b, c.a));
 
+    gl::enableDepthRead();
+    gl::enableDepthWrite();
+
     // Draw an object pool.
 
     gl::pushMatrices();
@@ -88,6 +92,9 @@ void VoidApp::draw() {
     gl::popMatrices();
 
     // Draw an info text.
+
+    gl::disableDepthRead();
+    gl::disableDepthWrite();
 
     gl::color(ci::Color::black());
 

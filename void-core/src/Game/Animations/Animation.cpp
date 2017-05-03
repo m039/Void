@@ -3,3 +3,8 @@
 //
 
 #include "Animation.h"
+
+using namespace vd;
+
+Animation::~Animation() {
+}

@@ -28,7 +28,8 @@ VoidGameHut::VoidGameHut(
     Components.push_back(player);
 
     _camera = camera;
-    _camera->GetTransform()->SetPosition(Vector3(0, 0, 0));
+    _camera->GetTransform()->SetPosition(Vector3(0, 0, 6));
+    _camera->SetBackgroundColor(Color::Black);
 
     auto game = std::make_shared<Game>(_objectPool, player, musicSystem, nullptr, nullptr);
     Components.push_back(game);
