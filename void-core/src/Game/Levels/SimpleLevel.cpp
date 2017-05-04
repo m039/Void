@@ -17,12 +17,12 @@ Color SimpleLevel::GetBackgroundColor() {
     return _backgroundColor;
 }
 
-void SimpleLevel::CreateTracks(std::vector<VoidTrackRef> &tracks) {
+void SimpleLevel::OnCreateTracks(std::vector<VoidTrackRef> &tracks) {
     auto ts = CreateTracks();
     tracks.insert(tracks.end(), ts.begin(), ts.end());
 }
 
-VoidTrackRef SimpleLevel::StartTrack(const std::vector<VoidTrackRef> &tracks) {
+VoidTrackRef SimpleLevel::OnStartTrack(const std::vector<VoidTrackRef> &tracks) {
     return tracks[0];
 }
 
@@ -36,7 +36,7 @@ void SimpleLevel::Create() {
     VoidLevel::Create();
 }
 
-void SimpleLevel::Init(
+void SimpleLevel::OnInitialize(
         const IGameRef &game,
         const std::vector<VoidTrackRef> &tracks,
         std::unordered_map<VoidTrackRef, VoidLevel::IVoidTrackObjectVectorRef> &objects

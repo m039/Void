@@ -15,7 +15,7 @@ VoidLevel::VoidLevel() : _created(false) {
 }
 
 VoidTrackRef VoidLevel::StartTrack() {
-    return StartTrack(_tracks);
+    return OnStartTrack(_tracks);
 }
 
 void VoidLevel::Initialize(const IGameRef &game) {
@@ -25,7 +25,7 @@ void VoidLevel::Initialize(const IGameRef &game) {
         _created = true;
     }
 
-    Init(game, _tracks, _objects);
+    OnInitialize(game, _tracks, _objects);
 
     _cachedObjects = std::make_shared<std::vector<IVoidTrackObjectRef>>();
 
@@ -46,7 +46,7 @@ void VoidLevel::Initialize(const IGameRef &game) {
 }
 
 void VoidLevel::Create() {
-    CreateTracks(_tracks);
+    OnCreateTracks(_tracks);
 
     for (auto& t : _tracks) {
         _objects[t] = std::make_shared<std::vector<IVoidTrackObjectRef>>();

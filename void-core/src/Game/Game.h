@@ -114,6 +114,8 @@ private:
 
     ISceneRef _scene;
 
+    VoidTrackRef _currentTrack;
+
     // Todo: remove.
     std::unique_ptr<Level35> _level;
 

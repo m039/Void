@@ -34,16 +34,16 @@ public:
     virtual Color GetBackgroundColor() override;
 
 protected:
-    virtual void CreateTracks(std::vector<VoidTrackRef>& tracks) override;
+    virtual void OnCreateTracks(std::vector<VoidTrackRef> &tracks) override;
 
-    virtual VoidTrackRef StartTrack(const std::vector<VoidTrackRef>& tracks) override;
+    virtual VoidTrackRef OnStartTrack(const std::vector<VoidTrackRef> &tracks) override;
 
     virtual void Create() override;
 
-    virtual void Init(
-            const IGameRef& game,
-            const std::vector<VoidTrackRef>& tracks,
-            std::unordered_map<VoidTrackRef, IVoidTrackObjectVectorRef>& objects
+    virtual void OnInitialize(
+            const IGameRef &game,
+            const std::vector<VoidTrackRef> &tracks,
+            std::unordered_map<VoidTrackRef, IVoidTrackObjectVectorRef> &objects
     ) override;
 
     //endregion

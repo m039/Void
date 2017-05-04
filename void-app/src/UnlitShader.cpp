@@ -56,8 +56,16 @@ void UnlitShader::LoadModelMatrix() {
 }
 
 void UnlitShader::SetMatrices(const ci::Camera &camera) {
-    const auto &view = camera.getViewMatrix();
+    auto view = camera.getViewMatrix();
     const auto &proj = camera.getProjectionMatrix();
+
+    // The game uses left-handed coordinates, but OpenGL is right-handed.
+    view = view * ci::mat4(
+            -1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1);
+
     auto projView = proj * view;
 
     _shader->uniform(_viewLocation, view);

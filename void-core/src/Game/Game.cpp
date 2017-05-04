@@ -15,7 +15,9 @@ Game::Game(
         const IMusicSystemRef& musicSystem,
         const IInputSystemRef& inputSystem,
         const ISceneRef& scene
-) {
+)
+        : _currentTrack(nullptr)
+{
     _objectPool = objectPool;
     _player = player;
     _musicSystem = musicSystem;
@@ -28,7 +30,6 @@ Game::Game(
 }
 
 Game::~Game() {
-
 }
 
 IPlayerRef Game::GetPlayer() const {
@@ -48,22 +49,27 @@ IMusicSystemRef Game::GetMusicSystem() const {
 }
 
 IVoidScreenRef Game::GetTryAgainScreen() const {
+    // Todo: implement.
     return vd::IVoidScreenRef();
 }
 
 IVoidScreenRef Game::GetIntroScreen() const {
+    // Todo: implement.
     return vd::IVoidScreenRef();
 }
 
 IHelpScreenRef Game::GetMovementHelpScreen() const {
+    // Todo: implement.
     return vd::IHelpScreenRef();
 }
 
 ISceneRef Game::GetScene() const {
+    // Todo: implement.
     return vd::ISceneRef();
 }
 
 float Game::TimeForNextLevel() const {
+    // Todo: implement.
     return 4.6f;
 }
 
@@ -75,20 +81,47 @@ void Game::Start() {
     _level = std::make_unique<Level35>();
     _level->Initialize(this);
 
+    _currentTrack = _level->StartTrack();
+    _player->MoveToPosition(Vector3::Zero);
+
     // Todo: remove.
     StartGame(0);
 }
 
 void Game::Update() {
     GameComponent::Update();
+
+    // Todo: implement.
 }
 
 void Game::OnAnyKey() {
-
+    // Todo: implement.
 }
 
 void Game::OnPlayerMove(MoveDirection moveDirection) {
-    std::cout << "1\n";
+    VoidTrackRef nextTrack = nullptr;
+
+    switch (moveDirection) {
+        case MoveDirection::Left:
+            nextTrack = _currentTrack->GetLeftTrack();
+            break;
+        case MoveDirection::Up:
+            nextTrack = _currentTrack->GetTopTrack();
+            break;
+        case MoveDirection::Right:
+            nextTrack = _currentTrack->GetRightTrack();
+            break;
+        case MoveDirection::Down:
+            nextTrack = _currentTrack->GetBottomTrack();
+            break;
+        case MoveDirection::None:
+            break;
+    }
+
+    if (nextTrack != nullptr) {
+        _currentTrack = nextTrack;
+        _player->MoveToTrack(_currentTrack);
+    }
 }
 
 void Game::OnQuit() {
@@ -96,7 +129,7 @@ void Game::OnQuit() {
 }
 
 void Game::OnReset() {
-
+    // Todo: implement.
 }
 
 void Game::StartGame(int levelIndex) {

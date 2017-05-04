@@ -45,14 +45,14 @@ protected:
 
     virtual void Create();
 
-    virtual void CreateTracks(std::vector<VoidTrackRef>& tracks) = 0;
+    virtual void OnCreateTracks(std::vector<VoidTrackRef> &tracks) = 0;
 
-    virtual VoidTrackRef StartTrack(const std::vector<VoidTrackRef>& tracks) = 0;
+    virtual VoidTrackRef OnStartTrack(const std::vector<VoidTrackRef> &tracks) = 0;
 
-    virtual void Init(
-            const IGameRef& game,
-            const std::vector<VoidTrackRef>& tracks,
-            std::unordered_map<VoidTrackRef, IVoidTrackObjectVectorRef>& objects
+    virtual void OnInitialize(
+            const IGameRef &game,
+            const std::vector<VoidTrackRef> &tracks,
+            std::unordered_map<VoidTrackRef, IVoidTrackObjectVectorRef> &objects
     ) = 0;
 
 private:
