@@ -58,7 +58,8 @@ void VoidApp::setup() {
             std::make_shared<MeshFactory>(),
             audio,
             _objectPool,
-            _camera
+            _camera,
+            nullptr
     );
     _game->Start();
 }
@@ -96,7 +97,7 @@ void VoidApp::draw() {
     gl::disableDepthRead();
     gl::disableDepthWrite();
 
-    gl::color(ci::Color::black());
+    gl::color(ci::Color::white());
 
     _infoText->Draw();
 }

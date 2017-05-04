@@ -25,7 +25,7 @@ void VoidTrackObject::Rotate(float angle) {
     // Todo: implement.
 }
 
-void VoidTrackObject::SetAnimation(const AnimationRef &animation) {
+void VoidTrackObject::SetAnimation(const AnimationRef& animation) {
     _animation = animation;
     if (_animation == nullptr) {
         SetRotation(0.0f);

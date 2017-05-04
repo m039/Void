@@ -14,7 +14,8 @@ VoidGameHut::VoidGameHut(
         const IMeshFactoryRef& meshFactory,
         const IAudioPlayerRef& audioPlayer,
         const IObjectPoolRef& objectPool,
-        const ICameraRef& camera
+        const ICameraRef& camera,
+        const IInputRef& input
 )
         : GameHut(meshFactory)
 {
@@ -31,7 +32,10 @@ VoidGameHut::VoidGameHut(
     _camera->GetTransform()->SetPosition(Vector3(0, 0, 6));
     _camera->SetBackgroundColor(Color::Black);
 
-    auto game = std::make_shared<Game>(_objectPool, player, musicSystem, nullptr, nullptr);
+    auto inputSystem = std::make_shared<InputSystem>(input);
+    Components.push_back(inputSystem);
+
+    auto game = std::make_shared<Game>(_objectPool, player, musicSystem, inputSystem, nullptr);
     Components.push_back(game);
 }
 

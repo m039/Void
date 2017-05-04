@@ -5,6 +5,7 @@
 #pragma once
 
 #include <Common/Components/ICamera.h>
+#include <Common/Input.h>
 #include "Common/GameHut.h"
 #include "Common/Mesh.h"
 
@@ -21,7 +22,8 @@ public:
             const IMeshFactoryRef& meshFactory,
             const IAudioPlayerRef& audioPlayer,
             const IObjectPoolRef& objectPool,
-            const ICameraRef& camera
+            const ICameraRef& camera,
+            const IInputRef& input
     );
 
     //region Implementation of GameHut
