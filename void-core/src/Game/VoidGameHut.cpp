@@ -11,13 +11,14 @@
 using namespace vd;
 
 VoidGameHut::VoidGameHut(
+        const IGameContextRef& gameContext,
         const IMeshFactoryRef& meshFactory,
         const IAudioPlayerRef& audioPlayer,
         const IObjectPoolRef& objectPool,
         const ICameraRef& camera,
         const IInputRef& input
 )
-        : GameHut(meshFactory)
+        : GameHut(gameContext, meshFactory)
 {
     _objectPool = objectPool;
     _objectPool->Init();

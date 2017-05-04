@@ -16,7 +16,7 @@ class DebugInfoText : public VoidAppObject {
 
 public:
 
-    DebugInfoText(const VoidApp &app, const AdaptiveTextureFontRef &font);
+    DebugInfoText(VoidApp &app, const AdaptiveTextureFontRef &font);
 
     void Draw();
 

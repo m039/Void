@@ -12,6 +12,7 @@
 #include "DrawHelper.h"
 #include "Impl/Common/Components/AudioPlayer.h"
 #include "Impl/Common/MeshFactory.h"
+#include "Impl/Common/GameContextImpl.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -49,23 +50,27 @@ void VoidApp::setup() {
 
     gl::enableAlphaBlending();
 
-
     _objectPool = std::make_shared<ObjectPoolGl>(*this);
     _camera = std::make_shared<Camera>(*this);
+    _input = std::make_shared<Input>(*this);
+    auto gameContext = std::make_shared<GameContextImpl>(*this);
 
     // Create and start the game.
     _game = std::make_unique<VoidGameHut>(
+            gameContext,
             std::make_shared<MeshFactory>(),
             audio,
             _objectPool,
             _camera,
-            nullptr
+            _input
     );
     _game->Start();
 }
 
 void VoidApp::update() {
     app::AppBase::update();
+
+    _input->update();
 
     // Update the game.
     _game->Update();
@@ -111,12 +116,17 @@ void VoidApp::keyDown(KeyEvent event) {
         case KeyEvent::KEY_f:
             setFullScreen(!isFullScreen());
             break;
-        case KeyEvent::KEY_q:
-            quit();
-            break;
         default:
             break;
     }
+
+    _input->keyDown(event);
+}
+
+void VoidApp::keyUp(ci::app::KeyEvent event) {
+    AppBase::keyUp(event);
+
+    _input->keyUp(event);
 }
 
 //region Misc

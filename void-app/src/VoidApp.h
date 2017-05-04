@@ -14,6 +14,7 @@
 #include "cinder/audio/audio.h"
 #include "Impl/Game/ObjectPoolGl.h"
 #include "Impl/Game/Camera.h"
+#include "Impl/Common/Input.h"
 
 namespace vd {
 
@@ -28,6 +29,8 @@ public:
     void draw() override;
 
     void keyDown(ci::app::KeyEvent event) override;
+
+    void keyUp(ci::app::KeyEvent event) override;
 
     UnlitShaderRef getShader() const {
         return _shader;
@@ -44,6 +47,8 @@ private:
     std::shared_ptr<ObjectPoolGl> _objectPool;
 
     std::shared_ptr<Camera> _camera;
+
+    std::shared_ptr<Input> _input;
 
     //region Audio
 

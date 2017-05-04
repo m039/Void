@@ -17,7 +17,7 @@ class AdaptiveFont : public VoidAppObject {
 
 public:
 
-    AdaptiveFont(const VoidApp &app, const ci::DataSourceRef &dataSource, float size);
+    AdaptiveFont(VoidApp &app, const ci::DataSourceRef &dataSource, float size);
 
 private:
 

@@ -9,7 +9,7 @@
 using namespace ci;
 using namespace vd;
 
-AdaptiveTextureFont::AdaptiveTextureFont(const VoidApp &app, const AdaptiveFont &font)
+AdaptiveTextureFont::AdaptiveTextureFont(VoidApp &app, const AdaptiveFont &font)
     : VoidAppObject(app)
 {
     _font = gl::TextureFont::create(*font.getInternalFont(), gl::TextureFont::Format().enableMipmapping(true));

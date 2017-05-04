@@ -11,6 +11,8 @@
 #include <Common/Components/GameComponent.h>
 #include "MoveDirection.h"
 
+#include <boost/signals2.hpp>
+
 namespace vd {
 
 enum class InputSystemEvent
@@ -25,15 +27,13 @@ enum class InputSystemEvent
 class IInputSystem {
 public:
 
-    // Todo: implement.
+    boost::signals2::signal<void(MoveDirection)> OnPlayerMove;
 
-//    event Action<MoveDirection> OnPlayerMove;
-//
-//    event Action OnAnyKey;
-//
-//    event Action OnReset;
-//
-//    event Action OnQuit;
+    boost::signals2::signal<void()> OnAnyKey;
+
+    boost::signals2::signal<void()> OnReset;
+
+    boost::signals2::signal<void()> OnQuit;
 
     virtual void Enable(InputSystemEvent event) = 0;
 

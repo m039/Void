@@ -76,19 +76,39 @@ void InputSystem::ProcessTouches() {
 }
 
 void InputSystem::PlayerMoveHandler() {
-    // Todo: implement.
+    MoveDirection direction = MoveDirection::None;
+
+    if (_input->GetKeyDown(KeyCode::UpArrow) || _input->GetKeyDown(KeyCode::W)) {
+        direction = MoveDirection::Up;
+    } else if (_input->GetKeyDown(KeyCode::LeftArrow) || _input->GetKeyDown(KeyCode::A)) {
+        direction = MoveDirection::Left;
+    } else if (_input->GetKeyDown(KeyCode::DownArrow) || _input->GetKeyDown(KeyCode::S)) {
+        direction = MoveDirection::Down;
+    } else if (_input->GetKeyDown(KeyCode::RightArrow) || _input->GetKeyDown(KeyCode::D)) {
+        direction = MoveDirection::Right;
+    }
+
+    if (direction != MoveDirection::None) {
+        OnPlayerMove(direction);
+    }
 }
 
 void InputSystem::AnyKeyHandler() {
-    // Todo: implement.
+    if (_input->IsAnyKeyDown()) {
+        OnAnyKey();
+    }
 }
 
 void InputSystem::ResetHandler() {
-    // Todo: implement.
+    if (_input->GetKeyDown(KeyCode::R)) {
+        OnReset();
+    }
 }
 
 void InputSystem::QuitHandler() {
-    // Todo: implement.
+    if (_input->GetKeyDown(KeyCode::Q)) {
+        OnQuit();
+    }
 }
 
 void InputSystem::UpdateEnabledHandlers() {

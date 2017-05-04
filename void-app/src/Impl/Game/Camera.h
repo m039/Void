@@ -18,7 +18,7 @@ class Camera :
 
 public:
 
-    Camera(const VoidApp &app);
+    Camera(VoidApp &app);
 
     virtual const ITransformRef GetTransform() const override;
 

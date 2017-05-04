@@ -8,7 +8,7 @@
 
 using namespace vd;
 
-DebugInfoText::DebugInfoText(const VoidApp &app, const AdaptiveTextureFontRef &font)
+DebugInfoText::DebugInfoText(VoidApp &app, const AdaptiveTextureFontRef &font)
         : VoidAppObject(app), _textFont(font) {
     std::string text;
 

@@ -8,7 +8,7 @@
 
 using namespace vd;
 
-Camera::Camera(const VoidApp &app)
+Camera::Camera(VoidApp &app)
         : VoidAppObject(app),
           _nearClipPlane(0.1f),
           _backgroundColor(Color::White),

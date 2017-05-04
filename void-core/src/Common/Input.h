@@ -9,6 +9,7 @@
 namespace vd {
 
 enum class KeyCode {
+    None = -1,
     UpArrow,
     LeftArrow,
     DownArrow,

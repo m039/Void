@@ -19,7 +19,7 @@ class AdaptiveTextureFont : public VoidAppObject {
 
 public:
 
-    static AdaptiveTextureFontRef create(const VoidApp &app, const AdaptiveFont &font) {
+    static AdaptiveTextureFontRef create(VoidApp &app, const AdaptiveFont &font) {
         return AdaptiveTextureFontRef(new AdaptiveTextureFont(app, font));
     }
 
@@ -32,7 +32,7 @@ public:
 
 protected:
 
-    AdaptiveTextureFont(const VoidApp &app, const AdaptiveFont &font);
+    AdaptiveTextureFont(VoidApp &app, const AdaptiveFont &font);
 
 private:
 

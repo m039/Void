@@ -15,10 +15,10 @@ class VoidAppObject {
 
 protected:
 
-    VoidAppObject(const VoidApp &app) : app(app) {
+    VoidAppObject(VoidApp &app) : app(app) {
     }
 
-    const VoidApp& app;
+    VoidApp& app;
 
 };
 

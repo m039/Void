@@ -10,7 +10,7 @@
 using namespace vd;
 using namespace ci;
 
-ObjectPoolGl::ObjectPoolGl(const VoidApp &app)
+ObjectPoolGl::ObjectPoolGl(VoidApp &app)
         : VoidAppObject(app), _drawQueue(std::make_unique<DrawQueueGl>()) {
 }
 

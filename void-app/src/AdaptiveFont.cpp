@@ -8,7 +8,7 @@
 
 using namespace vd;
 
-AdaptiveFont::AdaptiveFont(const VoidApp &app, const ci::DataSourceRef &dataSource, float size)
+AdaptiveFont::AdaptiveFont(VoidApp &app, const ci::DataSourceRef &dataSource, float size)
         : VoidAppObject(app)
 {
     _font = std::make_shared<ci::Font>(dataSource, size * app.getWindowContentScale());

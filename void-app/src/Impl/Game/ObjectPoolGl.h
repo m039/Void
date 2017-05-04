@@ -40,7 +40,7 @@ class ObjectPoolGl :
 
 public:
 
-    ObjectPoolGl(const VoidApp &app);
+    ObjectPoolGl(VoidApp &app);
 
     virtual IDrawQueue* GetDrawQueue() const override;
 

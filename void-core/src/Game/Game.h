@@ -90,6 +90,20 @@ public:
 
 private:
 
+    //region Event handlers.
+
+    void OnAnyKey();
+
+    void OnPlayerMove(MoveDirection moveDirection);
+
+    void OnQuit();
+
+    void OnReset();
+
+    //endregion
+
+    void StartGame(int levelIndex);
+
     IObjectPoolRef _objectPool;
 
     IPlayerRef _player;

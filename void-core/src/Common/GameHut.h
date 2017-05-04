@@ -10,6 +10,7 @@
 #include <Common/Components/GameComponent.h>
 
 #include "Mesh.h"
+#include "GameContext.h"
 
 namespace vd {
 
@@ -35,10 +36,13 @@ public:
 
     // <strikethrough>virtual void Draw();</strikethrough>
 
+    virtual ~GameHut();
+
 protected:
 
     // Force inheritance by making constructor protected.
-    GameHut(const IMeshFactoryRef&  meshFactory);
+    GameHut(const IGameContextRef& gameContext,
+            const IMeshFactoryRef& meshFactory);
 
     std::vector<std::shared_ptr<IGameComponent>> Components;
 

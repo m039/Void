@@ -19,6 +19,7 @@ class VoidGameHut : public GameHut {
 public:
 
     VoidGameHut(
+            const IGameContextRef& gameContext,
             const IMeshFactoryRef& meshFactory,
             const IAudioPlayerRef& audioPlayer,
             const IObjectPoolRef& objectPool,
