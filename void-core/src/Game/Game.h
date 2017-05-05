@@ -128,6 +128,9 @@ private:
     // Todo: remove.
     std::unique_ptr<Level1> _level;
 
+    // Todo: remove.
+    bool _showScreen;
+
 };
 
 }

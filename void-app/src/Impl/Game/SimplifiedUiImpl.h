@@ -51,6 +51,10 @@ public:
 
     //endregion
 
+    VoidApp& GetApp() {
+        return app; // Make it visible for ScreenDrawerImpl.
+    }
+
     void Draw();
 
 private:

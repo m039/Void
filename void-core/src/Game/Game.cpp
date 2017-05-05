@@ -140,6 +140,17 @@ void Game::OnQuit() {
 
 void Game::OnReset() {
     // Todo: implement.
+
+    // Todo: remove.
+    if (_showScreen) {
+        _tryAgainScreen->ShowWithAnimation([this]() {
+            _showScreen = false;
+        });
+    } else {
+        _tryAgainScreen->HideWithAnimation([this]() {
+            _showScreen = true;
+        });
+    }
 }
 
 void Game::StartGame(int levelIndex) {

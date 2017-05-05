@@ -4,7 +4,11 @@
 
 #include "SimplifiedUiImpl.h"
 
+#include "cinder/gl/gl.h"
+#include "../../VoidApp.h"
+
 using namespace vd;
+using namespace ci;
 
 //region ScreenDrawerImpl
 
@@ -25,7 +29,12 @@ void SimplifiedUiImpl::ScreenDrawerImpl::DrawText(const std::string& text, const
 }
 
 void SimplifiedUiImpl::ScreenDrawerImpl::DrawFullscreenPlane(const Color& color) {
+    auto size = _ui.GetApp().getWindow()->getSize();
 
+    Rectf rect = Rectf(0, 0, size.x, size.y);
+
+    gl::color(color.r, color.g, color.b, color.a);
+    gl::drawSolidRect(rect);
 }
 
 float SimplifiedUiImpl::ScreenDrawerImpl::GetScreenWidth() const {
