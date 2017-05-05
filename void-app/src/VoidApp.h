@@ -12,9 +12,9 @@
 
 #include "cinder/app/App.h"
 #include "cinder/audio/audio.h"
-#include "Impl/Game/ObjectPoolGl.h"
-#include "Impl/Game/Camera.h"
-#include "Impl/Common/Input.h"
+#include "Impl/Game/ObjectPoolImpl.h"
+#include "Impl/Game/CameraImpl.h"
+#include "Impl/Common/InputImpl.h"
 #include "Impl/Game/SimplifiedUiImpl.h"
 
 namespace vd {
@@ -45,11 +45,11 @@ private:
 
     std::unique_ptr<GameHut> _game;
 
-    std::shared_ptr<ObjectPoolGl> _objectPool;
+    std::shared_ptr<ObjectPoolImpl> _objectPool;
 
-    std::shared_ptr<Camera> _camera;
+    std::shared_ptr<CameraImpl> _camera;
 
-    std::shared_ptr<Input> _input;
+    std::shared_ptr<InputImpl> _input;
 
     std::shared_ptr<SimplifiedUiImpl> _ui;
 

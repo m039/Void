@@ -10,8 +10,8 @@
 
 #include "VoidApp.h"
 #include "DrawHelper.h"
-#include "Impl/Common/Components/AudioPlayer.h"
-#include "Impl/Common/MeshFactory.h"
+#include "Impl/Common/Components/AudioPlayerImpl.h"
+#include "Impl/Common/MeshFactoryImpl.h"
 #include "Impl/Common/GameContextImpl.h"
 #include "Impl/Common/ShadersManagerImpl.h"
 
@@ -47,9 +47,9 @@ void VoidApp::setup() {
 
     gl::enableAlphaBlending();
 
-    _objectPool = std::make_shared<ObjectPoolGl>(*this);
-    _camera = std::make_shared<Camera>(*this);
-    _input = std::make_shared<Input>(*this);
+    _objectPool = std::make_shared<ObjectPoolImpl>(*this);
+    _camera = std::make_shared<CameraImpl>(*this);
+    _input = std::make_shared<InputImpl>(*this);
     auto shaders = std::make_shared<ShadersManagerImpl>(*this);
     auto gameContext = std::make_shared<GameContextImpl>(*this);
     _ui = std::make_shared<SimplifiedUiImpl>(*this);
@@ -57,7 +57,7 @@ void VoidApp::setup() {
     // Create and start the game.
     _game = std::make_unique<VoidGameHut>(
             gameContext,
-            std::make_shared<MeshFactory>(),
+            std::make_shared<MeshFactoryImpl>(),
             audio,
             _objectPool,
             _camera,
@@ -152,7 +152,7 @@ IAudioPlayerRef VoidApp::SetupAudio() {
 
     context->enable();
 
-    return std::make_shared<AudioPlayer>(player, gain);
+    return std::make_shared<AudioPlayerImpl>(player, gain);
 }
 
 void VoidApp::SetupShader() {

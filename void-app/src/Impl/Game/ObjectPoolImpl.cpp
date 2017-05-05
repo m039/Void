@@ -3,22 +3,22 @@
 //
 
 #include <iostream>
-#include "ObjectPoolGl.h"
-#include "../Common/MeshGl.h"
+#include "ObjectPoolImpl.h"
+#include "../Common/MeshImpl.h"
 #include "cinder/gl/gl.h"
 
 using namespace vd;
 using namespace ci;
 
-ObjectPoolGl::ObjectPoolGl(VoidApp &app)
-        : VoidAppObject(app), _drawQueue(std::make_unique<DrawQueueGl>()) {
+ObjectPoolImpl::ObjectPoolImpl(VoidApp &app)
+        : VoidAppObject(app), _drawQueue(std::make_unique<DrawQueueImpl>()) {
 }
 
-IObjectPool::IDrawQueue *ObjectPoolGl::GetDrawQueue() const {
+IObjectPool::IDrawQueue *ObjectPoolImpl::GetDrawQueue() const {
     return _drawQueue.get();
 }
 
-void ObjectPoolGl::Draw() {
+void ObjectPoolImpl::Draw() {
     for ( auto q : _drawQueue->_queue) {
         if (!q->IsHidden()) {
             gl::pushMatrices();
@@ -42,7 +42,7 @@ void ObjectPoolGl::Draw() {
             app.GetShader()->SetMainColor(vec4(c.r, c.g, c.b, c.a));
 
             // Draw a mesh.
-            auto mesh = dynamic_cast<MeshGl*>(q->GetMesh().get());
+            auto mesh = dynamic_cast<MeshImpl*>(q->GetMesh().get());
             mesh->Draw(app);
 
             gl::popMatrices();
@@ -50,11 +50,11 @@ void ObjectPoolGl::Draw() {
     }
 }
 
-void ObjectPoolGl::DrawQueueGl::Insert(const VoidObject& object) {
+void ObjectPoolImpl::DrawQueueImpl::Insert(const VoidObject& object) {
     _queue.push_back(&object);
 }
 
-void ObjectPoolGl::DrawQueueGl::Remove(const VoidObject& object) {
+void ObjectPoolImpl::DrawQueueImpl::Remove(const VoidObject& object) {
     _queue.erase(
             std::find(
                     _queue.begin(),
@@ -65,7 +65,7 @@ void ObjectPoolGl::DrawQueueGl::Remove(const VoidObject& object) {
     );
 }
 
-ObjectPoolGl::DrawQueueGl::DrawQueueGl() : _queue({}) {
+ObjectPoolImpl::DrawQueueImpl::DrawQueueImpl() : _queue({}) {
 
 }
 

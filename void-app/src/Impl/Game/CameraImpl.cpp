@@ -2,13 +2,13 @@
 // Created by Dmitry Mozgin on 28/04/2017.
 //
 
-#include "Camera.h"
+#include "CameraImpl.h"
 
 #include "../../VoidApp.h"
 
 using namespace vd;
 
-Camera::Camera(VoidApp &app)
+CameraImpl::CameraImpl(VoidApp &app)
         : VoidAppObject(app),
           _nearClipPlane(0.1f),
           _backgroundColor(Color::White),
@@ -16,31 +16,31 @@ Camera::Camera(VoidApp &app)
     Setup();
 }
 
-Camera::~Camera() {
+CameraImpl::~CameraImpl() {
 }
 
-const ITransformRef vd::Camera::GetTransform() const {
+const ITransformRef vd::CameraImpl::GetTransform() const {
     return _transform;
 }
 
-void Camera::SetNearClipPlane(float nearClipPlane) {
+void CameraImpl::SetNearClipPlane(float nearClipPlane) {
     _nearClipPlane = nearClipPlane;
     Setup();
 }
 
-float Camera::GetNearClipPlane() const {
+float CameraImpl::GetNearClipPlane() const {
     return _nearClipPlane;
 }
 
-void Camera::SetBackgroundColor(const Color &color) {
+void CameraImpl::SetBackgroundColor(const Color &color) {
     _backgroundColor = color;
 }
 
-Color Camera::GetBackgroundColor() const {
+Color CameraImpl::GetBackgroundColor() const {
     return _backgroundColor;
 }
 
-void Camera::Setup() {
+void CameraImpl::Setup() {
     auto windowSize = app.getWindow()->getSize();
     auto aspectRatio = (float) windowSize.x / (float) windowSize.y;
 
@@ -51,12 +51,12 @@ void Camera::Setup() {
     _camera.setPerspective(35, aspectRatio, _nearClipPlane, 1000.0f);
 }
 
-void Camera::LoadMatrices() {
+void CameraImpl::LoadMatrices() {
     ci::gl::setMatrices(_camera);
     app.GetShader()->SetMatrices(_camera);
 }
 
-CameraTransform::CameraTransform(Camera &camera)
+CameraTransform::CameraTransform(CameraImpl &camera)
         : _camera(camera) {
 }
 

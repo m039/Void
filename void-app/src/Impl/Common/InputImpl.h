@@ -12,13 +12,13 @@
 
 namespace vd {
 
-class Input :
+class InputImpl :
         public VoidAppObject,
         public IInput
 {
 public:
 
-    Input(VoidApp &app);
+    InputImpl(VoidApp &app);
 
     //region Implementation of IInput.
 

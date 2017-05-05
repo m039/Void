@@ -10,15 +10,15 @@
 
 namespace vd {
 
-class AudioPlayer : public IAudioPlayer {
+class AudioPlayerImpl : public IAudioPlayer {
 
 public:
 
-    AudioPlayer(const ci::audio::SamplePlayerNodeRef &player, const ci::audio::GainNodeRef &gain);
+    AudioPlayerImpl(const ci::audio::SamplePlayerNodeRef &player, const ci::audio::GainNodeRef &gain);
 
-    ~AudioPlayer() override;
+    ~AudioPlayerImpl() override;
 
-    //region Implementation of IAudioPlayer
+    //region Implementation of IAudioPlayer.
 
     sec_t GetTime() override;
 

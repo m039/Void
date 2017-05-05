@@ -84,7 +84,9 @@ public:
 
 protected:
 
-    inline float GetAlpha();
+    inline float GetAlpha() {
+        return _alpha;
+    }
 
 private:
 

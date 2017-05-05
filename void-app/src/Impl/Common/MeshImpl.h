@@ -9,16 +9,16 @@
 
 namespace vd {
 
-class MeshGl : public IMesh {
+class MeshImpl : public IMesh {
 
 public:
 
-    MeshGl(const std::vector<Vector3> &vertices,
+    MeshImpl(const std::vector<Vector3> &vertices,
            const std::vector<int> &triangles);
 
     void Draw(const VoidApp &app);
 
-    virtual ~MeshGl() override;
+    virtual ~MeshImpl() override;
 
 private:
 

@@ -55,10 +55,6 @@ void VoidScreen::SetAlpha(float alpha) {
     _alpha = alpha;
 }
 
-float VoidScreen::GetAlpha() {
-    return _alpha;
-}
-
 void VoidScreen::PerformShow(bool showOrHide) {
     if (_coroutine != nullptr) {
         GetCoroutineManager().Stop(_coroutine);

@@ -9,7 +9,7 @@
 
 namespace vd {
 
-//! Game specific colors.
+//! Game specific colors, they may differ from Color's constants.
 class Colors {
 
 public:

@@ -8,7 +8,7 @@
 
 namespace vd {
 
-class MeshFactory : public IMeshFactory {
+class MeshFactoryImpl : public IMeshFactory {
 
 public:
 

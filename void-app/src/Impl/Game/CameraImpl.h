@@ -12,13 +12,13 @@
 
 namespace vd {
 
-class Camera :
+class CameraImpl :
         public VoidAppObject,
         public ICamera {
 
 public:
 
-    Camera(VoidApp &app);
+    CameraImpl(VoidApp &app);
 
     virtual const ITransformRef GetTransform() const override;
 
@@ -36,7 +36,7 @@ public:
     //! Set up OpenGL matrices: it sets projection and view matrices.
     void LoadMatrices();
 
-    ~Camera();
+    ~CameraImpl();
 
 private:
 
@@ -53,7 +53,7 @@ private:
 class CameraTransform : public Transform {
 public:
 
-    CameraTransform(Camera& camera);
+    CameraTransform(CameraImpl& camera);
 
     //region Transform's overrides.
 
@@ -63,7 +63,7 @@ public:
 
 private:
 
-    Camera& _camera;
+    CameraImpl& _camera;
 };
 
 }

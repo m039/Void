@@ -3,17 +3,17 @@
 //
 
 #include "cinder/gl/gl.h"
-#include "MeshGl.h"
+#include "MeshImpl.h"
 #include "../../DrawHelper.h"
 
 using namespace vd;
 using namespace ci;
 
-MeshGl::~MeshGl() {
+MeshImpl::~MeshImpl() {
 
 }
 
-MeshGl::MeshGl(const std::vector<Vector3> &vertices,
+MeshImpl::MeshImpl(const std::vector<Vector3> &vertices,
                const std::vector<int> &triangles) {
     for (auto &v : vertices) {
         _vertices.push_back(v.x);
@@ -24,6 +24,6 @@ MeshGl::MeshGl(const std::vector<Vector3> &vertices,
     _elements = std::vector<GLubyte>(triangles.begin(), triangles.end());
 }
 
-void MeshGl::Draw(const VoidApp &app) {
+void MeshImpl::Draw(const VoidApp &app) {
     DrawHelper::Draw(app, _vertices, _elements);
 }

@@ -2,44 +2,44 @@
 // Created by Dmitry Mozgin on 24/04/2017.
 //
 
-#include "AudioPlayer.h"
+#include "AudioPlayerImpl.h"
 
 using namespace vd;
 
-AudioPlayer::AudioPlayer(
+AudioPlayerImpl::AudioPlayerImpl(
         const ci::audio::SamplePlayerNodeRef &player,
         const ci::audio::GainNodeRef &gain)
     : _audioPlayer(player), _gain(gain)
 {
 }
 
-AudioPlayer::~AudioPlayer() {
+AudioPlayerImpl::~AudioPlayerImpl() {
 }
 
-sec_t AudioPlayer::GetTime() {
+sec_t AudioPlayerImpl::GetTime() {
     return _audioPlayer->getReadPositionTime();
 }
 
-void AudioPlayer::SetTime(sec_t time) {
+void AudioPlayerImpl::SetTime(sec_t time) {
     _audioPlayer->seekToTime(time);
 }
 
-bool AudioPlayer::IsPlaying() {
+bool AudioPlayerImpl::IsPlaying() {
     return _audioPlayer->isEnabled();
 }
 
-float AudioPlayer::GetVolume() {
+float AudioPlayerImpl::GetVolume() {
     return _gain->getValue();
 }
 
-void AudioPlayer::SetVolume(float volume) {
+void AudioPlayerImpl::SetVolume(float volume) {
     _gain->setValue(volume);
 }
 
-void AudioPlayer::Play() {
+void AudioPlayerImpl::Play() {
     _audioPlayer->start();
 }
 
-void AudioPlayer::Stop() {
+void AudioPlayerImpl::Stop() {
     _audioPlayer->stop();
 }

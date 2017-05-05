@@ -2,36 +2,36 @@
 // Created by Dmitry Mozgin on 04/05/2017.
 //
 
-#include "Input.h"
+#include "InputImpl.h"
 
 using namespace vd;
 
-Input::Input(VoidApp &app)
+InputImpl::InputImpl(VoidApp &app)
         : VoidAppObject(app),
           _timesToSkipUpdate(-1) {
 }
 
-bool Input::GetKeyDown(KeyCode keyCode) {
+bool InputImpl::GetKeyDown(KeyCode keyCode) {
     // True if the key has just been pressed.
     return (_pressedDownKeys.find(keyCode) != _pressedDownKeys.end()) &&
             (_heldDownKeys.find(keyCode) == _heldDownKeys.end());
 }
 
-bool Input::IsAnyKeyDown() {
+bool InputImpl::IsAnyKeyDown() {
     return _heldDownKeys.size() > 0;
 }
 
-int Input::GetTouchCount() {
+int InputImpl::GetTouchCount() {
     // Todo: implement.
     return 0;
 }
 
-ITouchRef Input::GetTouch(int index) {
+ITouchRef InputImpl::GetTouch(int index) {
     // Todo: implement.
     return nullptr;
 }
 
-void Input::Update() {
+void InputImpl::Update() {
     if (_timesToSkipUpdate == -1) {
         return;
     }
@@ -46,7 +46,7 @@ void Input::Update() {
     _timesToSkipUpdate--;
 }
 
-void Input::KeyDown(ci::app::KeyEvent event) {
+void InputImpl::KeyDown(ci::app::KeyEvent event) {
     auto keyCode = ToKeyCode(event);
     if (keyCode != KeyCode::None) {
         _pressedDownKeys.insert(keyCode);
@@ -54,7 +54,7 @@ void Input::KeyDown(ci::app::KeyEvent event) {
     }
 }
 
-void Input::KeyUp(ci::app::KeyEvent event) {
+void InputImpl::KeyUp(ci::app::KeyEvent event) {
     auto keyCode = ToKeyCode(event);
     if (keyCode != KeyCode::None) {
         _pressedDownKeys.erase(keyCode);
@@ -62,7 +62,7 @@ void Input::KeyUp(ci::app::KeyEvent event) {
     }
 }
 
-KeyCode Input::ToKeyCode(ci::app::KeyEvent event) {
+KeyCode InputImpl::ToKeyCode(ci::app::KeyEvent event) {
     auto code = event.getCode();
 
     switch (code) {

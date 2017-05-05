@@ -11,16 +11,16 @@ namespace vd {
 
 class VoidApp;
 
-class ObjectPoolGl :
+class ObjectPoolImpl :
         public VoidAppObject,
         public ObjectPool
 {
-    class DrawQueueGl : public IDrawQueue {
-        friend ObjectPoolGl;
+    class DrawQueueImpl : public IDrawQueue {
+        friend ObjectPoolImpl;
 
     public:
 
-        DrawQueueGl();
+        DrawQueueImpl();
 
         virtual void Insert(const VoidObject& object) override;
 
@@ -40,7 +40,7 @@ class ObjectPoolGl :
 
 public:
 
-    ObjectPoolGl(VoidApp &app);
+    ObjectPoolImpl(VoidApp &app);
 
     virtual IDrawQueue* GetDrawQueue() const override;
 
@@ -48,7 +48,7 @@ public:
 
 private:
 
-    const std::unique_ptr<DrawQueueGl> _drawQueue;
+    const std::unique_ptr<DrawQueueImpl> _drawQueue;
 
 };
 
