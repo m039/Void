@@ -40,14 +40,10 @@ CINDER_APP( VoidApp, app::RendererGl, prepareSettings)
 void VoidApp::setup() {
     AppBase::setup();
 
-    _headlineFont = loadFont(_HeadlineFontFilename, 34);
-    _textFont = loadFont(_TextFontFilename, 20);
-    _infoText = std::make_unique<DebugInfoText>(*this, _headlineFont);
+    SetupShader();
+    auto audio = SetupAudio();
 
-    setupShader();
-    auto audio = setupAudio();
-
-    getWindow()->getSignalResize().connect(std::bind(&VoidApp::onResize, this));
+    getWindow()->getSignalResize().connect(std::bind(&VoidApp::OnResize, this));
 
     gl::enableAlphaBlending();
 
@@ -56,6 +52,7 @@ void VoidApp::setup() {
     _input = std::make_shared<Input>(*this);
     auto shaders = std::make_shared<ShadersManagerImpl>(*this);
     auto gameContext = std::make_shared<GameContextImpl>(*this);
+    _ui = std::make_shared<SimplifiedUiImpl>(*this);
 
     // Create and start the game.
     _game = std::make_unique<VoidGameHut>(
@@ -65,7 +62,8 @@ void VoidApp::setup() {
             _objectPool,
             _camera,
             _input,
-            shaders
+            shaders,
+            _ui
     );
     _game->Start();
 }
@@ -73,7 +71,7 @@ void VoidApp::setup() {
 void VoidApp::update() {
     app::AppBase::update();
 
-    _input->update();
+    _input->Update();
 
     // Update the game.
     _game->Update();
@@ -105,9 +103,9 @@ void VoidApp::draw() {
     gl::disableDepthRead();
     gl::disableDepthWrite();
 
-    gl::color(ci::Color::white());
+    // Draw UI.
 
-    _infoText->Draw();
+    _ui->Draw();
 }
 
 void VoidApp::keyDown(KeyEvent event) {
@@ -123,27 +121,27 @@ void VoidApp::keyDown(KeyEvent event) {
             break;
     }
 
-    _input->keyDown(event);
+    _input->KeyDown(event);
 }
 
 void VoidApp::keyUp(ci::app::KeyEvent event) {
     AppBase::keyUp(event);
 
-    _input->keyUp(event);
+    _input->KeyUp(event);
 }
 
 //region Misc
 
-void VoidApp::onResize() {
+void VoidApp::OnResize() {
     _camera->Setup();
 }
 
-AdaptiveTextureFontRef VoidApp::loadFont(const std::string &name, float size) {
+AdaptiveTextureFontRef VoidApp::LoadFont(const std::string& name, float size) {
     auto font = AdaptiveFont(*this, loadAsset("Fonts/" + name), size);
     return AdaptiveTextureFont::create(*this, font);
 }
 
-IAudioPlayerRef VoidApp::setupAudio() {
+IAudioPlayerRef VoidApp::SetupAudio() {
     auto context = audio::Context::master();
     auto sourceFile = audio::load(loadAsset("Music/" + _MusicFilename), context->getSampleRate());
 
@@ -157,7 +155,7 @@ IAudioPlayerRef VoidApp::setupAudio() {
     return std::make_shared<AudioPlayer>(player, gain);
 }
 
-void VoidApp::setupShader() {
+void VoidApp::SetupShader() {
     _shader = std::make_unique<UnlitShader>(*this);
 }
 

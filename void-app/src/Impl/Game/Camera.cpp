@@ -53,7 +53,7 @@ void Camera::Setup() {
 
 void Camera::LoadMatrices() {
     ci::gl::setMatrices(_camera);
-    app.getShader()->SetMatrices(_camera);
+    app.GetShader()->SetMatrices(_camera);
 }
 
 CameraTransform::CameraTransform(Camera &camera)

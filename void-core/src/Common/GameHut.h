@@ -41,8 +41,10 @@ public:
 protected:
 
     // Force inheritance by making constructor protected.
-    GameHut(const IGameContextRef& gameContext,
-            const IMeshFactoryRef& meshFactory);
+    GameHut(
+            const IGameContextRef& gameContext,
+            const IMeshFactoryRef& meshFactory
+    );
 
     std::vector<std::shared_ptr<IGameComponent>> Components;
 

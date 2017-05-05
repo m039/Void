@@ -15,6 +15,7 @@
 #include "Impl/Game/ObjectPoolGl.h"
 #include "Impl/Game/Camera.h"
 #include "Impl/Common/Input.h"
+#include "Impl/Game/SimplifiedUiImpl.h"
 
 namespace vd {
 
@@ -32,15 +33,15 @@ public:
 
     void keyUp(ci::app::KeyEvent event) override;
 
-    UnlitShaderRef getShader() const {
+    UnlitShaderRef GetShader() const {
         return _shader;
     }
 
+    AdaptiveTextureFontRef LoadFont(const std::string& name, float size);
+
 private:
 
-    void onResize();
-
-    std::unique_ptr<DebugInfoText> _infoText;
+    void OnResize();
 
     std::unique_ptr<GameHut> _game;
 
@@ -50,19 +51,11 @@ private:
 
     std::shared_ptr<Input> _input;
 
+    std::shared_ptr<SimplifiedUiImpl> _ui;
+
     //region Audio
 
-    IAudioPlayerRef setupAudio();
-
-    //endregion
-
-    //region Fonts
-
-    AdaptiveTextureFontRef _headlineFont;
-
-    AdaptiveTextureFontRef _textFont;
-
-    AdaptiveTextureFontRef loadFont(const std::string &name, float size);
+    IAudioPlayerRef SetupAudio();
 
     //endregion
 
@@ -70,7 +63,7 @@ private:
 
     UnlitShaderRef _shader;
 
-    void setupShader();
+    void SetupShader();
 
     //endregion
 

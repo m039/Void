@@ -35,11 +35,11 @@ void ObjectPoolGl::Draw() {
             auto s = tr->GetLocalScale();
             gl::scale(s.x, s.y, s.z);
 
-            app.getShader()->LoadModelMatrix();
+            app.GetShader()->LoadModelMatrix();
 
             // Set a color.
             auto c = q->GetColor();
-            app.getShader()->SetMainColor(vec4(c.r, c.g, c.b, c.a));
+            app.GetShader()->SetMainColor(vec4(c.r, c.g, c.b, c.a));
 
             // Draw a mesh.
             auto mesh = dynamic_cast<MeshGl*>(q->GetMesh().get());

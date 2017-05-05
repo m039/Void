@@ -12,6 +12,7 @@
 
 #include "MusicSystem.h"
 #include "ObjectPool.h"
+#include "SimplifiedUi.h"
 
 namespace vd {
 
@@ -26,26 +27,17 @@ public:
             const IObjectPoolRef& objectPool,
             const ICameraRef& camera,
             const IInputRef& input,
-            const IShadersManagerRef& shaders
+            const IShadersManagerRef& shaders,
+            const ISimplifiedUiRef& ui
     );
 
-    //region Implementation of GameHut
-
-    // Todo: remove temporary code.
-    virtual void Start() override;
-
-    //endregion
+    virtual ~VoidGameHut();
 
 private:
 
-    // Todo: remove temporary code.
-    IObjectPoolRef _objectPool;
+    const ISimplifiedUiRef _ui;
 
-    // Todo: remove temporary code.
-    IVoidTrackObjectRef _object;
-
-    // Todo: remove temporary code.
-    ICameraRef _camera;
+    std::vector<IScreenDrawableRef> _drawables;
 
 };
 

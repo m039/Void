@@ -9,8 +9,10 @@
 
 using namespace vd;
 
-GameHut::GameHut(const IGameContextRef& gameContext,
-                 const IMeshFactoryRef& meshFactory) {
+GameHut::GameHut(
+        const IGameContextRef& gameContext,
+        const IMeshFactoryRef& meshFactory
+) {
     vd::internal::GameContext::RegisterGameContext(gameContext);
     vd::internal::Mesh::RegisterMeshFactory(meshFactory);
 }

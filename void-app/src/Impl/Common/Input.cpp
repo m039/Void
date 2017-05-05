@@ -31,7 +31,7 @@ ITouchRef Input::GetTouch(int index) {
     return nullptr;
 }
 
-void Input::update() {
+void Input::Update() {
     if (_timesToSkipUpdate == -1) {
         return;
     }
@@ -46,7 +46,7 @@ void Input::update() {
     _timesToSkipUpdate--;
 }
 
-void Input::keyDown(ci::app::KeyEvent event) {
+void Input::KeyDown(ci::app::KeyEvent event) {
     auto keyCode = ToKeyCode(event);
     if (keyCode != KeyCode::None) {
         _pressedDownKeys.insert(keyCode);
@@ -54,7 +54,7 @@ void Input::keyDown(ci::app::KeyEvent event) {
     }
 }
 
-void Input::keyUp(ci::app::KeyEvent event) {
+void Input::KeyUp(ci::app::KeyEvent event) {
     auto keyCode = ToKeyCode(event);
     if (keyCode != KeyCode::None) {
         _pressedDownKeys.erase(keyCode);

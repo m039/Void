@@ -9,18 +9,34 @@
 
 using namespace vd;
 
+//region IGame
+
+IGame::~IGame() {
+
+}
+
+//endregion
+
+//region Game
+
 Game::Game(
         const IObjectPoolRef& objectPool,
         const IPlayerRef& player,
         const IMusicSystemRef& musicSystem,
         const IInputSystemRef& inputSystem,
-        const ISceneRef& scene
+        const ISceneRef& scene,
+        const IVoidScreenRef& tryAgainScreen,
+        const IVoidScreenRef& introScreen,
+        const IHelpScreenRef& movementHelpScreen
 )
         : _objectPool(objectPool),
           _player(player),
           _musicSystem(musicSystem),
           _inputSystem(inputSystem),
           _scene(scene),
+          _tryAgainScreen(tryAgainScreen),
+          _introScreen(introScreen),
+          _movementHelpScreen(movementHelpScreen),
           _currentTrack(nullptr)
 {
     _inputSystem->OnAnyKey.connect(std::bind(&Game::OnAnyKey, this));
@@ -41,7 +57,7 @@ IObjectPoolRef Game::GetObjectPool() const {
 }
 
 IInputSystemRef Game::GetInputSystem() const {
-    return vd::IInputSystemRef();
+    return _inputSystem;
 }
 
 IMusicSystemRef Game::GetMusicSystem() const {
@@ -49,23 +65,19 @@ IMusicSystemRef Game::GetMusicSystem() const {
 }
 
 IVoidScreenRef Game::GetTryAgainScreen() const {
-    // Todo: implement.
-    return vd::IVoidScreenRef();
+    return _tryAgainScreen;
 }
 
 IVoidScreenRef Game::GetIntroScreen() const {
-    // Todo: implement.
-    return vd::IVoidScreenRef();
+    return _introScreen;
 }
 
 IHelpScreenRef Game::GetMovementHelpScreen() const {
-    // Todo: implement.
-    return vd::IHelpScreenRef();
+    return _movementHelpScreen;
 }
 
 ISceneRef Game::GetScene() const {
-    // Todo: implement.
-    return vd::ISceneRef();
+    return _scene;
 }
 
 float Game::TimeForNextLevel() const {
@@ -141,3 +153,5 @@ void Game::StartGame(int levelIndex) {
     _inputSystem->Enable(InputSystemEvent::PlayerMove);
     _inputSystem->Enable(InputSystemEvent::Reset);
 }
+
+//endregion

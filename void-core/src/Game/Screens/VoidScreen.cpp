@@ -3,3 +3,21 @@
 //
 
 #include "VoidScreen.h"
+
+using namespace vd;
+
+//region IVoidScreen
+
+IVoidScreen::~IVoidScreen() {
+
+}
+
+//endregion
+
+//region VoidScreen
+
+VoidScreen::~VoidScreen() {
+
+}
+
+//endregion

@@ -32,11 +32,11 @@ public:
 
     //endregion
 
-    void update();
+    void Update();
 
-    void keyDown(ci::app::KeyEvent event);
+    void KeyDown(ci::app::KeyEvent event);
 
-    void keyUp(ci::app::KeyEvent event);
+    void KeyUp(ci::app::KeyEvent event);
 
 private:
 

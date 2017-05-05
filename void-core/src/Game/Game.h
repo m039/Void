@@ -5,7 +5,6 @@
 #pragma once
 
 #include <Game/Screens/VoidScreen.h>
-#include <Game/Screens/IHelpScreen.h>
 #include <Game/Levels/Level35.h>
 #include <Game/Levels/Level1.h>
 
@@ -38,7 +37,8 @@ public:
 
     virtual float TimeForNextLevel() const = 0;
 
-    virtual ~IGame() {}
+    virtual ~IGame();
+
 };
 
 typedef IGame* IGameRef;
@@ -46,7 +46,8 @@ typedef IGame* IGameRef;
 //! Entry point of the game's logic.
 class Game
         : public GameComponent,
-          public IGame {
+          public IGame
+{
 public:
 
     Game(
@@ -54,7 +55,10 @@ public:
             const IPlayerRef& player,
             const IMusicSystemRef& musicSystem,
             const IInputSystemRef& inputSystem,
-            const ISceneRef& scene
+            const ISceneRef& scene,
+            const IVoidScreenRef& tryAgainScreen,
+            const IVoidScreenRef& introScreen,
+            const IHelpScreenRef& movementHelpScreen
     );
 
     //region Implementation of IGame.
@@ -114,6 +118,12 @@ private:
     const IInputSystemRef _inputSystem;
 
     const ISceneRef _scene;
+
+    const IVoidScreenRef _tryAgainScreen;
+
+    const IVoidScreenRef _introScreen;
+
+    const IHelpScreenRef _movementHelpScreen;
 
     VoidTrackRef _currentTrack;
 
