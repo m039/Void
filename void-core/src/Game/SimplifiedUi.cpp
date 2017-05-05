@@ -9,7 +9,6 @@ using namespace vd;
 //region IScreenDrawer
 
 IScreenDrawer::~IScreenDrawer() {
-
 }
 
 //endregion
@@ -17,7 +16,6 @@ IScreenDrawer::~IScreenDrawer() {
 //region IScreenDrawable
 
 IScreenDrawable::~IScreenDrawable() {
-
 }
 
 //endregion
@@ -25,7 +23,6 @@ IScreenDrawable::~IScreenDrawable() {
 //region ISimplifiedUi
 
 ISimplifiedUi::~ISimplifiedUi() {
-
 }
 
 //endregion

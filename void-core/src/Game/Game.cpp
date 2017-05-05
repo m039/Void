@@ -12,7 +12,6 @@ using namespace vd;
 //region IGame
 
 IGame::~IGame() {
-
 }
 
 //endregion
@@ -43,9 +42,6 @@ Game::Game(
     _inputSystem->OnPlayerMove.connect(std::bind(&Game::OnPlayerMove, this, std::placeholders::_1));
     _inputSystem->OnQuit.connect(std::bind(&Game::OnQuit, this));
     _inputSystem->OnReset.connect(std::bind(&Game::OnReset, this));
-}
-
-Game::~Game() {
 }
 
 IPlayerRef Game::GetPlayer() const {

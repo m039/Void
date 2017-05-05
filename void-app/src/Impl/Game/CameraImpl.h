@@ -6,7 +6,7 @@
 
 #include <Common/Components/Transform.h>
 #include <Common/Color.h>
-#include <Common/Components/ICamera.h>
+#include <Common/Components/Camera.h>
 #include <cinder/Camera.h>
 #include "../../VoidAppObject.h"
 
@@ -14,8 +14,8 @@ namespace vd {
 
 class CameraImpl :
         public VoidAppObject,
-        public ICamera {
-
+        public ICamera
+{
 public:
 
     CameraImpl(VoidApp &app);
@@ -35,8 +35,6 @@ public:
 
     //! Set up OpenGL matrices: it sets projection and view matrices.
     void LoadMatrices();
-
-    ~CameraImpl();
 
 private:
 
@@ -64,6 +62,7 @@ public:
 private:
 
     CameraImpl& _camera;
+
 };
 
 }

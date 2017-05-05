@@ -14,7 +14,7 @@ public:
 
     virtual bool IsDone() const = 0;
 
-    virtual ~IYieldInstruction() {}
+    virtual ~IYieldInstruction();
 
 };
 

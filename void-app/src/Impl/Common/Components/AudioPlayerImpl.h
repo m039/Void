@@ -6,7 +6,7 @@
 
 #include <cinder/audio/audio.h>
 
-#include "Common/Components/IAudioPlayer.h"
+#include "Common/Components/AudioPlayer.h"
 
 namespace vd {
 
@@ -15,8 +15,6 @@ class AudioPlayerImpl : public IAudioPlayer {
 public:
 
     AudioPlayerImpl(const ci::audio::SamplePlayerNodeRef &player, const ci::audio::GainNodeRef &gain);
-
-    ~AudioPlayerImpl() override;
 
     //region Implementation of IAudioPlayer.
 

@@ -6,14 +6,14 @@
 
 using namespace vd;
 
-IGameContextRef vd::internal::GameContext::_Context = nullptr;
+//region IGameContext
 
 IGameContext::~IGameContext() {
 }
 
-void internal::GameContext::RegisterGameContext(const IGameContextRef& context) {
-    _Context = context;
-}
+//endregion
+
+//region GameContext
 
 RuntimePlatform GameContext::GetRuntimePlatform() {
     return vd::internal::GameContext::_Context->GetRuntimePlatform();
@@ -31,3 +31,16 @@ float GameContext::GetScreenDpi() {
 void GameContext::Quit() {
     vd::internal::GameContext::_Context->Quit();
 }
+
+//endregion
+
+//region internal::GameContext
+
+IGameContextRef vd::internal::GameContext::_Context = nullptr;
+
+
+void internal::GameContext::RegisterGameContext(const IGameContextRef& context) {
+    _Context = context;
+}
+
+//endregion

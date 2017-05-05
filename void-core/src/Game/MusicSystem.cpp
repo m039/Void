@@ -11,6 +11,15 @@
 
 using namespace vd;
 
+//region IMusicSystem
+
+IMusicSystem::~IMusicSystem() {
+}
+
+//endregion
+
+//region MusicSystem
+
 // Synchronization by time laps.
 static std::array<sec_t, 44> _Syncs {{
         4.792f,
@@ -151,3 +160,5 @@ const Coroutine::EnumerationFunction MusicSystem::DoFade(bool fadeInOrFadeOut, c
         }
     };
 }
+
+//endregion

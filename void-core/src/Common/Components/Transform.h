@@ -28,13 +28,13 @@ public:
      */
     virtual void Rotate(float xAngle, float yAngle, float zAngle) = 0;
 
-    ~ITransform() {}
+    virtual ~ITransform();
+
 };
 
 typedef std::shared_ptr<ITransform> ITransformRef;
 
 class Transform : public ITransform {
-
 public:
 
     Transform();
@@ -58,6 +58,7 @@ private:
     Vector3 _localScale;
 
     Vector3 _position;
+
 };
 
 }

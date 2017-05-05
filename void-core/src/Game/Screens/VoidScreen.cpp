@@ -10,7 +10,6 @@ using namespace vd;
 //region IVoidScreen
 
 IVoidScreen::~IVoidScreen() {
-
 }
 
 //endregion

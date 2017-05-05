@@ -6,8 +6,16 @@
 
 using namespace vd;
 
+//region ITouch
+
 ITouch::~ITouch() {
 }
 
+//endregion
+
+//region IInput
+
 IInput::~IInput() {
 }
+
+//endregion

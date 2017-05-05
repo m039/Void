@@ -34,8 +34,6 @@ public:
 
     virtual AnimationRef GetAnimation() = 0;
 
-    virtual ~IVoidTrackObject()  {}
-
 };
 
 class VoidTrackObject

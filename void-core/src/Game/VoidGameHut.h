@@ -4,11 +4,11 @@
 
 #pragma once
 
-#include <Common/Components/ICamera.h>
+#include <Common/Components/Camera.h>
 #include <Common/Input.h>
 #include <Common/ShadersManager.h>
-#include "Common/GameHut.h"
-#include "Common/Mesh.h"
+#include <Common/GameHut.h>
+#include <Common/Mesh.h>
 
 #include "MusicSystem.h"
 #include "ObjectPool.h"

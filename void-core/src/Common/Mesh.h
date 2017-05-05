@@ -14,7 +14,7 @@ namespace vd {
 class IMesh {
 public:
 
-    virtual ~IMesh() {}
+    virtual ~IMesh();
 
 };
 
@@ -29,6 +29,8 @@ public:
             const std::vector<Vector3> &normals,
             const std::vector<Vector2> &uv
     ) = 0;
+
+    virtual ~IMeshFactory();
 
 };
 

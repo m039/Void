@@ -6,20 +6,28 @@
 
 using namespace vd;
 
+//region Time
+
 sec_t Time::_DeltaTime = 0.0f;
 
-sec_t Time::_PreviousTime = 0.0f;
+//endregion
 
-bool Time::_Started = false;
+//region internal::Time
 
-void Time::Update() {
-    auto time = GetTime();
+sec_t internal::Time::_PreviousTime = 0.0f;
+
+bool internal::Time::_Started = false;
+
+void internal::Time::Update() {
+    auto time = vd::Time::GetTime();
 
     if (!_Started) {
         _PreviousTime = time;
         _Started = true;
     }
 
-    _DeltaTime = time - _PreviousTime;
+    vd::Time::_DeltaTime = time - _PreviousTime;
     _PreviousTime = time;
 }
+
+//endregion

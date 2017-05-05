@@ -9,6 +9,15 @@
 
 using namespace vd;
 
+//region IPlayer
+
+IPlayer::~IPlayer() {
+}
+
+//endregion
+
+//region Player
+
 Player::Player(const ICameraRef& camera)
         : _transform(camera->GetTransform()),
           _camera(camera),
@@ -22,7 +31,7 @@ Vector3 Player::GetPosition() const {
     return _transform->GetPosition();
 }
 
-void Player::SetPosition(const Vector3 &vec) {
+void Player::SetPosition(const Vector3& vec) {
     _transform->SetPosition(vec);
 }
 
@@ -50,7 +59,7 @@ void Player::StopRunning() {
     _running = false;
 }
 
-void Player::MoveToPosition(const Vector3 &position) {
+void Player::MoveToPosition(const Vector3& position) {
     if (_moveToTrackCoroutine != nullptr) {
         GetCoroutineManager().Stop(_moveToTrackCoroutine);
         _moveToTrackCoroutine = nullptr;
@@ -59,7 +68,7 @@ void Player::MoveToPosition(const Vector3 &position) {
     _transform->SetPosition(position);
 }
 
-void Player::MoveToTrack(const VoidTrackRef &track) {
+void Player::MoveToTrack(const VoidTrackRef& track) {
     if (_moveToTrackCoroutine != nullptr) {
         GetCoroutineManager().Stop(_moveToTrackCoroutine);
         _moveToTrackCoroutine = nullptr;
@@ -83,7 +92,7 @@ bool Player::IsMovingToTrack() {
     return _moveToTrackCoroutine != nullptr;
 }
 
-bool Player::CanCollide(const IVoidObjectRef &object) {
+bool Player::CanCollide(const IVoidObjectRef& object) {
     auto o = object->GetTransform()->GetPosition();
     auto p = GetPosition();
 
@@ -98,7 +107,7 @@ bool Player::CanCollide(const IVoidObjectRef &object) {
            (o.z + scale > p.z);
 }
 
-bool Player::IsCoverWholeScreen(const IVoidTrackObjectRef &vTrackObject) {
+bool Player::IsCoverWholeScreen(const IVoidTrackObjectRef& vTrackObject) {
     auto playerZ = _transform->GetPosition().z;
     auto objectZ = vTrackObject->GetTransform()->GetPosition().z;
 
@@ -119,10 +128,12 @@ void Player::OnUpdate() {
     }
 }
 
-const Coroutine::EnumerationFunction Player::SmoothTranslationXYCoroutine(const ITransformRef &transform,
-                                     const Vector3 &destination,
-                                     float time,
-                                     const Callback &endCallback) {
+const Coroutine::EnumerationFunction Player::SmoothTranslationXYCoroutine(
+        const ITransformRef& transform,
+        const Vector3& destination,
+        float time,
+        const Callback& endCallback
+) {
     return [transform, destination, time, endCallback](Coroutine::YieldHandler &yield) {
         auto start = Vector3(transform->GetPosition().x, transform->GetPosition().y);
         auto end = Vector3(destination.x, destination.y);
@@ -151,3 +162,5 @@ const Coroutine::EnumerationFunction Player::SmoothTranslationXYCoroutine(const 
         }
     };
 }
+
+//endregion

@@ -18,7 +18,7 @@ GameHut::GameHut(
 }
 
 void GameHut::Start() {
-    Time::Update();
+    internal::Time::Update();
 
     for (auto& c: Components) {
         c->Start();
@@ -26,7 +26,7 @@ void GameHut::Start() {
 }
 
 void GameHut::Update() {
-    Time::Update();
+    internal::Time::Update();
 
     for (auto& c: Components) {
         c->Update();

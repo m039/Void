@@ -41,7 +41,7 @@ public:
 
     virtual bool IsEnabled(InputSystemEvent event) = 0;
 
-    virtual ~IInputSystem() = 0;
+    virtual ~IInputSystem();
 
 };
 

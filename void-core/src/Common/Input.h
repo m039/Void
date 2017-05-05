@@ -36,7 +36,7 @@ public:
 
     virtual Vector2 GetPosition() = 0;
 
-    virtual ~ITouch() = 0;
+    virtual ~ITouch();
 
 };
 
@@ -57,7 +57,7 @@ public:
     //! Returns object representing status of a specific touch.
     virtual ITouchRef GetTouch(int index) = 0;
 
-    virtual ~IInput() = 0;
+    virtual ~IInput();
 
 };
 

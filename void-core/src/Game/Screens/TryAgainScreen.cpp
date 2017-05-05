@@ -7,10 +7,6 @@
 
 using namespace vd;
 
-TryAgainScreen::~TryAgainScreen() {
-
-}
-
 void TryAgainScreen::Draw(IScreenDrawer& drawer) {
     auto alpha = GetAlpha();
 

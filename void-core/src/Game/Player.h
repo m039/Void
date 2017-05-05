@@ -5,7 +5,7 @@
 #pragma once
 
 #include <Common/Vector3.h>
-#include <Common/Components/ICamera.h>
+#include <Common/Components/Camera.h>
 #include <Common/Coroutines/Coroutine.h>
 #include <Common/Components/GameComponent.h>
 
@@ -47,7 +47,8 @@ public:
     //! Returns true if vTrackObject covers whole screen.
     virtual bool IsCoverWholeScreen(const IVoidTrackObjectRef& vTrackObject) = 0;
 
-    virtual ~IPlayer() {}
+    virtual ~IPlayer();
+
 };
 
 typedef std::shared_ptr<IPlayer> IPlayerRef;

@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "IYieldInstruction.h"
+#include "YieldInstruction.h"
 
 namespace vd {
 
@@ -14,7 +14,7 @@ public:
 
     WaitForSeconds(double seconds);
 
-    //region Implementation of IYieldInstruction
+    //region Implementation of IYieldInstruction.
 
     void Update() override;
 

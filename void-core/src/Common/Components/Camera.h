@@ -4,8 +4,10 @@
 
 #pragma once
 
-#include <Common/Color.h>
 #include <memory>
+
+#include <Common/Color.h>
+
 #include "Transform.h"
 
 namespace vd {
@@ -24,7 +26,7 @@ public:
 
     virtual Color GetBackgroundColor() const = 0;
 
-    virtual ~ICamera() {}
+    virtual ~ICamera();
 
 };
 

@@ -11,10 +11,11 @@ using namespace vd;
 //region IScene
 
 IScene::~IScene() {
-
 }
 
 //endregion
+
+//region Scene
 
 Scene::Scene(const ICameraRef& camera, const IShadersManagerRef& shaders)
         : _camera(camera),
@@ -59,3 +60,5 @@ void Scene::OnUpdate() {
         _fog->SetStartPosition(MathF::SmoothStep(0, 1, _startPosition) * _FogDisappearVelocity);
     }
 }
+
+//endregion

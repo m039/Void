@@ -16,9 +16,6 @@ CameraImpl::CameraImpl(VoidApp &app)
     Setup();
 }
 
-CameraImpl::~CameraImpl() {
-}
-
 const ITransformRef vd::CameraImpl::GetTransform() const {
     return _transform;
 }

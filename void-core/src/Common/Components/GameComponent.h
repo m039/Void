@@ -16,6 +16,8 @@ public:
 
     virtual void Update() = 0;
 
+    virtual ~IGameComponent();
+
 };
 
 class GameComponent : public IGameComponent {

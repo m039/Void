@@ -7,10 +7,6 @@
 
 using namespace vd;
 
-IntroScreen::~IntroScreen() {
-
-}
-
 void IntroScreen::Draw(IScreenDrawer& drawer) {
     auto alpha = GetAlpha();
 

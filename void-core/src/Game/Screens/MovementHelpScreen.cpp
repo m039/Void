@@ -7,9 +7,6 @@
 
 using namespace vd;
 
-MovementHelpScreen::~MovementHelpScreen() {
-
-}
 
 void MovementHelpScreen::Draw(IScreenDrawer& drawer) {
     // Todo: implement.

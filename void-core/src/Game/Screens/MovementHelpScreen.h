@@ -25,8 +25,6 @@ public:
 
     //endregion
 
-    virtual ~MovementHelpScreen();
-
 private:
 
     void PerformDelayed(float delay, Callback callback);

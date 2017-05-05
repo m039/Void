@@ -6,6 +6,15 @@
 
 using namespace vd;
 
+//region IGameComponent
+
+IGameComponent::~IGameComponent() {
+}
+
+//endregion
+
+//region GameComponent
+
 void GameComponent::Start() {
     OnStart();
 }
@@ -15,3 +24,6 @@ void GameComponent::Update() {
 
     OnUpdate();
 }
+
+//endregion
+

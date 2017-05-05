@@ -18,8 +18,6 @@ public:
 
     void Draw(const VoidApp &app);
 
-    virtual ~MeshImpl() override;
-
 private:
 
     std::vector<GLfloat> _vertices;

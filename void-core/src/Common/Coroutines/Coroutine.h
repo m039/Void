@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "IYieldInstruction.h"
+#include "YieldInstruction.h"
 
 #include "boost/coroutine2/coroutine.hpp"
 
@@ -24,7 +24,7 @@ public:
 
     Coroutine(const EnumerationFunction& enumerator);
 
-    //region Implementation of IYieldInstruction
+    //region Implementation of IYieldInstruction.
 
     void Update() override;
 
@@ -34,7 +34,7 @@ public:
 
 private:
 
-    //region Functions used by CoroutineManager
+    //region Functions used by CoroutineManager.
 
     bool IsValid();
 

@@ -11,6 +11,15 @@
 
 using namespace vd;
 
+//region IVoidObject
+
+IVoidObject::~IVoidObject() {
+}
+
+//endregion
+
+//region VoidObject
+
 VoidObject::VoidObject(IObjectPool& pool, const std::string& name)
         : _objectPool(pool),
           _isEnabled(false),
@@ -95,3 +104,5 @@ void VoidObject::RemoveFromDrawQueue() {
         drawQueue->Remove(*this);
     }
 }
+
+//endregion

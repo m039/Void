@@ -9,7 +9,26 @@
 
 namespace vd {
 
+namespace internal {
+
 class Time {
+
+public:
+
+    static void Update();
+
+private:
+
+    static sec_t _PreviousTime;
+
+    static bool _Started;
+
+};
+
+}
+
+class Time {
+    friend internal::Time;
 
 public:
 
@@ -25,19 +44,11 @@ public:
         return _DeltaTime;
     }
 
-    // Todo: add friend declaration.
-    static void Update();
-
 private:
 
     static sec_t _DeltaTime;
 
-    static sec_t _PreviousTime;
-
-    static bool _Started;
-
 };
-
 
 
 }

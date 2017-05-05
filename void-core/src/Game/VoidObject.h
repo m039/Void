@@ -43,7 +43,7 @@ public:
 
     virtual void Destroy() = 0;
 
-    virtual ~IVoidObject() {}
+    virtual ~IVoidObject();
 };
 
 class IObjectPool;

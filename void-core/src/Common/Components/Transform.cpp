@@ -6,6 +6,15 @@
 
 using namespace vd;
 
+//region ITransform
+
+ITransform::~ITransform() {
+}
+
+//endregion
+
+//region Transform
+
 Transform::Transform()
         : _localScale(Vector3(1, 1, 1)),
           _position(Vector3::Zero)
@@ -33,4 +42,4 @@ void Transform::Rotate(float xAngle, float yAngle, float zAngle) {
     // Todo: implement.
 }
 
-
+//endregion

@@ -5,9 +5,11 @@
 #pragma once
 
 #include <memory>
+
 #include <Common/Components/GameComponent.h>
-#include <Common/Components/ICamera.h>
+#include <Common/Components/Camera.h>
 #include <Common/ShadersManager.h>
+
 #include "Fog.h"
 
 namespace vd {

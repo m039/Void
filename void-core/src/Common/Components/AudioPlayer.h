@@ -31,7 +31,7 @@ public:
     //! Stop playing music.
     virtual void Stop() = 0;
 
-    virtual ~IAudioPlayer() {}
+    virtual ~IAudioPlayer();
 
 };
 

@@ -5,7 +5,7 @@
 #pragma once
 
 #include <memory>
-#include <Common/Components/IAudioPlayer.h>
+#include <Common/Components/AudioPlayer.h>
 #include <Common/Coroutines/Coroutine.h>
 #include <Common/Components/GameComponent.h>
 
@@ -22,7 +22,8 @@ public:
     //! Time in seconds for the next level.
     virtual sec_t TimeForNextLevel(int levelIndex) = 0;
 
-    virtual ~IMusicSystem() {}
+    virtual ~IMusicSystem();
+
 };
 
 typedef std::shared_ptr<IMusicSystem> IMusicSystemRef;

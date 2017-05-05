@@ -17,8 +17,6 @@ public:
 
     //endregion
 
-    ~IntroScreen();
-
 };
 
 }

@@ -22,7 +22,7 @@ public:
         //! Remove the object from the drawing queue.
         virtual void Remove(const VoidObject& object) = 0;
 
-        ~IDrawQueue() {}
+        virtual ~IDrawQueue();
 
     };
 
@@ -43,7 +43,7 @@ public:
         return nullptr;
     }
 
-    virtual ~IObjectPool() {}
+    virtual ~IObjectPool();
 
 };
 

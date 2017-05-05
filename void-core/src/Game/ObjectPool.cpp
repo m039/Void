@@ -6,6 +6,22 @@
 
 using namespace vd;
 
+//region IObjectPool
+
+IObjectPool::~IObjectPool() {
+}
+
+//endregion
+
+//region IObjectPool::IDrawQueue
+
+IObjectPool::IDrawQueue::~IDrawQueue() {
+}
+
+//endregion
+
+//region ObjectPool
+
 const std::string ObjectPool::DefaultObjectsName = "ObjectCache's vTrackObject";
 
 ObjectPool::ObjectPool()
@@ -50,4 +66,4 @@ void ObjectPool::SetDefaults(const IVoidTrackObjectRef &object) {
     object->SetTag("");
 }
 
-
+//endregion

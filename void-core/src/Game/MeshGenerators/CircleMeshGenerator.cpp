@@ -10,7 +10,7 @@ using namespace vd;
 
 static const unsigned int NumberOfSides = Config::NumberOfSidesInCircle;
 
-vd::IMeshRef vd::CircleMeshGenerator::GenHollowMesh() {
+IMeshRef CircleMeshGenerator::GenHollowMesh() {
     // vertices
 
     std::vector<Vector3> vertices(NumberOfSides * 2);
@@ -62,7 +62,7 @@ vd::IMeshRef vd::CircleMeshGenerator::GenHollowMesh() {
     return Mesh::Create(vertices, triangles, CreateNormals(static_cast<unsigned int>(vertices.size())));
 }
 
-vd::IMeshRef vd::CircleMeshGenerator::GenDefaultMesh() {
+IMeshRef CircleMeshGenerator::GenDefaultMesh() {
     // vertices
 
     static const unsigned int length = NumberOfSides + 1;

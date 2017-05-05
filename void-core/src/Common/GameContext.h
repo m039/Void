@@ -18,7 +18,7 @@ public:
 
     virtual void Quit() = 0;
 
-    virtual ~IGameContext() = 0;
+    virtual ~IGameContext();
 
 };
 

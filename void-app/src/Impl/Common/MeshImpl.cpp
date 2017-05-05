@@ -9,10 +9,6 @@
 using namespace vd;
 using namespace ci;
 
-MeshImpl::~MeshImpl() {
-
-}
-
 MeshImpl::MeshImpl(const std::vector<Vector3> &vertices,
                const std::vector<int> &triangles) {
     for (auto &v : vertices) {

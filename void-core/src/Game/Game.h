@@ -91,8 +91,6 @@ public:
 
     //endregion
 
-    virtual ~Game();
-
 private:
 
     //region Event handlers.

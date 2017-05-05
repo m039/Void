@@ -6,7 +6,7 @@
 
 #include <memory>
 
-#include <Common/Components/IAudioPlayer.h>
+#include <Common/Components/AudioPlayer.h>
 #include <Common/Components/GameComponent.h>
 
 #include "Mesh.h"

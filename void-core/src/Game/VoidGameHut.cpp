@@ -62,7 +62,7 @@ VoidGameHut::VoidGameHut(
     );
     Components.push_back(game);
 
-    // Register for UI callbacks.
+    // Register UI callbacks.
 
     _drawables.push_back(tryAgainScreen);
     _drawables.push_back(introScreen);
@@ -73,9 +73,7 @@ VoidGameHut::VoidGameHut(
     }
 }
 
-
 VoidGameHut::~VoidGameHut() {
-
     // Unregister UI callbacks.
 
     for (auto& d: _drawables) {

@@ -13,9 +13,6 @@ AudioPlayerImpl::AudioPlayerImpl(
 {
 }
 
-AudioPlayerImpl::~AudioPlayerImpl() {
-}
-
 sec_t AudioPlayerImpl::GetTime() {
     return _audioPlayer->getReadPositionTime();
 }

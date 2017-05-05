@@ -11,7 +11,7 @@ namespace vd {
 class Animation {
 public:
 
-    virtual ~Animation() = 0;
+    virtual ~Animation();
 
 };
 

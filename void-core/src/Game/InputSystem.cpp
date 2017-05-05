@@ -7,8 +7,12 @@
 
 using namespace vd;
 
+//region IInputSystem
+
 IInputSystem::~IInputSystem() {
 }
+
+//endregion
 
 //region InputSystem
 
