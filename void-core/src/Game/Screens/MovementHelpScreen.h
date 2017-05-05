@@ -27,6 +27,12 @@ public:
 
     virtual ~MovementHelpScreen();
 
+private:
+
+    void PerformDelayed(float delay, Callback callback);
+
+    static Coroutine::EnumerationFunction DelayedCoroutine(float delay, Callback callback);
+
 };
 
 }

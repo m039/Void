@@ -41,6 +41,7 @@ public:
 
 typedef std::shared_ptr<IScreenDrawable> IScreenDrawableRef;
 
+// Note: assume every text is static.
 class ISimplifiedUi {
 public:
 
