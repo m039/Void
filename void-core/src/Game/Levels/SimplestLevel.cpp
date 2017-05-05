@@ -12,7 +12,7 @@ using namespace vd;
 SimplestLevel::SimplestLevel() : _simplestData(nullptr) {
 }
 
-void SimplestLevel::InitObject(const IVoidTrackObjectRef &object, const VoidTrackRef &t, int i) {
+void SimplestLevel::InitObject(const IVoidTrackObjectRef& object, const VoidTrackRef& t, int i) {
     auto shapeType = GetShapeType();
 
     if (IsGate(t, i)) {
@@ -60,7 +60,7 @@ void SimplestLevel::InitObject(const IVoidTrackObjectRef &object, const VoidTrac
     }
 }
 
-int SimplestLevel::NumberOfObjects(const VoidTrackRef &t) {
+int SimplestLevel::NumberOfObjects(const VoidTrackRef& t) {
     return GetSimplestData().numberOfObjects;
 }
 
@@ -91,11 +91,11 @@ ShapeType SimplestLevel::GetShapeType() {
     return GetSimplestData().shapeType;
 }
 
-bool SimplestLevel::IsGate(const VoidTrackRef &t, int i) {
+bool SimplestLevel::IsGate(const VoidTrackRef& t, int i) {
     return GetSimplestData().isGate(t, i);
 }
 
-bool SimplestLevel::IsPortal(const VoidTrackRef t, int i) {
+bool SimplestLevel::IsPortal(const VoidTrackRef& t, int i) {
     return GetSimplestData().isPortal(t, i);
 }
 

@@ -7,6 +7,7 @@
 #include <boost/algorithm/clamp.hpp>
 #include <algorithm>
 #include <math.h>
+#include <tgmath.h>
 
 namespace vd {
 
@@ -31,6 +32,14 @@ public:
 
     static inline T Cos(T v) {
         return cos(v);
+    }
+
+    static inline T Min(T v1, T v2) {
+        return std::min(v1, v2);
+    }
+
+    static inline T Pow(T base, double exponent) {
+        return pow(base, exponent);
     }
 
 };

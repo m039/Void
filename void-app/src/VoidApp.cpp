@@ -13,6 +13,7 @@
 #include "Impl/Common/Components/AudioPlayer.h"
 #include "Impl/Common/MeshFactory.h"
 #include "Impl/Common/GameContextImpl.h"
+#include "Impl/Common/ShadersManagerImpl.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -53,6 +54,7 @@ void VoidApp::setup() {
     _objectPool = std::make_shared<ObjectPoolGl>(*this);
     _camera = std::make_shared<Camera>(*this);
     _input = std::make_shared<Input>(*this);
+    auto shaders = std::make_shared<ShadersManagerImpl>(*this);
     auto gameContext = std::make_shared<GameContextImpl>(*this);
 
     // Create and start the game.
@@ -62,7 +64,8 @@ void VoidApp::setup() {
             audio,
             _objectPool,
             _camera,
-            _input
+            _input,
+            shaders
     );
     _game->Start();
 }
@@ -156,12 +159,6 @@ IAudioPlayerRef VoidApp::setupAudio() {
 
 void VoidApp::setupShader() {
     _shader = std::make_unique<UnlitShader>(*this);
-
-    _shader->SetFogEnabled(true);
-    _shader->SetFogColor(ci::Color::black());
-    _shader->SetFogStartPosition(0);
-    _shader->SetFogDensity(0.1f);
-    _shader->SetMinFogFactor(0.0f);
 }
 
 //endregion

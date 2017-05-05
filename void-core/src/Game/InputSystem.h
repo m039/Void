@@ -99,9 +99,9 @@ public:
 
     //region GameComponent's overrides.
 
-    void Start() override;
+    void OnStart() override;
 
-    void Update() override;
+    void OnUpdate() override;
 
     //endregion
 

@@ -46,7 +46,7 @@ public:
 
     //endregion
 
-    //region Overridden GameComponent methods.
+    //region GameComponent's overrides.
 
     void OnStart() override;
 

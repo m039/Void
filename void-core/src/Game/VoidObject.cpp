@@ -11,7 +11,7 @@
 
 using namespace vd;
 
-VoidObject::VoidObject(IObjectPool &pool, const std::string &name)
+VoidObject::VoidObject(IObjectPool& pool, const std::string& name)
         : _objectPool(pool),
           _isEnabled(false),
           _isHidden(true),
@@ -30,7 +30,7 @@ const Color VoidObject::GetColor() const {
     return _color;
 }
 
-void VoidObject::SetColor(const Color &color) {
+void VoidObject::SetColor(const Color& color) {
     _color = color;
 }
 
@@ -62,7 +62,7 @@ const IMeshRef VoidObject::GetMesh() const {
     return _mesh;
 }
 
-void VoidObject::SetMesh(const IMeshRef &mesh) {
+void VoidObject::SetMesh(const IMeshRef& mesh) {
     _mesh = mesh;
 }
 

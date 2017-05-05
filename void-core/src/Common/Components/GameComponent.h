@@ -22,9 +22,13 @@ class GameComponent : public IGameComponent {
 
 public:
 
-     void Start() override;
+    //region Implementation of IGameComponent.
+
+    void Start() override;
 
      void Update() override;
+
+    //endregion
 
 protected:
 

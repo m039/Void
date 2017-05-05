@@ -7,6 +7,7 @@
 #include <Game/Screens/VoidScreen.h>
 #include <Game/Screens/IHelpScreen.h>
 #include <Game/Levels/Level35.h>
+#include <Game/Levels/Level1.h>
 
 #include "Player.h"
 #include "MusicSystem.h"
@@ -80,9 +81,9 @@ public:
 
     //region GameComponent's overrides.
 
-    void Start() override;
+    void OnStart() override;
 
-    void Update() override;
+    void OnUpdate() override;
 
     //endregion
 
@@ -104,20 +105,20 @@ private:
 
     void StartGame(int levelIndex);
 
-    IObjectPoolRef _objectPool;
+    const IObjectPoolRef _objectPool;
 
-    IPlayerRef _player;
+    const IPlayerRef _player;
 
-    IMusicSystemRef _musicSystem;
+    const IMusicSystemRef _musicSystem;
 
-    IInputSystemRef _inputSystem;
+    const IInputSystemRef _inputSystem;
 
-    ISceneRef _scene;
+    const ISceneRef _scene;
 
     VoidTrackRef _currentTrack;
 
     // Todo: remove.
-    std::unique_ptr<Level35> _level;
+    std::unique_ptr<Level1> _level;
 
 };
 

@@ -26,15 +26,7 @@ public:
 
     void SetMainColor(const ci::ColorAf &color);
 
-    void SetFogEnabled(bool value);
-
-    void SetFogStartPosition(float startPosition);
-
-    void SetFogDensity(float density);
-
-    void SetFogColor(const ci::ColorAf &color);
-
-    void SetMinFogFactor(float minFogFactor);
+    int GetLocation(const std::string& name);
 
 private:
     ci::gl::GlslProgRef _shader;
@@ -56,6 +48,8 @@ private:
     GLint _viewLocation;
 
     GLint _projViewLocation;
+
+    std::unordered_map<std::string, GLint*> _nameToLocation;
 
     void setupShader(const ci::app::App &app);
 };

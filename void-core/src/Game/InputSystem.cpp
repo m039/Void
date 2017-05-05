@@ -19,8 +19,8 @@ InputSystem::InputSystem(const IInputRef &input)
 {
 }
 
-void InputSystem::Start() {
-    GameComponent::Start();
+void InputSystem::OnStart() {
+    GameComponent::OnStart();
 
     _handlers[InputSystemEvent::PlayerMove] = std::bind(&InputSystem::PlayerMoveHandler, this);
     _handlers[InputSystemEvent::Reset] = std::bind(&InputSystem::ResetHandler, this);
@@ -28,8 +28,8 @@ void InputSystem::Start() {
     _handlers[InputSystemEvent::Quit] = std::bind(&InputSystem::QuitHandler, this);
 }
 
-void InputSystem::Update() {
-    GameComponent::Update();
+void InputSystem::OnUpdate() {
+    GameComponent::OnUpdate();
 
     ProcessEnabledHandlers();
     ProcessTouches();

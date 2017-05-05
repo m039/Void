@@ -29,13 +29,13 @@ public:
 
     void Initialize(const IGameRef &game);
 
-    VoidTrackRef StartTrack();
-
-    std::shared_ptr<const std::vector<IVoidTrackObjectRef>> Objects();
-
     virtual void Update(const IGameRef& game, double deltaTime);
 
     virtual void Destroy(const IGameRef& game);
+
+    VoidTrackRef StartTrack();
+
+    std::shared_ptr<const std::vector<IVoidTrackObjectRef>> Objects();
 
     virtual void DisableObjects();
 

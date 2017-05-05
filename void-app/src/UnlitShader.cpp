@@ -32,20 +32,20 @@ void UnlitShader::setupShader(const ci::app::App &app) {
 
     // Get uniform variable locations.
 
-    std::unordered_map<GLint*, std::string> pairs {
-            { &_mainColorLocation, "cMainColor" },
-            { &_fogEnabledLocation, "c_FogEnabled" },
-            { &_fogStartPositionLocation, "c_FogStartPosition" },
-            { &_fogDensityLocation, "c_FogDensity" },
-            { &_fogColorLocation, "c_FogColor" },
-            { &_minFogFactorLocation, "c_MinFogFactor" },
-            { &_modelLocation, "cModel" },
-            { &_viewLocation, "cView" },
-            { &_projViewLocation, "cProjView" }
+    _nameToLocation = std::unordered_map<std::string, GLint*> {
+            { "cMainColor", &_mainColorLocation },
+            { "c_FogEnabled", &_fogEnabledLocation },
+            { "c_FogStartPosition", &_fogStartPositionLocation },
+            { "c_FogDensity", &_fogDensityLocation },
+            { "c_FogColor", &_fogColorLocation },
+            { "c_MinFogFactor", &_minFogFactorLocation },
+            { "cModel", &_modelLocation },
+            { "cView", &_viewLocation  },
+            { "cProjView", &_projViewLocation }
     };
 
-    for (const auto& p: pairs) {
-        *p.first = _shader->getUniformLocation(p.second);
+    for (const auto& p: _nameToLocation) {
+        *p.second = _shader->getUniformLocation(p.first);
     }
 }
 
@@ -76,22 +76,11 @@ void UnlitShader::SetMainColor(const ci::ColorAf &color) {
     _shader->uniform(_mainColorLocation, color);
 }
 
-void UnlitShader::SetFogEnabled(bool value) {
-    _shader->uniform(_fogEnabledLocation, value? 1 : 0);
-}
+int UnlitShader::GetLocation(const std::string& name) {
+    auto location = _nameToLocation.find(name);
+    if (location != _nameToLocation.end()) {
+        return *_nameToLocation[name];
+    }
 
-void UnlitShader::SetFogStartPosition(float startPosition) {
-    _shader->uniform(_fogStartPositionLocation, startPosition);
-}
-
-void UnlitShader::SetFogDensity(float density) {
-    _shader->uniform(_fogDensityLocation, density);
-}
-
-void UnlitShader::SetFogColor(const ci::ColorAf &color) {
-    _shader->uniform(_fogColorLocation, color);
-}
-
-void UnlitShader::SetMinFogFactor(float minFogFactor) {
-    _shader->uniform(_minFogFactorLocation, minFogFactor);
+    return -1;
 }

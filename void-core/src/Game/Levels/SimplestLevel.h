@@ -56,7 +56,7 @@ private:
 
     bool IsGate(const VoidTrackRef& t, int i);
 
-    bool IsPortal(const VoidTrackRef t, int i);
+    bool IsPortal(const VoidTrackRef& t, int i);
 
     bool IsRotating();
 

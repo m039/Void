@@ -6,6 +6,7 @@
 
 #include <Common/Components/ICamera.h>
 #include <Common/Input.h>
+#include <Common/ShadersManager.h>
 #include "Common/GameHut.h"
 #include "Common/Mesh.h"
 
@@ -24,7 +25,8 @@ public:
             const IAudioPlayerRef& audioPlayer,
             const IObjectPoolRef& objectPool,
             const ICameraRef& camera,
-            const IInputRef& input
+            const IInputRef& input,
+            const IShadersManagerRef& shaders
     );
 
     //region Implementation of GameHut

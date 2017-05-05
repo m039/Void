@@ -16,13 +16,13 @@ Game::Game(
         const IInputSystemRef& inputSystem,
         const ISceneRef& scene
 )
-        : _currentTrack(nullptr)
+        : _objectPool(objectPool),
+          _player(player),
+          _musicSystem(musicSystem),
+          _inputSystem(inputSystem),
+          _scene(scene),
+          _currentTrack(nullptr)
 {
-    _objectPool = objectPool;
-    _player = player;
-    _musicSystem = musicSystem;
-    _inputSystem = inputSystem;
-
     _inputSystem->OnAnyKey.connect(std::bind(&Game::OnAnyKey, this));
     _inputSystem->OnPlayerMove.connect(std::bind(&Game::OnPlayerMove, this, std::placeholders::_1));
     _inputSystem->OnQuit.connect(std::bind(&Game::OnQuit, this));
@@ -73,12 +73,14 @@ float Game::TimeForNextLevel() const {
     return 4.6f;
 }
 
-void Game::Start() {
-    GameComponent::Start();
+void Game::OnStart() {
+    GameComponent::OnStart();
+
+    _scene->SetBackgroundColor(Color::Black);
 
     _inputSystem->Enable(InputSystemEvent::Quit);
 
-    _level = std::make_unique<Level35>();
+    _level = std::make_unique<Level1>();
     _level->Initialize(this);
 
     _currentTrack = _level->StartTrack();
@@ -88,8 +90,8 @@ void Game::Start() {
     StartGame(0);
 }
 
-void Game::Update() {
-    GameComponent::Update();
+void Game::OnUpdate() {
+    GameComponent::OnUpdate();
 
     // Todo: implement.
 }
