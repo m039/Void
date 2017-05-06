@@ -94,7 +94,13 @@ public:
 
 private:
 
-    //region Event handlers.
+    enum class EndGameCause {
+        CollidedWithPortal,
+        MissedGate,
+        FinishedGame
+    };
+
+    //region InputSystem's event handlers.
 
     void OnAnyKey();
 
@@ -106,7 +112,38 @@ private:
 
     //endregion
 
+    //region Parameters.
+
+    bool _skipIntro = false;
+
+    int _startLevel = 0;
+
+    //endregion
+
+    VoidLevelRef GetCurrentLevel();
+
+    VoidLevelRef GetNextLevel();
+
+    Color GetColorOfFirstLevel();
+
     void StartGame(int levelIndex);
+
+    void InitLevel();
+
+    //! Shows a help message at 3 and 4 levels.
+    void InitHelpScreen();
+
+    //! Moves to the next level.
+    void MoveToNextLevel();
+
+    void MoveToLevel(int levelIndex);
+
+    void EndGame(EndGameCause cause);
+
+    //! Returns true if there is next level.
+    bool CanMoveToNextLevel();
+
+    static std::vector<VoidLevelRef> CreateLevels();
 
     const IObjectPoolRef _objectPool;
 
@@ -124,13 +161,13 @@ private:
 
     const IHelpScreenRef _movementHelpScreen;
 
+    int _currentLevelIndex;
+
     VoidTrackRef _currentTrack;
 
-    // Todo: remove.
-    std::unique_ptr<VoidLevel> _level;
+    bool _backgroundColorChanged;
 
-    // Todo: remove.
-    bool _showScreen;
+    std::vector<VoidLevelRef> _levels;
 
 };
 

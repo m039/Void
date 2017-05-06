@@ -16,7 +16,7 @@ CoroutineRef CoroutineManager::Start(const Coroutine::EnumerationFunction &enume
     if (!_inUpdate) {
         _coroutines.push_back(coroutine);
     } else {
-        _pendingOperations.push_back([&]() {
+        _pendingOperations.push_back([this, coroutine]() {
             _coroutines.push_back(coroutine);
         });
     }
@@ -39,7 +39,7 @@ void CoroutineManager::Stop(const CoroutineRef &coroutine) {
         );
         coroutine->Stop();
     } else {
-        _pendingOperations.push_back([&]() {
+        _pendingOperations.push_back([this, coroutine]() {
             CoroutineManager::Stop(coroutine);
         });
     }
@@ -53,7 +53,7 @@ void CoroutineManager::StopAll() {
 
         _coroutines.clear();
     } else {
-        _pendingOperations.push_back([&] () {
+        _pendingOperations.push_back([this] () {
             CoroutineManager::StopAll();
         });
     }

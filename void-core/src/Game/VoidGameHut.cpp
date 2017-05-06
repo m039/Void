@@ -29,11 +29,11 @@ VoidGameHut::VoidGameHut(
 {
     objectPool->Init();
 
-    auto musicSystem = std::make_shared<MusicSystem>(audioPlayer);
-    Components.push_back(musicSystem);
-
     auto player = std::make_shared<Player>(camera);
     Components.push_back(player);
+
+    auto musicSystem = std::make_shared<MusicSystem>(audioPlayer);
+    Components.push_back(musicSystem);
 
     auto scene = std::make_shared<Scene>(camera, shaders);
     Components.push_back(scene);

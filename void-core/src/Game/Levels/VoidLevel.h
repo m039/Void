@@ -72,5 +72,7 @@ private:
 
 };
 
+typedef std::shared_ptr<VoidLevel> VoidLevelRef;
+
 }
 

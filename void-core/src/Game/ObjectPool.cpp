@@ -46,11 +46,16 @@ IVoidTrackObjectRef ObjectPool::GetObject() {
 }
 
 void ObjectPool::PutObject(const IVoidTrackObjectRef& object) {
-    // Todo: implement.
+    SetDefaults(object);
+    _freeObjects.push_back(object);
 }
 
 void ObjectPool::PutObjects(const std::vector<IVoidTrackObjectRef>& objects) {
-    // Todo: implement.
+    for (auto object : objects) {
+        SetDefaults(object);
+    }
+
+    _freeObjects.insert(_freeObjects.end(), objects.begin(), objects.end());
 }
 
 const IVoidTrackObjectRef ObjectPool::CreateObject() {
@@ -63,6 +68,7 @@ void ObjectPool::SetDefaults(const IVoidTrackObjectRef &object) {
     object->SetEnabled(false);
     object->SetName(DefaultObjectsName);
     object->SetAnimation(nullptr);
+    object->Hide();
     object->SetTag("");
 }
 
