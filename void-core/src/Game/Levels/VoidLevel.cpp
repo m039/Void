@@ -40,7 +40,7 @@ void VoidLevel::Initialize(const IGameRef &game) {
 
         auto r = std::dynamic_pointer_cast<Rotation>(object->GetAnimation());
         if (r != nullptr) {
-            object->SetRotation(r->startAngle);
+            object->RotateAroundZ(r->startAngle);
         }
     }
 }
@@ -62,7 +62,7 @@ void VoidLevel::Update(const IGameRef &game, double deltaTime) {
         if (object->IsEnabled()) {
             auto r = std::dynamic_pointer_cast<Rotation>(object->GetAnimation());
             if (r != nullptr && Time::GetTime() > r->startTime) {
-                object->Rotate(r->speed * (float) deltaTime);
+                object->RotateAroundZBy(r->speed * (float) deltaTime);
             }
         }
     }

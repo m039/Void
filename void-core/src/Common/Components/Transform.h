@@ -5,6 +5,7 @@
 #pragma once
 
 #include <Common/Vector3.h>
+#include <Common/Matrix4.h>
 
 namespace vd {
 
@@ -19,14 +20,11 @@ public:
 
     virtual void SetPosition(const Vector3& position) = 0;
 
-    /*!
-     * Rotates the object.
-     *
-     * \param xAngle X angle in degrees.
-     * \param yAngle Y angle in degrees.
-     * \param zAngle Z angle in degrees.
-     */
-    virtual void Rotate(float xAngle, float yAngle, float zAngle) = 0;
+    virtual Quaternion GetRotation() const = 0;
+
+    virtual void SetRotation(const Quaternion& quaternion) = 0;
+
+    virtual Matrix4 GetModelMatrix() = 0;
 
     virtual ~ITransform();
 
@@ -49,7 +47,11 @@ public:
 
     virtual void SetPosition(const Vector3& position) override;
 
-    virtual void Rotate(float xAngle, float yAngle, float zAngle) override;
+    virtual Quaternion GetRotation() const override;
+
+    virtual void SetRotation(const Quaternion& quaternion) override;
+
+    virtual Matrix4 GetModelMatrix() override;
 
     //endregion
 
@@ -58,6 +60,16 @@ private:
     Vector3 _localScale;
 
     Vector3 _position;
+
+    Quaternion _rotation;
+
+    bool _translationIsDirty;
+
+    bool _scaleIsDirty;
+
+    bool _rotationIsDirty;
+
+    Matrix4 _modelMatrix;
 
 };
 

@@ -84,6 +84,8 @@ float Game::TimeForNextLevel() const {
 void Game::OnStart() {
     GameComponent::OnStart();
 
+    // Todo: refactor.
+
     _scene->SetBackgroundColor(Color::Black);
 
     _inputSystem->Enable(InputSystemEvent::Quit);
@@ -91,8 +93,11 @@ void Game::OnStart() {
     _level = std::make_unique<Level1>();
     _level->Initialize(this);
 
+
     _currentTrack = _level->StartTrack();
-    _player->MoveToPosition(Vector3::Zero);
+    _player->MoveToPosition(Vector3(0, 0, 6));
+
+    _level->Update(this, 0);
 
     // Todo: remove.
     StartGame(0);

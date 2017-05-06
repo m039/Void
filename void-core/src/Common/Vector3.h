@@ -74,6 +74,3 @@ typedef Vector3T<float> Vector3;
 
 }
 
-
-
-

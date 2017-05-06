@@ -105,4 +105,12 @@ void VoidObject::RemoveFromDrawQueue() {
     }
 }
 
+void VoidObject::Rotate(float xAngle, float yAngle, float zAngle) {
+    _transform->SetRotation(Quaternion::CreateFromYawPitchRoll(
+            yAngle * MathF::Pi / 180.0f,
+            xAngle * MathF::Pi / 180.0f,
+            zAngle * MathF::Pi / 180.0f
+    ));
+}
+
 //endregion

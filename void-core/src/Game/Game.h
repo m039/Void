@@ -43,7 +43,9 @@ public:
 
 typedef IGame* IGameRef;
 
+//!
 //! Entry point of the game's logic.
+//!
 class Game
         : public GameComponent,
           public IGame
@@ -126,7 +128,7 @@ private:
     VoidTrackRef _currentTrack;
 
     // Todo: remove.
-    std::unique_ptr<Level1> _level;
+    std::unique_ptr<VoidLevel> _level;
 
     // Todo: remove.
     bool _showScreen;

@@ -23,17 +23,14 @@ void ObjectPoolImpl::Draw() {
         if (!q->IsHidden()) {
             gl::pushMatrices();
 
-            auto tr = q->GetTransform();
-
-            // Note: for OpenGL matrices should be applied in reverse order.
-
-            // Set a position.
-            auto p = tr->GetPosition();
-            gl::translate(vec3(p.x, p.y, p.z));
-
-            // Set a localScale.
-            auto s = tr->GetLocalScale();
-            gl::scale(s.x, s.y, s.z);
+            auto model = q->GetTransform()->GetModelMatrix();
+            
+            gl::setModelMatrix(mat4(
+                    model.m11, model.m12, model.m13, model.m14,
+                    model.m21, model.m22, model.m23, model.m24,
+                    model.m31, model.m32, model.m33, model.m34,
+                    model.m41, model.m42, model.m43, model.m44
+            ));
 
             app.GetShader()->LoadModelMatrix();
 

@@ -53,19 +53,11 @@ private:
 
     std::shared_ptr<SimplifiedUiImpl> _ui;
 
-    //region Audio
+    UnlitShaderRef _shader;
 
     IAudioPlayerRef SetupAudio();
 
-    //endregion
-
-    //region Shader
-
-    UnlitShaderRef _shader;
-
     void SetupShader();
-
-    //endregion
 
 };
 

@@ -14,9 +14,9 @@ class IVoidTrackObject : public virtual IVoidObject
 {
 public:
 
-    virtual void SetRotation(float angle) = 0;
+    virtual void RotateAroundZ(float angle) = 0;
 
-    virtual void Rotate(float angle) = 0;
+    virtual void RotateAroundZBy(float deltaAngle) = 0;
 
     virtual const std::string& GetTag() const = 0;
 
@@ -48,9 +48,9 @@ public:
 
     //region Implementation of IVoidTrackObject.
 
-    virtual void SetRotation(float angle) override;
+    virtual void RotateAroundZ(float angle) override;
 
-    virtual void Rotate(float angle) override;
+    virtual void RotateAroundZBy(float deltaAngle) override;
 
     virtual const std::string& GetTag() const override;
 

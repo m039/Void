@@ -36,6 +36,8 @@ protected:
             std::unordered_map<VoidTrackRef, IVoidTrackObjectVectorRef>& objects
     ) override;
 
+public:
+
     virtual void Update(const IGameRef& game, double deltaTime) override;
 
     virtual void Destroy(const IGameRef& game) override;
@@ -52,15 +54,17 @@ private:
 
     void DestroyStripes(const IGameRef& game);
 
-    IVoidObjectRef _leftStripe;
+    IVoidTrackObjectRef _leftStripe;
 
-    IVoidObjectRef _topStripe;
+    IVoidTrackObjectRef _topStripe;
 
-    IVoidObjectRef _rightStripe;
+    IVoidTrackObjectRef _rightStripe;
 
-    IVoidObjectRef _bottomStripe;
+    IVoidTrackObjectRef _bottomStripe;
 
     bool _stripesCreated;
+
+    float _stripeDepth;
 
 };
 

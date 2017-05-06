@@ -17,18 +17,18 @@ VoidTrackObject::VoidTrackObject(IObjectPool &pool, const std::string& name, Sha
     RegenerateMesh(shapeType, isHollow);
 }
 
-void VoidTrackObject::SetRotation(float angle) {
+void VoidTrackObject::RotateAroundZ(float angle) {
     // Todo: implement.
 }
 
-void VoidTrackObject::Rotate(float angle) {
+void VoidTrackObject::RotateAroundZBy(float deltaAngle) {
     // Todo: implement.
 }
 
 void VoidTrackObject::SetAnimation(const AnimationRef& animation) {
     _animation = animation;
     if (_animation == nullptr) {
-        SetRotation(0.0f);
+        RotateAroundZ(0.0f);
     }
 }
 
@@ -69,3 +69,4 @@ void VoidTrackObject::RegenerateMesh(ShapeType shapeType, bool isHollow) {
 
     SetMesh(MeshGenerator::Generate(_shapeType, _isHollow));
 }
+

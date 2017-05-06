@@ -35,6 +35,15 @@ public:
 
     virtual void SetMesh(const IMeshRef& mesh) = 0;
 
+    /*!
+     * Rotates the object.
+     *
+     * \param xAngle X angle in degrees.
+     * \param yAngle Y angle in degrees.
+     * \param zAngle Z angle in degrees.
+     */
+    virtual void Rotate(float xAngle, float yAngle, float zAngle) = 0;
+
     //! Hides the object in hierarchy: enabled, but invisible.
     virtual void Hide() = 0;
 
@@ -81,6 +90,8 @@ public:
     const IMeshRef GetMesh() const override;
     
     void SetMesh(const IMeshRef& mesh) override;
+
+    void Rotate(float xAngle, float yAngle, float zAngle) override;
     
     void Hide() override;
     
