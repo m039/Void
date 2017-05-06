@@ -5,8 +5,7 @@
 #pragma once
 
 #include <Game/Screens/VoidScreen.h>
-#include <Game/Levels/Level35.h>
-#include <Game/Levels/Level1.h>
+#include <Game/Levels/Levels.h>
 
 #include "Player.h"
 #include "MusicSystem.h"
