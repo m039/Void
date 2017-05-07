@@ -9,7 +9,7 @@
 
 namespace vd {
 
-//! Partial copied from MonoGame.
+//! Partially copied from MonoGame.
 template<typename T>
 class Matrix4T {
 public:

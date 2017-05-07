@@ -145,7 +145,7 @@ void Game::OnUpdate() {
                 }
             }
 
-            // check if a player encounter a portal
+            // Check if the player encounter a portal.
             if (object->GetTag() == Tags::Portal &&
                 _player->CanCollide(object)) {
                 EndGame(EndGameCause::CollidedWithPortal);

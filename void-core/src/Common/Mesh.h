@@ -55,7 +55,7 @@ public:
 
 };
 
-// Hide factory methods (which are implementation dependent) somewhere no one sees.
+// Hide factory methods somewhere no one sees.
 namespace internal {
 
 class Mesh {

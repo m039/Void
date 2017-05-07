@@ -19,6 +19,7 @@ Fog::Fog(const IShadersManagerRef& shadersManager)
 
 void Fog::SetColor(const Color& color) {
     _shaders->SetGlobalShaderParameter("_FogColor", color);
+    _color = color;
 }
 
 Color Fog::GetColor() const {
@@ -27,6 +28,7 @@ Color Fog::GetColor() const {
 
 void Fog::SetDensity(float density) {
     _shaders->SetGlobalShaderParameter("_FogDensity", density);
+    _density = density;
 }
 
 float Fog::GetDensity() const {
@@ -35,6 +37,7 @@ float Fog::GetDensity() const {
 
 void Fog::SetStartPosition(float startPosition) {
     _shaders->SetGlobalShaderParameter("_FogStartPosition", startPosition);
+    _startPosition = startPosition;
 }
 
 float Fog::GetStartPosition() const {
@@ -43,6 +46,7 @@ float Fog::GetStartPosition() const {
 
 void Fog::SetEnabled(bool enable) {
     _shaders->SetGlobalShaderParameter("_FogEnabled", enable ? 1 : 0);
+    _enabled = enable;
 }
 
 bool Fog::IsEnabled() const {
@@ -51,6 +55,7 @@ bool Fog::IsEnabled() const {
 
 void Fog::SetMinFactor(float minFactor) {
     _shaders->SetGlobalShaderParameter("_MinFogFactor", minFactor);
+    _minFactor = minFactor;
 }
 
 float Fog::GetMinFactor() const {

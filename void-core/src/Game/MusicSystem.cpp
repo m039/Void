@@ -70,7 +70,7 @@ static std::array<sec_t, 44> _Syncs {{
 
 MusicSystem::MusicSystem(const IAudioPlayerRef& audioPlayer)
         : _audioPlayer(audioPlayer),
-          _mute(true) // Todo: replace with false.
+          _mute(false)
 {
 }
 

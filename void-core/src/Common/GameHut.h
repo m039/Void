@@ -21,9 +21,7 @@ class IMeshGenerator;
 //!
 //! - Place that stores all game components and handles a game lifecycle.
 //! - It doesn't depend on a particular game.
-//! - No graphics code, cause almost always graphics are implementation dependent.
-//!
-//! Note: a small shelter for a game, hence the name GameHut.
+//! - No graphics code.
 //!
 class GameHut {
 

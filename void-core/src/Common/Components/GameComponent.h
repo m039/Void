@@ -26,9 +26,9 @@ public:
 
     //region Implementation of IGameComponent.
 
-    void Start() override;
+    virtual void Start() override;
 
-     void Update() override;
+    virtual void Update() override;
 
     //endregion
 
