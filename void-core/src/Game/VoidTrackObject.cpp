@@ -18,11 +18,17 @@ VoidTrackObject::VoidTrackObject(IObjectPool &pool, const std::string& name, Sha
 }
 
 void VoidTrackObject::RotateAroundZ(float angle) {
-    // Todo: implement.
+    GetTransform()->SetRotation(
+            Quaternion::CreateFromAxisAngle(Vector3::Forward, angle / 180.0f * MathF::Pi)
+    );
 }
 
 void VoidTrackObject::RotateAroundZBy(float deltaAngle) {
-    // Todo: implement.
+    auto transform = GetTransform();
+    auto rotation = transform->GetRotation();
+    auto deltaRotation = Quaternion::CreateFromAxisAngle(Vector3::Forward, deltaAngle / 180.0f * MathF::Pi);
+
+    transform->SetRotation(rotation * deltaRotation);
 }
 
 void VoidTrackObject::SetAnimation(const AnimationRef& animation) {

@@ -31,7 +31,7 @@ Game::Game(
         const IHelpScreenRef& movementHelpScreen
 )
         : _skipIntro(false),
-          _startLevel(0),
+          _startLevel(18),
           _objectPool(objectPool),
           _player(player),
           _musicSystem(musicSystem),

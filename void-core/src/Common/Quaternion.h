@@ -43,6 +43,21 @@ public:
     static const QuaternionT Identity;
 
     /*!
+     *  Creates a new quaternion from the specified axis and angle.
+     *
+     *  \param axis The axis of rotation.
+     *  \param angle The angle in radians.
+     */
+    static QuaternionT<T> CreateFromAxisAngle(const Vector3& axis, T angle)
+    {
+        T half = angle * 0.5f;
+        T sin = Math<T>::Sin(half);
+        T cos = Math<T>::Cos(half);
+
+        return QuaternionT<T>(axis.x * sin, axis.y * sin, axis.z * sin, cos);
+    }
+
+    /*!
      * Creates a new quaternion from the specified yaw, pitch and roll angles.
      *
      * @param yaw Yaw around the y axis in radians.
@@ -67,6 +82,28 @@ public:
                 (sinYaw * cosPitch * cosRoll) - (cosYaw * sinPitch * sinRoll),
                 (cosYaw * cosPitch * sinRoll) - (sinYaw * sinPitch * cosRoll),
                 (cosYaw * cosPitch * cosRoll) + (sinYaw * sinPitch * sinRoll)
+        );
+    }
+
+    QuaternionT<T> operator*(const QuaternionT<T>& rhs) {
+        T x = this->x;
+        T y = this->y;
+        T z = this->z;
+        T w = this->w;
+        T num4 = rhs.x;
+        T num3 = rhs.y;
+        T num2 = rhs.z;
+        T num = rhs.w;
+        T num12 = (y * num2) - (z * num3);
+        T num11 = (z * num4) - (x * num2);
+        T num10 = (x * num3) - (y * num4);
+        T num9 = ((x * num4) + (y * num3)) + (z * num2);
+        
+        return QuaternionT<T>(
+                ((x * num) + (num4 * w)) + num12,
+                ((y * num) + (num3 * w)) + num11,
+                ((z * num) + (num2 * w)) + num10,
+                (w * num) - num9
         );
     }
 

@@ -14,7 +14,6 @@ Fog::Fog(const IShadersManagerRef& shadersManager)
           _enabled(false),
           _minFactor(0)
 {
-
 }
 
 void Fog::SetColor(const Color& color) {

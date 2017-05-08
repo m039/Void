@@ -39,17 +39,17 @@ public:
 
     //region Implementation of IMusicSystem.
 
-    void Play(int levelIndex, bool fadeIn) override;
+    virtual void Play(int levelIndex, bool fadeIn) override;
 
-    void Stop(bool fadeOut) override;
+    virtual void Stop(bool fadeOut) override;
 
-    sec_t TimeForNextLevel(int levelIndex) override;
+    virtual sec_t TimeForNextLevel(int levelIndex) override;
 
     //endregion
 
     //region GameComponent's overrides.
 
-    void OnStart() override;
+    virtual void OnStart() override;
 
     //endregion
 

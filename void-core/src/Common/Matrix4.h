@@ -101,7 +101,7 @@ public:
      * @param yScale Scale value for Y axis.
      * @param zScale Scale value for Z axis.
      */
-    static Matrix4T CreateScale(T xScale, T yScale, T zScale) {
+    static Matrix4T<T> CreateScale(T xScale, T yScale, T zScale) {
         auto m11 = xScale;
         auto m12 = 0.0f;
         auto m13 = 0.0f;
@@ -119,7 +119,7 @@ public:
         auto m43 = 0.0f;
         auto m44 = 1.0f;
 
-        return Matrix4T(
+        return Matrix4T<T>(
                 m11, m12, m13, m14,
                 m21, m22, m23, m24,
                 m31, m32, m33, m34,
@@ -132,7 +132,7 @@ public:
      *
      * @param position X,Y and Z coordinates of translation.
      */
-    static Matrix4T CreateTranslation(const Vector3T<T>& position) {
+    static Matrix4T<T> CreateTranslation(const Vector3T<T>& position) {
         auto m11 = 1.0f;
         auto m12 = 0.0f;
         auto m13 = 0.0f;
@@ -150,7 +150,7 @@ public:
         auto m43 = position.z;
         auto m44 = 1.0f;
 
-        return Matrix4T(
+        return Matrix4T<T>(
                 m11, m12, m13, m14,
                 m21, m22, m23, m24,
                 m31, m32, m33, m34,
@@ -164,7 +164,7 @@ public:
      * @param quaternion Quaternion of rotation moment.
      * @param result The rotation matrix as an output parameter.
      */
-    static Matrix4T CreateFromQuaternion(const QuaternionT<T>& quaternion) {
+    static Matrix4T<T> CreateFromQuaternion(const QuaternionT<T>& quaternion) {
         T num9 = quaternion.x * quaternion.x;
         T num8 = quaternion.y * quaternion.y;
         T num7 = quaternion.z * quaternion.z;
@@ -191,7 +191,7 @@ public:
         auto m43 = 0.0f;
         auto m44 = 1.0f;
 
-        return Matrix4T(
+        return Matrix4T<T>(
                 m11, m12, m13, m14,
                 m21, m22, m23, m24,
                 m31, m32, m33, m34,

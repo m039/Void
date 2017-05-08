@@ -114,9 +114,9 @@ private:
 
     //region Parameters.
 
-    bool _skipIntro = false;
+    bool _skipIntro;
 
-    int _startLevel = 0;
+    int _startLevel;
 
     //endregion
 

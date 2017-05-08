@@ -20,6 +20,8 @@ public:
 
     CameraImpl(VoidApp &app);
 
+    //region Implementation of ICamera.
+
     virtual const ITransformRef GetTransform() const override;
 
     virtual void SetNearClipPlane(float nearClipPlane) override;
@@ -29,6 +31,8 @@ public:
     virtual void SetBackgroundColor(const Color &color) override;
 
     virtual Color GetBackgroundColor() const override;
+
+    //endregion
 
     //! Set up the object with the last defaults.
     void Setup();

@@ -3,6 +3,7 @@
 //
 
 #include <Common/Time.h>
+
 #include "Scene.h"
 #include "Colors.h"
 
@@ -43,7 +44,7 @@ void Scene::OnStart() {
 void Scene::OnUpdate() {
     GameComponent::OnUpdate();
 
-    // handle min factor
+    // Handle min factor.
     if (_minFactor < 1 && _FogDisappearTime > 0) {
         if (_fog->GetColor() == Colors::Black && _FogDisappearTimeOnBlack  > 0) {
             _minFactor += Time::GetDeltaTime() / _FogDisappearTimeOnBlack;
@@ -54,7 +55,7 @@ void Scene::OnUpdate() {
         }
     }
 
-    // handle start position
+    // Handle start position.
     if (_startPosition < 1 && _FogDisappearVelocity  > 0) {
         _startPosition += Time::GetDeltaTime() ;
         _fog->SetStartPosition(MathF::SmoothStep(0, 1, _startPosition) * _FogDisappearVelocity);
