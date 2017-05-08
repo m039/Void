@@ -13,6 +13,7 @@ InputImpl::InputImpl(VoidApp &app)
 
 bool InputImpl::GetKeyDown(KeyCode keyCode) {
     // True if the key has just been pressed.
+
     return (_pressedDownKeys.find(keyCode) != _pressedDownKeys.end()) &&
             (_heldDownKeys.find(keyCode) == _heldDownKeys.end());
 }

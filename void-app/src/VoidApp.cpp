@@ -102,12 +102,10 @@ void VoidApp::draw() {
 
     gl::popMatrices();
 
-    // Draw an info text.
+    // Draw UI.
 
     gl::disableDepthRead();
     gl::disableDepthWrite();
-
-    // Draw UI.
 
     _ui->Draw();
 }
