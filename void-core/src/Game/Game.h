@@ -143,7 +143,7 @@ private:
     //! Returns true if there is next level.
     bool CanMoveToNextLevel();
 
-    static std::vector<VoidLevelRef> CreateLevels();
+    static std::vector<VoidLevelRef> CreateLevels(const IGameRef& game);
 
     const IObjectPoolRef _objectPool;
 

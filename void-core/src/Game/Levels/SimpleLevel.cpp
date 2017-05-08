@@ -30,16 +30,16 @@ float SimpleLevel::GetGatePositionZ() {
     return _gatePositionZ;
 }
 
-void SimpleLevel::Create() {
+void SimpleLevel::OnCreate() {
     _backgroundColor = CreateBackgroundColor();
 
-    VoidLevel::Create();
+    VoidLevel::OnCreate();
 }
 
-void SimpleLevel::OnInitialize(
-        const IGameRef &game,
-        const std::vector<VoidTrackRef> &tracks,
-        std::unordered_map<VoidTrackRef, VoidLevel::IVoidTrackObjectVectorRef> &objects
+void SimpleLevel::OnPrepare(
+        const IGameRef& game,
+        const std::vector<VoidTrackRef>& tracks,
+        std::unordered_map<VoidTrackRef, VoidLevel::IVoidTrackObjectVectorRef>& objects
 ) {
     _gatePositionZ = game->GetPlayer()->GetVelocity() * game->TimeForNextLevel();
 

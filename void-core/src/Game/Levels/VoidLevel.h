@@ -27,7 +27,9 @@ public:
 
     VoidLevel();
 
-    void Initialize(const IGameRef &game);
+    void Create(const IGameRef& game);
+
+    void Prepare(const IGameRef& game);
 
     virtual void Update(const IGameRef& game, double deltaTime);
 
@@ -43,16 +45,16 @@ public:
 
 protected:
 
-    virtual void Create();
+    virtual void OnCreate();
 
     virtual void OnCreateTracks(std::vector<VoidTrackRef> &tracks) = 0;
 
     virtual VoidTrackRef OnStartTrack(const std::vector<VoidTrackRef> &tracks) = 0;
 
-    virtual void OnInitialize(
-            const IGameRef &game,
-            const std::vector<VoidTrackRef> &tracks,
-            std::unordered_map<VoidTrackRef, IVoidTrackObjectVectorRef> &objects
+    virtual void OnPrepare(
+            const IGameRef& game,
+            const std::vector<VoidTrackRef>& tracks,
+            std::unordered_map<VoidTrackRef, IVoidTrackObjectVectorRef>& objects
     ) = 0;
 
 private:

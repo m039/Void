@@ -31,7 +31,7 @@ Game::Game(
         const IHelpScreenRef& movementHelpScreen
 )
         : _skipIntro(false),
-          _startLevel(18),
+          _startLevel(0),
           _objectPool(objectPool),
           _player(player),
           _musicSystem(musicSystem),
@@ -42,7 +42,7 @@ Game::Game(
           _movementHelpScreen(movementHelpScreen),
           _currentLevelIndex(0),
           _currentTrack(nullptr),
-          _levels(CreateLevels())
+          _levels(CreateLevels(this))
 {
     _inputSystem->OnAnyKey.connect(std::bind(&Game::OnAnyKey, this));
     _inputSystem->OnPlayerMove.connect(std::bind(&Game::OnPlayerMove, this, std::placeholders::_1));
@@ -118,7 +118,7 @@ void Game::OnUpdate() {
 
                 // Change background color.
                 if (!_backgroundColorChanged &&
-                    _player->IsCoverWholeScreen(object) &&
+                        _player->IsCoverWholeScreen(object) &&
                         _player->CanCollide(object)) {
                     if (CanMoveToNextLevel()) {
                         _scene->SetBackgroundColor(GetNextLevel()->GetBackgroundColor());
@@ -247,7 +247,7 @@ Color Game::GetColorOfFirstLevel() {
 void Game::InitLevel() {
     auto currentLevel = GetCurrentLevel();
 
-    currentLevel->Initialize(this);
+    currentLevel->Prepare(this);
 
     _scene->SetBackgroundColor(currentLevel->GetBackgroundColor()) ;
     _currentTrack = currentLevel->StartTrack();
@@ -337,8 +337,8 @@ bool Game::CanMoveToNextLevel() {
     return _currentLevelIndex + 1 < _levels.size();
 }
 
-std::vector<VoidLevelRef> Game::CreateLevels() {
-    return {
+std::vector<VoidLevelRef> Game::CreateLevels(const IGameRef& game) {
+    std::vector<VoidLevelRef> levels = {
             std::make_shared<Level1>(),
             std::make_shared<Level2>(),
             std::make_shared<Level3>(),
@@ -383,6 +383,13 @@ std::vector<VoidLevelRef> Game::CreateLevels() {
             std::make_shared<Level42>(),
             std::make_shared<Level43>(),
             std::make_shared<Level44>()
-    }; }
+    };
+
+    for (auto& l: levels) {
+        l->Create(game);
+    }
+
+    return levels;
+}
 
 //endregion

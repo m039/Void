@@ -38,12 +38,12 @@ protected:
 
     virtual VoidTrackRef OnStartTrack(const std::vector<VoidTrackRef> &tracks) override;
 
-    virtual void Create() override;
+    virtual void OnCreate() override;
 
-    virtual void OnInitialize(
-            const IGameRef &game,
-            const std::vector<VoidTrackRef> &tracks,
-            std::unordered_map<VoidTrackRef, IVoidTrackObjectVectorRef> &objects
+    virtual void OnPrepare(
+            const IGameRef& game,
+            const std::vector<VoidTrackRef>& tracks,
+            std::unordered_map<VoidTrackRef, IVoidTrackObjectVectorRef>& objects
     ) override;
 
     //endregion

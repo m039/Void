@@ -34,12 +34,12 @@ void Level1::InitObject(const IVoidTrackObjectRef& object, const VoidTrackRef& t
     object->SetTag(Tags::Gate);
 }
 
-void Level1::OnInitialize(
+void Level1::OnPrepare(
         const IGameRef& game,
         const std::vector<VoidTrackRef>& tracks,
         std::unordered_map<VoidTrackRef, VoidLevel::IVoidTrackObjectVectorRef>& objects
 ) {
-    SimpleLevel::OnInitialize(game, tracks, objects);
+    SimpleLevel::OnPrepare(game, tracks, objects);
 
     InitStripes(game);
 }

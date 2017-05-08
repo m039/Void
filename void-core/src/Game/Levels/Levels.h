@@ -35,7 +35,7 @@ protected:
 
     //region SimpleLevel's overrides.
 
-    virtual void OnInitialize(
+    virtual void OnPrepare(
             const IGameRef& game,
             const std::vector<VoidTrackRef>& tracks,
             std::unordered_map<VoidTrackRef, IVoidTrackObjectVectorRef>& objects

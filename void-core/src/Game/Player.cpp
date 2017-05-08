@@ -24,7 +24,7 @@ Player::Player(const ICameraRef& camera)
           _velocity(4.0f),
           _running(false),
           _alive(false) {
-    _camera->SetNearClipPlane(0.01f);
+    _camera->SetNearClipPlane(0.05f);
 }
 
 Vector3 Player::GetPosition() const {
@@ -111,7 +111,7 @@ bool Player::IsCoverWholeScreen(const IVoidTrackObjectRef& vTrackObject) {
     auto playerZ = _transform->GetPosition().z;
     auto objectZ = vTrackObject->GetTransform()->GetPosition().z;
 
-    return objectZ - playerZ <= _camera->GetNearClipPlane();
+    return objectZ - playerZ < _camera->GetNearClipPlane();
 }
 
 Player::~Player() {

@@ -60,7 +60,7 @@ private:
 
     static constexpr float _FogDisappearTimeOnBlack = 0.5f; // 0 to disable
 
-    static constexpr float _FogDisappearVelocity = 1.0f; // 0 to disable
+    static constexpr float _FogDisappearVelocity = 0.0f; // 0 to disable
 
     //endregion
 

@@ -18,14 +18,18 @@ VoidTrackRef VoidLevel::StartTrack() {
     return OnStartTrack(_tracks);
 }
 
-void VoidLevel::Initialize(const IGameRef &game) {
+void VoidLevel::Create(const IGameRef& game) {
     // There is no way to call pure virtual function in a constructor.
     if (!_created) {
-        Create();
+        OnCreate();
         _created = true;
+    } else {
+        throw std::exception();
     }
+}
 
-    OnInitialize(game, _tracks, _objects);
+void VoidLevel::Prepare(const IGameRef& game) {
+    OnPrepare(game, _tracks, _objects);
 
     _cachedObjects = std::make_shared<std::vector<IVoidTrackObjectRef>>();
 
@@ -45,7 +49,7 @@ void VoidLevel::Initialize(const IGameRef &game) {
     }
 }
 
-void VoidLevel::Create() {
+void VoidLevel::OnCreate() {
     OnCreateTracks(_tracks);
 
     for (auto& t : _tracks) {
