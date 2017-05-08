@@ -15,7 +15,15 @@ public:
 
     virtual void Draw(IScreenDrawer& drawer) override;
 
+    virtual void SetText(TextPlaceId placeId, TextId textId) override;
+
     //endregion
+
+private:
+
+    std::string _body;
+
+    std::string _footer;
 
 };
 

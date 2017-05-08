@@ -59,6 +59,12 @@ public:
 
 private:
 
+    AdaptiveTextureFontRef _headline;
+
+    AdaptiveTextureFontRef _text;
+
+    AdaptiveTextureFontRef _currentFont;
+
     ScreenDrawerImpl _drawer;
 
     std::vector<IScreenDrawableRef> _drawables;

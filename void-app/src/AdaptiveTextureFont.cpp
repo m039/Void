@@ -12,7 +12,10 @@ using namespace vd;
 AdaptiveTextureFont::AdaptiveTextureFont(VoidApp &app, const AdaptiveFont &font)
     : VoidAppObject(app)
 {
-    _font = gl::TextureFont::create(*font.getInternalFont(), gl::TextureFont::Format().enableMipmapping(true));
+    _font = gl::TextureFont::create(
+            *font.getInternalFont(),
+            gl::TextureFont::Format().enableMipmapping(true)
+    );
 }
 
 vec2 AdaptiveTextureFont::measureString(const std::string &str,

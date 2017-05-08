@@ -10,22 +10,30 @@
 using namespace vd;
 using namespace ci;
 
+//region Constants
+
+const std::string _HeadlineFontFilename = "CaviarDreamsR.ttf";
+
+const std::string _TextFontFilename = "CrimsonTextRo.ttf";
+
+//endregion
+
 //region ScreenDrawerImpl
 
 SimplifiedUiImpl::ScreenDrawerImpl::ScreenDrawerImpl(SimplifiedUiImpl& ui) : _ui(ui) {
-
 }
 
 void SimplifiedUiImpl::ScreenDrawerImpl::SelectHeadlineFont() {
-
+    _ui._currentFont = _ui._headline;
 }
 
 void SimplifiedUiImpl::ScreenDrawerImpl::SelectTextFont() {
-
+    _ui._currentFont = _ui._text;
 }
 
 void SimplifiedUiImpl::ScreenDrawerImpl::DrawText(const std::string& text, const Vector2& position, const Color& color) {
-
+    gl::color(color.r, color.g, color.b, color.a);
+    _ui._currentFont->drawString(text, ci::vec2(position.x, position.y));
 }
 
 void SimplifiedUiImpl::ScreenDrawerImpl::DrawFullscreenPlane(const Color& color) {
@@ -38,15 +46,16 @@ void SimplifiedUiImpl::ScreenDrawerImpl::DrawFullscreenPlane(const Color& color)
 }
 
 float SimplifiedUiImpl::ScreenDrawerImpl::GetScreenWidth() const {
-    return 100;
+    return _ui.app.getWindow()->getSize().x;
 }
 
 float SimplifiedUiImpl::ScreenDrawerImpl::GetScreenHeight() const {
-    return 100;
+    return _ui.app.getWindow()->getSize().y;
 }
 
 Vector2 SimplifiedUiImpl::ScreenDrawerImpl::MeasureString(const std::string& text) {
-    return vd::Vector2(10, 10);
+    auto v = _ui._currentFont->measureString(text);
+    return Vector2(v.x, v.y);
 }
 
 //endregion
@@ -57,6 +66,9 @@ SimplifiedUiImpl::SimplifiedUiImpl(VoidApp& app)
         : VoidAppObject(app),
           _drawer(*this)
 {
+    _headline = app.LoadFont(_HeadlineFontFilename, 18 * 5);
+    _text = app.LoadFont(_TextFontFilename, 24);
+    _currentFont = _headline;
 }
 
 void SimplifiedUiImpl::Register(const IScreenDrawableRef& drawable) {

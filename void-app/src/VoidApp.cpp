@@ -22,10 +22,6 @@ using namespace vd;
 
 //region Constants
 
-const std::string _HeadlineFontFilename = "CaviarDreamsR.ttf";
-
-const std::string _TextFontFilename = "CrimsonTextRo.ttf";
-
 const std::string _MusicFilename = "Void.ogg";
 
 //endregion

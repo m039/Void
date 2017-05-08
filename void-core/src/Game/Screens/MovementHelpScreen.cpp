@@ -3,13 +3,35 @@
 //
 
 #include <Common/Coroutines/WaitForSeconds.h>
+#include <Game/Colors.h>
+#include <Game/Localization/LocalizationManager.h>
 #include "MovementHelpScreen.h"
 
 using namespace vd;
 
+MovementHelpScreen::MovementHelpScreen()
+        : _color(Colors::Black) {
+}
 
 void MovementHelpScreen::Draw(IScreenDrawer& drawer) {
-    // Todo: implement.
+    if (_text == "")
+        return;
+
+    auto width = drawer.GetScreenWidth();
+    auto height = drawer.GetScreenHeight();
+    auto bottomMargin = (height * (1 - 45.0f / 450.0f));
+
+    drawer.SelectTextFont();
+
+    auto measure = drawer.MeasureString(_text);
+
+    _color.a = GetAlpha();
+
+    drawer.DrawText(
+            _text,
+            Vector2(width / 2.0f - measure.x / 2.0f, bottomMargin + measure.y / 2.0f),
+            _color
+    );
 }
 
 void MovementHelpScreen::ShowAndHide() {
@@ -32,4 +54,12 @@ Coroutine::EnumerationFunction MovementHelpScreen::DelayedCoroutine(float delay,
             callback();
         }
     };
+}
+
+void MovementHelpScreen::SetText(TextPlaceId placeId, TextId textId) {
+    _text = LocalizationManager::ToText(textId);
+}
+
+void MovementHelpScreen::SetTextColor(TextPlaceId placeId, Color color) {
+    _color = color;
 }

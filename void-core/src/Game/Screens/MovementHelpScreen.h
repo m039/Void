@@ -13,6 +13,8 @@ class MovementHelpScreen
           public IHelpScreen {
 public:
 
+    MovementHelpScreen();
+
     //region Implementation of IScreenDrawable.
 
     virtual void Draw(IScreenDrawer& drawer) override;
@@ -23,6 +25,10 @@ public:
 
     virtual void ShowAndHide() override;
 
+    virtual void SetText(TextPlaceId placeId, TextId textId) override;
+
+    virtual void SetTextColor(TextPlaceId placeId, Color color) override;
+
     //endregion
 
 private:
@@ -30,6 +36,10 @@ private:
     void PerformDelayed(float delay, Callback callback);
 
     static Coroutine::EnumerationFunction DelayedCoroutine(float delay, Callback callback);
+
+    std::string _text;
+
+    Color _color;
 
 };
 
