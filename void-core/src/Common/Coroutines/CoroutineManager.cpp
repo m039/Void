@@ -10,6 +10,10 @@ CoroutineManager::CoroutineManager() :
         _inUpdate(false) {
 }
 
+CoroutineManager::~CoroutineManager() {
+    StopAll();
+}
+
 CoroutineRef CoroutineManager::Start(const Coroutine::EnumerationFunction &enumerator) {
     auto coroutine = std::make_shared<Coroutine>(enumerator);
 

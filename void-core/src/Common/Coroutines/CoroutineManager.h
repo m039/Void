@@ -18,6 +18,8 @@ public:
 
     CoroutineManager();
 
+    ~CoroutineManager();
+
     CoroutineRef Start(const Coroutine::EnumerationFunction &enumerator);
 
     void Stop(const CoroutineRef& coroutine);

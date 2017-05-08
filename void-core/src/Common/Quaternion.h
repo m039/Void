@@ -43,10 +43,10 @@ public:
     static const QuaternionT Identity;
 
     /*!
-     *  Creates a new quaternion from the specified axis and angle.
+     * Creates a new quaternion from the specified axis and angle.
      *
-     *  \param axis The axis of rotation.
-     *  \param angle The angle in radians.
+     * @param axis The axis of rotation.
+     * @param angle The angle in radians.
      */
     static QuaternionT<T> CreateFromAxisAngle(const Vector3& axis, T angle)
     {

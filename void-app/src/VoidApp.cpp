@@ -32,7 +32,7 @@ const std::string _MusicFilename = "Void.ogg";
 
 void prepareSettings(VoidApp::Settings *settings) {
     settings->setHighDensityDisplayEnabled();
-    settings->setMultiTouchEnabled( false );
+    settings->setMultiTouchEnabled(false);
 }
 
 CINDER_APP( VoidApp, app::RendererGl, prepareSettings)
@@ -71,6 +71,10 @@ void VoidApp::setup() {
 void VoidApp::update() {
     app::AppBase::update();
 
+    if (getQuitRequested()) {
+        return;
+    }
+
     _input->Update();
 
     // Update the game.
@@ -79,6 +83,10 @@ void VoidApp::update() {
 
 void VoidApp::draw() {
     AppBase::draw();
+
+    if (getQuitRequested()) {
+        return;
+    }
 
     // Set background color.
 

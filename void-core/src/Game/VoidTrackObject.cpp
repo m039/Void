@@ -67,7 +67,7 @@ void VoidTrackObject::SetShapeType(ShapeType type) {
 }
 
 void VoidTrackObject::RegenerateMesh(ShapeType shapeType, bool isHollow) {
-    if (shapeType == _shapeType && isHollow == _isHollow)
+    if (shapeType == _shapeType && isHollow == _isHollow && GetMesh() != nullptr)
         return;
 
     _shapeType = shapeType;
