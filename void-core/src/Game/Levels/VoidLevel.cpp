@@ -24,11 +24,15 @@ void VoidLevel::Create(const IGameRef& game) {
         OnCreate();
         _created = true;
     } else {
-        throw std::exception();
+        throw std::runtime_error("Already created.");
     }
 }
 
 void VoidLevel::Prepare(const IGameRef& game) {
+    if (!_created) {
+        throw std::runtime_error("The object is not fully initialized.");
+    }
+
     OnPrepare(game, _tracks, _objects);
 
     _cachedObjects = std::make_shared<std::vector<IVoidTrackObjectRef>>();

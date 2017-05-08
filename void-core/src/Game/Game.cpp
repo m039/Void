@@ -123,7 +123,7 @@ void Game::OnUpdate() {
                     if (CanMoveToNextLevel()) {
                         _scene->SetBackgroundColor(GetNextLevel()->GetBackgroundColor());
                     } else {
-                        // last level gate's color or IntroScreen's background
+                        // Last level gate's color or IntroScreen's background.
                         _scene->SetBackgroundColor(Colors::Black);
                     }
 
@@ -153,7 +153,7 @@ void Game::OnUpdate() {
             }
         }
 
-        // Disable objects left behind (optimization)
+        // Disable objects left behind (optimization).
         if (_player->IsBehind(object)) {
             object->SetEnabled(false);
         }
