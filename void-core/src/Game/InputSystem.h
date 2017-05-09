@@ -57,7 +57,7 @@ class InputSystem
     class TouchController {
     protected:
 
-        TouchController(const float thresholdInUnits);
+        TouchController(const IInputRef& input, const float thresholdInUnits);
 
         virtual void OnSwipe(MoveDirection direction) = 0;
 
@@ -67,6 +67,8 @@ class InputSystem
         void Update();
 
     private:
+
+        const IInputRef _input;
 
         const float _swipeThreshold;
 
@@ -81,7 +83,7 @@ class InputSystem
     class InputSystemTouchController : public TouchController {
     public:
 
-        InputSystemTouchController(InputSystem& inputSystem);
+        InputSystemTouchController(const IInputRef& input, InputSystem& inputSystem);
 
     protected:
 
@@ -89,7 +91,7 @@ class InputSystem
 
     private:
 
-        const InputSystem& _inputSystem;
+        InputSystem& _inputSystem;
 
     };
 

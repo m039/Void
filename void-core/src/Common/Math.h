@@ -42,6 +42,10 @@ public:
         return pow(base, exponent);
     }
 
+    static inline T Abs(T v) {
+        return std::abs(v);
+    }
+
 };
 
 typedef Math<float> MathF;

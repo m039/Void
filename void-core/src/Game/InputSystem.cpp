@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <Common/GameContext.h>
 #include "InputSystem.h"
 
 using namespace vd;
@@ -19,7 +20,7 @@ IInputSystem::~IInputSystem() {
 InputSystem::InputSystem(const IInputRef &input)
         : _input(input),
           _refreshEnabledHandlers(true),
-          _touchController(std::make_unique<InputSystemTouchController>(*this))
+          _touchController(std::make_unique<InputSystemTouchController>(input, *this))
 {
 }
 
@@ -137,26 +138,64 @@ void InputSystem::RefreshEnabledHandlers() {
 
 //region TouchController
 
-InputSystem::TouchController::TouchController(const float thresholdInUnits)
-        : _swipeThreshold(thresholdInUnits) {
-    // Todo: implement.
+InputSystem::TouchController::TouchController(
+        const IInputRef& input,
+        const float thresholdInUnits
+) : _input(input),
+    _swipeThreshold(thresholdInUnits * GameContext::GetScreenDpi()) {
+    _firstPosition = _lastPosition = Vector2::Zero;
 }
 
 void InputSystem::TouchController::Update() {
-    // Todo: implement.
+    if (_input->GetTouchCount() > 0) {
+        auto touch = _input->GetTouch(0);
+
+        if (_currentTouchPhase == TouchPhase::Ended) {
+            _firstPosition = _lastPosition = touch->GetPosition();
+            _currentTouchPhase = TouchPhase::Moved;
+        } else if (_currentTouchPhase == TouchPhase::Moved) {
+            _lastPosition = touch->GetPosition();
+        }
+    } else {
+        if (_currentTouchPhase == TouchPhase::Moved) {
+            _currentTouchPhase = TouchPhase::Ended;
+
+            if (Vector2::Distance(_firstPosition, _lastPosition) > _swipeThreshold) {
+                if (MathF::Abs(_firstPosition.x - _lastPosition.x) >
+                    MathF::Abs(_firstPosition.y - _lastPosition.y)) {
+                    if ((_lastPosition.x > _firstPosition.x)) {
+                        OnSwipe(MoveDirection::Left);
+                    } else {
+                        OnSwipe(MoveDirection::Right);
+                    }
+                } else {
+                    if (_lastPosition.y > _firstPosition.y) {
+                        OnSwipe(MoveDirection::Down);
+                    } else {
+                        OnSwipe(MoveDirection::Up);
+                    }
+                }
+            }
+        }
+    }
 }
 
 //endregion
 
 //region InputSystemTouchController
 
-InputSystem::InputSystemTouchController::InputSystemTouchController(InputSystem &inputSystem)
-        : TouchController(0.1f),
+InputSystem::InputSystemTouchController::InputSystemTouchController(
+        const IInputRef& input,
+        InputSystem& inputSystem
+)
+        : TouchController(input, 0.1f),
           _inputSystem(inputSystem) {
 }
 
 void InputSystem::InputSystemTouchController::OnSwipe(MoveDirection direction) {
-    // Todo: implement.
+    if (_inputSystem.IsEnabled(InputSystemEvent::PlayerMove)) {
+        _inputSystem.OnPlayerMove(direction);
+    }
 }
 
 //endregion

@@ -14,13 +14,15 @@ GameContextImpl::GameContextImpl(VoidApp &app)
 }
 
 RuntimePlatform GameContextImpl::GetRuntimePlatform() {
-    // Todo: implement.
+#if defined(CINDER_COCOA_TOUCH)
+    return RuntimePlatform::iPhone;
+#else
     return RuntimePlatform::OSX;
+#endif
 }
 
 float GameContextImpl::GetScreenDpi() {
-    // Todo: implement.
-    return 120;
+    return 72 * 2; // Hardcoded.
 }
 
 void GameContextImpl::Quit() {

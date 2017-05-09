@@ -4,7 +4,11 @@
 
 #include "InputImpl.h"
 
+#include "../../VoidApp.h"
+
 using namespace vd;
+
+//region InputImpl
 
 InputImpl::InputImpl(VoidApp &app)
         : VoidAppObject(app),
@@ -19,17 +23,15 @@ bool InputImpl::GetKeyDown(KeyCode keyCode) {
 }
 
 bool InputImpl::IsAnyKeyDown() {
-    return _heldDownKeys.size() > 0;
+    return _heldDownKeys.size() > 0 || GetTouchCount() > 0;
 }
 
 int InputImpl::GetTouchCount() {
-    // Todo: implement.
-    return 0;
+    return static_cast<int>(_touchIds.size());
 }
 
 ITouchRef InputImpl::GetTouch(int index) {
-    // Todo: implement.
-    return nullptr;
+    return _touchesById[_touchIds[index]];
 }
 
 void InputImpl::Update() {
@@ -91,3 +93,48 @@ KeyCode InputImpl::ToKeyCode(ci::app::KeyEvent event) {
             return KeyCode::None;
     }
 }
+
+void InputImpl::TouchesBegan(ci::app::TouchEvent event) {
+    auto size = app.getWindow()->getSize();
+
+    for (auto& t: event.getTouches()) {
+        auto touchImpl = std::make_shared<InputImpl::TouchImpl>();
+        touchImpl->SetTouch(size, t);
+
+        auto id = t.getId();
+
+        _touchesById[id] = touchImpl;
+        _touchIds.push_back(id);
+    }
+}
+
+void InputImpl::TouchesMoved(ci::app::TouchEvent event) {
+    auto size = app.getWindow()->getSize();
+
+    for (auto& t: event.getTouches()) {
+        _touchesById[t.getId()]->SetTouch(size, t);
+    }
+}
+
+void InputImpl::TouchesEnded(ci::app::TouchEvent event) {
+    for (auto& t: event.getTouches()) {
+        auto id = t.getId();
+
+        _touchIds.erase(std::find(_touchIds.begin(), _touchIds.end(), id));
+        _touchesById[id] = nullptr;
+    }
+}
+
+//endregion
+
+//region InputImpl
+
+Vector2 InputImpl::TouchImpl::GetPosition() {
+    return _position;
+}
+
+void InputImpl::TouchImpl::SetTouch(const ci::ivec2& size, const ci::app::TouchEvent::Touch& touch) {
+    _position = vd::Vector2(touch.getX(), size.y - touch.getY());
+}
+
+//endregion

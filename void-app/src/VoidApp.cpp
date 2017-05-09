@@ -28,7 +28,7 @@ const std::string _MusicFilename = "Void.ogg";
 
 void prepareSettings(VoidApp::Settings *settings) {
     settings->setHighDensityDisplayEnabled();
-    settings->setMultiTouchEnabled(false);
+    settings->setMultiTouchEnabled(true);
 }
 
 CINDER_APP( VoidApp, app::RendererGl, prepareSettings)
@@ -110,6 +110,10 @@ void VoidApp::draw() {
     _ui->Draw();
 }
 
+void VoidApp::quit() {    
+    _audioPlayer->stop(); // Prevent crashes.
+}
+
 void VoidApp::keyDown(KeyEvent event) {
     AppBase::keyDown(event);
 
@@ -132,6 +136,28 @@ void VoidApp::keyUp(ci::app::KeyEvent event) {
     _input->KeyUp(event);
 }
 
+#if defined(CINDER_COCOA_TOUCH)
+
+void VoidApp::touchesBegan(ci::app::TouchEvent event) {
+    AppBase::touchesBegan(event);
+    
+    _input->TouchesBegan(event);
+}
+
+void VoidApp::touchesMoved(ci::app::TouchEvent event) {
+    AppBase::touchesMoved(event);
+    
+    _input->TouchesMoved(event);
+}
+
+void VoidApp::touchesEnded(ci::app::TouchEvent event) {
+    AppBase::touchesEnded(event);
+    
+    _input->TouchesEnded(event);
+}
+
+#endif
+
 //region Misc
 
 void VoidApp::OnResize() {
@@ -151,9 +177,13 @@ IAudioPlayerRef VoidApp::SetupAudio() {
     auto gain = context->makeNode(new audio::GainNode(1.0f));
 
     player >> gain >> context->getOutput();
+    
+    _audioPlayer = player;
 
     context->enable();
-
+    
+    player->stop();
+    
     return std::make_shared<AudioPlayerImpl>(player, gain);
 }
 

@@ -27,10 +27,22 @@ public:
     void update() override;
 
     void draw() override;
+    
+    void quit() override;
 
     void keyDown(ci::app::KeyEvent event) override;
 
     void keyUp(ci::app::KeyEvent event) override;
+
+#if defined(CINDER_COCOA_TOUCH)
+
+    void touchesBegan(ci::app::TouchEvent event) override;
+
+    void touchesMoved(ci::app::TouchEvent event) override;
+
+    void touchesEnded(ci::app::TouchEvent event) override;
+
+#endif
 
     UnlitShaderRef GetShader() const {
         return _shader;
@@ -51,6 +63,8 @@ private:
     std::shared_ptr<InputImpl> _input;
 
     std::shared_ptr<SimplifiedUiImpl> _ui;
+    
+    std::shared_ptr<ci::audio::SamplePlayerNode> _audioPlayer;
 
     UnlitShaderRef _shader;
 

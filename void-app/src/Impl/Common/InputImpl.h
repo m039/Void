@@ -9,6 +9,7 @@
 #include <Common/Input.h>
 #include <vector>
 #include <set>
+#include <unordered_map>
 
 namespace vd {
 
@@ -29,6 +30,7 @@ public:
     virtual int GetTouchCount() override;
 
     virtual ITouchRef GetTouch(int index) override;
+    
 
     //endregion
 
@@ -37,8 +39,27 @@ public:
     void KeyDown(ci::app::KeyEvent event);
 
     void KeyUp(ci::app::KeyEvent event);
+    
+    void TouchesBegan(ci::app::TouchEvent event);
+    
+    void TouchesMoved(ci::app::TouchEvent event);
+    
+    void TouchesEnded(ci::app::TouchEvent event);
 
 private:
+
+    class TouchImpl : public ITouch {
+    public:
+
+        virtual Vector2 GetPosition() override;
+
+        void SetTouch(const ci::ivec2& size, const ci::app::TouchEvent::Touch& touch);
+
+    private:
+
+        Vector2 _position;
+
+    };
 
     KeyCode ToKeyCode(ci::app::KeyEvent event);
 
@@ -47,6 +68,10 @@ private:
     std::set<KeyCode> _heldDownKeys;
 
     int _timesToSkipUpdate;
+
+    std::unordered_map<uint32_t, std::shared_ptr<TouchImpl>> _touchesById;
+
+    std::vector<uint32_t> _touchIds;
 
 };
 

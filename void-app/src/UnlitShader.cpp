@@ -64,7 +64,8 @@ void UnlitShader::SetMatrices(const ci::Camera &camera) {
             -1, 0, 0, 0,
             0, 1, 0, 0,
             0, 0, 1, 0,
-            0, 0, 0, 1);
+            0, 0, 0, 1
+    );
 
     auto projView = proj * view;
 
