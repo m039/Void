@@ -27,8 +27,6 @@ public:
     void update() override;
 
     void draw() override;
-    
-    void quit() override;
 
     void keyDown(ci::app::KeyEvent event) override;
 
@@ -63,8 +61,6 @@ private:
     std::shared_ptr<InputImpl> _input;
 
     std::shared_ptr<SimplifiedUiImpl> _ui;
-    
-    std::shared_ptr<ci::audio::SamplePlayerNode> _audioPlayer;
 
     UnlitShaderRef _shader;
 

@@ -110,10 +110,6 @@ void VoidApp::draw() {
     _ui->Draw();
 }
 
-void VoidApp::quit() {    
-    _audioPlayer->stop(); // Prevent crashes.
-}
-
 void VoidApp::keyDown(KeyEvent event) {
     AppBase::keyDown(event);
 
@@ -177,8 +173,6 @@ IAudioPlayerRef VoidApp::SetupAudio() {
     auto gain = context->makeNode(new audio::GainNode(1.0f));
 
     player >> gain >> context->getOutput();
-    
-    _audioPlayer = player;
 
     context->enable();
     

@@ -11,6 +11,14 @@
 #include <set>
 #include <unordered_map>
 
+#define SUPPORT_GAMEPADS !defined(CINDER_COCOA_TOUCH)
+
+#if SUPPORT_GAMEPADS
+
+#include <gainput/gainput.h>
+
+#endif
+
 namespace vd {
 
 class InputImpl :
@@ -72,6 +80,14 @@ private:
     std::unordered_map<uint32_t, std::shared_ptr<TouchImpl>> _touchesById;
 
     std::vector<uint32_t> _touchIds;
+
+#if SUPPORT_GAMEPADS
+
+    std::unique_ptr<gainput::InputManager> _inputManager;
+
+    std::unique_ptr<gainput::InputMap> _inputMap;
+
+#endif
 
 };
 

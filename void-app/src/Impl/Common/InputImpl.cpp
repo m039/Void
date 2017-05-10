@@ -8,21 +8,96 @@
 
 using namespace vd;
 
+enum Button
+{
+    Button,
+    ButtonSelect,
+    JoystickX,
+    JoystickY
+};
+
 //region InputImpl
 
 InputImpl::InputImpl(VoidApp &app)
         : VoidAppObject(app),
           _timesToSkipUpdate(-1) {
+
+#if SUPPORT_GAMEPADS
+    // Add a classic controller support.
+
+    _inputManager = std::make_unique<gainput::InputManager>();
+              
+    auto padId = _inputManager->CreateDevice<gainput::InputDevicePad>();
+
+    _inputMap = std::make_unique<gainput::InputMap>(*_inputManager);
+
+    _inputMap->MapFloat(JoystickX, padId, gainput::PadButtonLeftStickX);
+    _inputMap->MapFloat(JoystickY, padId, gainput::PadButtonLeftStickY);
+    _inputMap->MapBool(ButtonSelect, padId, gainput::PadButtonSelect);
+    _inputMap->MapBool(Button, padId, gainput::PadButtonA);
+    _inputMap->MapBool(Button, padId, gainput::PadButtonB);
+    _inputMap->MapBool(Button, padId, gainput::PadButtonStart);
+
+    _inputMap->SetDeadZone(JoystickX, 0.5f);
+    _inputMap->SetDeadZone(JoystickY, 0.5f);
+
+#endif
 }
 
 bool InputImpl::GetKeyDown(KeyCode keyCode) {
     // True if the key has just been pressed.
+
+#if SUPPORT_GAMEPADS
+
+    if (keyCode == KeyCode::Q && _inputMap->GetBoolIsNew(ButtonSelect)) {
+        return true;
+    }
+
+    if (MathF::Abs(_inputMap->GetFloatDelta(JoystickX)) > 0.0f) {
+        if (keyCode == KeyCode::LeftArrow &&
+                _inputMap->GetFloat(JoystickX) < -0.5f &&
+                _inputMap->GetFloatPrevious(JoystickX) >= -0.5f) {
+            return true;
+        }
+
+        if (keyCode == KeyCode::RightArrow &&
+                _inputMap->GetFloat(JoystickX) > 0.5f &&
+                _inputMap->GetFloatPrevious(JoystickX) <= 0.5f) {
+            return true;
+        }
+    }
+
+    if (MathF::Abs(_inputMap->GetFloatDelta(JoystickY)) > 0.0f) {
+        if (keyCode == KeyCode::UpArrow &&
+                _inputMap->GetFloat(JoystickY) < -0.5f &&
+                _inputMap->GetFloatPrevious(JoystickY) >= -0.5f) {
+            return true;
+        }
+
+        if (keyCode == KeyCode::DownArrow &&
+                _inputMap->GetFloat(JoystickY) > 0.5f &&
+                _inputMap->GetFloatPrevious(JoystickY) <= 0.5f) {
+            return true;
+        }
+    }
+
+#endif
 
     return (_pressedDownKeys.find(keyCode) != _pressedDownKeys.end()) &&
             (_heldDownKeys.find(keyCode) == _heldDownKeys.end());
 }
 
 bool InputImpl::IsAnyKeyDown() {
+#if SUPPORT_GAMEPADS
+    
+    if (_inputMap->GetBoolIsNew(Button) ||
+            MathF::Abs(_inputMap->GetFloatDelta(JoystickX)) > 0.5f ||
+            MathF::Abs(_inputMap->GetFloatDelta(JoystickY)) > 0.5f) {
+        return true;
+    }
+    
+#endif
+
     return _heldDownKeys.size() > 0 || GetTouchCount() > 0;
 }
 
@@ -35,6 +110,12 @@ ITouchRef InputImpl::GetTouch(int index) {
 }
 
 void InputImpl::Update() {
+#if SUPPORT_GAMEPADS
+
+    _inputManager->Update();
+
+#endif
+
     if (_timesToSkipUpdate == -1) {
         return;
     }

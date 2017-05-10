@@ -91,7 +91,7 @@ void VoidObject::Show() {
 }
 
 void VoidObject::Destroy() {
-    // Todo: implement.
+    // Legacy method, do nothing.
 }
 
 VoidObject::~VoidObject() {
