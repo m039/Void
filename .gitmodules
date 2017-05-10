@@ -1,3 +1,6 @@
 [submodule "third-party/Cinder"]
 	path = third-party/Cinder
 	url = https://github.com/cinder/Cinder.git
+[submodule "third-party/gainput"]
+	path = third-party/gainput
+	url = https://github.com/m039/gainput.git
