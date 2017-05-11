@@ -170,16 +170,16 @@ AdaptiveTextureFontRef VoidApp::LoadFont(const std::string& name, float size) {
 IAudioPlayerRef VoidApp::SetupAudio() {
     auto context = audio::Context::master();
     auto sourceFile = audio::load(loadAsset("Music/" + _MusicFilename), context->getSampleRate());
-    
-	auto player = context->makeNode( new audio::BufferPlayerNode( sourceFile->loadBuffer() ) );
+
+    auto player = context->makeNode(new audio::FilePlayerNode(sourceFile));
     auto gain = context->makeNode(new audio::GainNode(1.0f));
 
     player >> gain >> context->getOutput();
-        
+   
     context->enable();
-    
+
     player->stop();
-        
+ 
     return std::make_shared<AudioPlayerImpl>(player, gain);
 }
 
