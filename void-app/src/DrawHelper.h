@@ -6,6 +6,8 @@
 
 #include "cinder/gl/gl.h"
 
+#undef None // Shit.. but otherwise a problem with compilation on rpi.
+
 namespace vd {
 
 class VoidApp;

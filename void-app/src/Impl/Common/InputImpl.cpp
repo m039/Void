@@ -44,23 +44,23 @@ InputImpl::InputImpl(VoidApp &app)
 #endif
 }
 
-bool InputImpl::GetKeyDown(KeyCode keyCode) {
+bool InputImpl::GetKeyDown(vd::KeyCode keyCode) {
     // True if the key has just been pressed.
 
 #if SUPPORT_GAMEPADS
 
-    if (keyCode == KeyCode::Q && _inputMap->GetBoolIsNew(ButtonSelect)) {
+    if (keyCode == vd::KeyCode::Q && _inputMap->GetBoolIsNew(ButtonSelect)) {
         return true;
     }
 
     if (MathF::Abs(_inputMap->GetFloatDelta(JoystickX)) > 0.0f) {
-        if (keyCode == KeyCode::LeftArrow &&
+        if (keyCode == vd::KeyCode::LeftArrow &&
                 _inputMap->GetFloat(JoystickX) < -0.5f &&
                 _inputMap->GetFloatPrevious(JoystickX) >= -0.5f) {
             return true;
         }
 
-        if (keyCode == KeyCode::RightArrow &&
+        if (keyCode == vd::KeyCode::RightArrow &&
                 _inputMap->GetFloat(JoystickX) > 0.5f &&
                 _inputMap->GetFloatPrevious(JoystickX) <= 0.5f) {
             return true;
@@ -68,13 +68,13 @@ bool InputImpl::GetKeyDown(KeyCode keyCode) {
     }
 
     if (MathF::Abs(_inputMap->GetFloatDelta(JoystickY)) > 0.0f) {
-        if (keyCode == KeyCode::UpArrow &&
+        if (keyCode == vd::KeyCode::UpArrow &&
                 _inputMap->GetFloat(JoystickY) < -0.5f &&
                 _inputMap->GetFloatPrevious(JoystickY) >= -0.5f) {
             return true;
         }
 
-        if (keyCode == KeyCode::DownArrow &&
+        if (keyCode == vd::KeyCode::DownArrow &&
                 _inputMap->GetFloat(JoystickY) > 0.5f &&
                 _inputMap->GetFloatPrevious(JoystickY) <= 0.5f) {
             return true;
@@ -132,7 +132,7 @@ void InputImpl::Update() {
 
 void InputImpl::KeyDown(ci::app::KeyEvent event) {
     auto keyCode = ToKeyCode(event);
-    if (keyCode != KeyCode::None) {
+    if (keyCode != vd::KeyCode::None) {
         _pressedDownKeys.insert(keyCode);
         _timesToSkipUpdate = 1; // Skip 1 update.
     }
@@ -140,38 +140,38 @@ void InputImpl::KeyDown(ci::app::KeyEvent event) {
 
 void InputImpl::KeyUp(ci::app::KeyEvent event) {
     auto keyCode = ToKeyCode(event);
-    if (keyCode != KeyCode::None) {
+    if (keyCode != vd::KeyCode::None) {
         _pressedDownKeys.erase(keyCode);
         _heldDownKeys.erase(keyCode);
     }
 }
 
-KeyCode InputImpl::ToKeyCode(ci::app::KeyEvent event) {
+vd::KeyCode InputImpl::ToKeyCode(ci::app::KeyEvent event) {
     auto code = event.getCode();
 
     switch (code) {
         case ci::app::KeyEvent::KEY_UP:
-            return KeyCode::UpArrow;
+            return vd::KeyCode::UpArrow;
         case ci::app::KeyEvent::KEY_LEFT:
-            return KeyCode::LeftArrow;
+            return vd::KeyCode::LeftArrow;
         case ci::app::KeyEvent::KEY_DOWN:
-            return KeyCode::DownArrow;
+            return vd::KeyCode::DownArrow;
         case ci::app::KeyEvent::KEY_RIGHT:
-            return KeyCode::RightArrow;
+            return vd::KeyCode::RightArrow;
         case ci::app::KeyEvent::KEY_w:
-            return KeyCode::W;
+            return vd::KeyCode::W;
         case ci::app::KeyEvent::KEY_a:
-            return KeyCode::A;
+            return vd::KeyCode::A;
         case ci::app::KeyEvent::KEY_s:
-            return KeyCode::S;
+            return vd::KeyCode::S;
         case ci::app::KeyEvent::KEY_d:
-            return KeyCode::D;
+            return vd::KeyCode::D;
         case ci::app::KeyEvent::KEY_q:
-            return KeyCode::Q;
+            return vd::KeyCode::Q;
         case ci::app::KeyEvent::KEY_r:
-            return KeyCode::R;
+            return vd::KeyCode::R;
         default:
-            return KeyCode::None;
+            return vd::KeyCode::None;
     }
 }
 

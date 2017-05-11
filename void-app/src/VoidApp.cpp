@@ -8,6 +8,8 @@
 #include "cinder/gl/gl.h"
 #include "cinder/audio/audio.h"
 
+#undef None // Shit.. but otherwise a problem with compilation on rpi.
+
 #include "VoidApp.h"
 #include "DrawHelper.h"
 #include "Impl/Common/Components/AudioPlayerImpl.h"
@@ -37,12 +39,12 @@ void VoidApp::setup() {
     AppBase::setup();
 
     SetupShader();
-    auto audio = SetupAudio();
+    auto audio = SetupAudio();    
 
     getWindow()->getSignalResize().connect(std::bind(&VoidApp::OnResize, this));
 
     gl::enableAlphaBlending();
-
+    
     _objectPool = std::make_shared<ObjectPoolImpl>(*this);
     _camera = std::make_shared<CameraImpl>(*this);
     _input = std::make_shared<InputImpl>(*this);
@@ -66,7 +68,7 @@ void VoidApp::setup() {
 
 void VoidApp::update() {
     app::AppBase::update();
-
+    
     if (getQuitRequested()) {
         return;
     }
@@ -79,7 +81,7 @@ void VoidApp::update() {
 
 void VoidApp::draw() {
     AppBase::draw();
-
+    
     if (getQuitRequested()) {
         return;
     }
@@ -168,16 +170,16 @@ AdaptiveTextureFontRef VoidApp::LoadFont(const std::string& name, float size) {
 IAudioPlayerRef VoidApp::SetupAudio() {
     auto context = audio::Context::master();
     auto sourceFile = audio::load(loadAsset("Music/" + _MusicFilename), context->getSampleRate());
-
-    auto player = context->makeNode(new audio::FilePlayerNode(sourceFile));
+    
+	auto player = context->makeNode( new audio::BufferPlayerNode( sourceFile->loadBuffer() ) );
     auto gain = context->makeNode(new audio::GainNode(1.0f));
 
     player >> gain >> context->getOutput();
-
+        
     context->enable();
     
     player->stop();
-    
+        
     return std::make_shared<AudioPlayerImpl>(player, gain);
 }
 

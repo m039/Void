@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include <Common/Vector3.h>
 #include <Common/Matrix4.h>
 

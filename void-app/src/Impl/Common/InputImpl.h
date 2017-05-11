@@ -4,14 +4,15 @@
 
 #pragma once
 
-#include "../../VoidAppObject.h"
-
-#include <Common/Input.h>
 #include <vector>
 #include <set>
 #include <unordered_map>
 
-#define SUPPORT_GAMEPADS !defined(CINDER_COCOA_TOUCH)
+#include <Common/Input.h>
+
+#include "../../VoidAppObject.h"
+
+#define SUPPORT_GAMEPADS true
 
 #if SUPPORT_GAMEPADS
 

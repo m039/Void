@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include "Vector2.h"
 
 namespace vd {
@@ -63,4 +65,4 @@ public:
 
 typedef std::shared_ptr<IInput> IInputRef;
 
-};
+}

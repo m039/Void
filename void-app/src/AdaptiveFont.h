@@ -4,9 +4,11 @@
 
 #pragma once
 
+#include "cinder/gl/gl.h"
+
 #include "VoidAppObject.h"
 
-#include "cinder/gl/gl.h"
+#undef None // Shit.. but otherwise a problem with compilation on rpi.
 
 namespace vd {
 

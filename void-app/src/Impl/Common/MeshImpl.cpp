@@ -3,6 +3,9 @@
 //
 
 #include "cinder/gl/gl.h"
+
+#undef None // Shit.. but otherwise a problem with compilation on rpi.
+
 #include "MeshImpl.h"
 #include "../../DrawHelper.h"
 

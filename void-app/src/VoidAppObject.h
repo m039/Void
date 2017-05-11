@@ -10,7 +10,7 @@ namespace vd {
 
 class VoidApp;
 
-//! Class which lives as long as the application lives.
+//! Class that lives as long as the application lives.
 class VoidAppObject {
 
 protected:

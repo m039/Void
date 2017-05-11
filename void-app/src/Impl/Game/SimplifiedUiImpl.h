@@ -5,6 +5,7 @@
 #pragma once
 
 #include <Game/SimplifiedUi.h>
+
 #include "../../VoidAppObject.h"
 #include "../../AdaptiveTextureFont.h"
 

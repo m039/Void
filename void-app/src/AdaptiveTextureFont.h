@@ -7,7 +7,6 @@
 #include "VoidAppObject.h"
 #include "AdaptiveFont.h"
 
-#include "cinder/gl/gl.h"
 #include "cinder/app/App.h"
 
 namespace vd {

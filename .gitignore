@@ -338,3 +338,5 @@ __pycache__/
 
 cmake-build-debug/
 build/
+.kdev4
+*.kdev4

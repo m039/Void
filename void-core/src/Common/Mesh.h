@@ -5,6 +5,8 @@
 #pragma once
 
 #include <vector>
+#include <memory>
+
 #include "Vector3.h"
 #include "Vector2.h"
 

@@ -46,7 +46,7 @@ IMeshRef MeshGenerator::GenMesh(bool isHollow) {
 std::vector<Vector3> MeshGenerator::CreateNormals(unsigned size) {
     auto normals = std::vector<Vector3>(size);
 
-    for (auto i = 0; i < size; i++) {
+    for (unsigned i = 0; i < size; i++) {
         normals[i] = -Vector3::Forward;
     }
 

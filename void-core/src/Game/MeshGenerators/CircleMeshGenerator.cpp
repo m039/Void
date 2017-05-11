@@ -21,7 +21,7 @@ IMeshRef CircleMeshGenerator::GenHollowMesh() {
     auto angle = 0.0f;
     static const float dAngle = 2 * MathF::Pi / NumberOfSides;
 
-    for (auto i = 0; i < NumberOfSides; i++) {
+    for (unsigned i = 0; i < NumberOfSides; i++) {
         vertices[i] = Vector3(
                 s2 * MathF::Sin(angle),
                 s2 * MathF::Cos(angle),
@@ -43,7 +43,7 @@ IMeshRef CircleMeshGenerator::GenHollowMesh() {
 
     auto k = 0;
 
-    for (auto i = 0; i < NumberOfSides - 1; i++, k += 6) {
+    for (unsigned i = 0; i < NumberOfSides - 1; i++, k += 6) {
         triangles[k] = i;
         triangles[k + 1] = i + NumberOfSides;
         triangles[k + 2] = i + NumberOfSides + 1;
@@ -74,7 +74,7 @@ IMeshRef CircleMeshGenerator::GenDefaultMesh() {
     auto angle = 0.0f;
     const float dAngle = 2 * MathF::Pi / NumberOfSides;
 
-    for (auto i = 1; i < length; i++) {
+    for (unsigned i = 1; i < length; i++) {
         vertices[i] = Vector3(
                 Size * MathF::Sin(angle),
                 Size * MathF::Cos(angle),
@@ -90,7 +90,7 @@ IMeshRef CircleMeshGenerator::GenDefaultMesh() {
 
     auto k = 0;
 
-    for (auto i = 0; i < NumberOfSides - 1; i++, k += 3) {
+    for (unsigned i = 0; i < NumberOfSides - 1; i++, k += 3) {
         triangles[k] = 0;
         triangles[k + 1] = i + 1;
         triangles[k + 2] = i + 2;

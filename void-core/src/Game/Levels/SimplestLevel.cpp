@@ -72,7 +72,7 @@ std::vector<VoidTrackRef> SimplestLevel::CreateTracks() {
     auto ints = GetSimplestData().tracks;
     auto tracks = std::vector<VoidTrackRef>(ints.size());
 
-    for (auto i = 0; i < tracks.size(); i++) {
+    for (unsigned i = 0; i < tracks.size(); i++) {
         tracks[i] = std::make_shared<VoidTrack>(ints[i][0], ints[i][1]);
     }
 

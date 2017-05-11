@@ -4,17 +4,19 @@
 
 #pragma once
 
-#include <Game/MusicSystem.h>
-#include <Game/VoidGameHut.h>
-#include "AdaptiveTextureFont.h"
-#include "UnlitShader.h"
-
 #include "cinder/app/App.h"
 #include "cinder/audio/audio.h"
+
+#include <Game/MusicSystem.h>
+#include <Game/VoidGameHut.h>
+
 #include "Impl/Game/ObjectPoolImpl.h"
 #include "Impl/Game/CameraImpl.h"
 #include "Impl/Common/InputImpl.h"
 #include "Impl/Game/SimplifiedUiImpl.h"
+
+#include "AdaptiveTextureFont.h"
+#include "UnlitShader.h"
 
 namespace vd {
 

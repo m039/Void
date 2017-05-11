@@ -334,7 +334,7 @@ void Game::EndGame(Game::EndGameCause cause) {
 }
 
 bool Game::CanMoveToNextLevel() {
-    return _currentLevelIndex + 1 < _levels.size();
+    return _currentLevelIndex + 1 < static_cast<int>(_levels.size());
 }
 
 std::vector<VoidLevelRef> Game::CreateLevels(const IGameRef& game) {

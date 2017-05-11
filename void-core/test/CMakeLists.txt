@@ -1,4 +1,4 @@
-file(GLOB TEST_FILES *.cpp *.h)
+file (GLOB TEST_FILES *.cpp *.h)
 
 add_executable (TestVoidCore ${TEST_FILES})
 

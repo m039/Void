@@ -6,12 +6,15 @@
 
 #include <memory>
 #include <vector>
-#include <Common/Input.h>
+#include <string>
 #include <unordered_map>
-#include <Common/Components/GameComponent.h>
-#include "MoveDirection.h"
-
 #include <boost/signals2.hpp>
+
+#include <Common/Common.h>
+#include <Common/Input.h>
+#include <Common/Components/GameComponent.h>
+
+#include "MoveDirection.h"
 
 namespace vd {
 
@@ -139,9 +142,9 @@ private:
 
     void RefreshEnabledHandlers();
 
-    std::unordered_map<InputSystemEvent, Handler> _handlers;
+    std::unordered_map<InputSystemEvent, Handler, EnumClassHash> _handlers;
 
-    std::unordered_map<InputSystemEvent, bool> _handlerMask;
+    std::unordered_map<InputSystemEvent, bool, EnumClassHash> _handlerMask;
 
     std::vector<Handler> _enabledHandlers;
 

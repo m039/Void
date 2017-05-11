@@ -8,6 +8,8 @@ set (CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -pedantic")
 set (THIRD_PARTY_PATH ${CMAKE_CURRENT_SOURCE_DIR}/third-party)
 if (APPLE)
 set (PRECOMPILED_PATH ${CMAKE_CURRENT_SOURCE_DIR}/precompiled/lib/macosx)
+elseif (UNIX)
+set (PRECOMPILED_PATH ${CMAKE_CURRENT_SOURCE_DIR}/precompiled/lib/rpi3)
 endif()
 
 # Boost
@@ -21,16 +23,16 @@ set (Boost_USE_STATIC_LIBS ON)
 set (Boost_USE_MULTITHREADED ON)
 set (Boost_USE_STATIC_RUNTIME OFF)
 
-find_package(Boost 1.64.0 COMPONENTS context REQUIRED)
+find_package (Boost 1.64.0 COMPONENTS context thread REQUIRED)
 
 if(Boost_FOUND)
-    list(APPEND VoidCore_LIBRARIES ${Boost_LIBRARIES})
+    list (APPEND VoidCore_LIBRARIES ${Boost_LIBRARIES})
 endif()
 
-include_directories(${Boost_INCLUDE_DIRS})
+include_directories (${Boost_INCLUDE_DIRS})
 
 # Include third party headers
-include_directories(${THIRD_PARTY_PATH}/include)
+include_directories (${THIRD_PARTY_PATH}/include)
 
 # Rest..
 

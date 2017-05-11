@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include "Common/Common.h"
 
 namespace vd {

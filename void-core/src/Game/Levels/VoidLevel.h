@@ -4,10 +4,12 @@
 
 #pragma once
 
-#include <Common/Color.h>
-#include <Game/VoidTrack.h>
 #include <unordered_map>
 #include <vector>
+#include <memory>
+
+#include <Common/Color.h>
+#include <Game/VoidTrack.h>
 
 namespace vd {
 

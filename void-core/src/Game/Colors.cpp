@@ -2,6 +2,8 @@
 // Created by Dmitry Mozgin on 03/05/2017.
 //
 
+#include <functional>
+
 #include "Colors.h"
 
 using namespace vd;
