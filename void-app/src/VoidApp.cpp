@@ -24,13 +24,14 @@ using namespace vd;
 
 //region Constants
 
-const std::string _MusicFilename = "Void.ogg";
+const std::string _MusicFilename = "Void.mp3";
 
 //endregion
 
 void prepareSettings(VoidApp::Settings *settings) {
     settings->setHighDensityDisplayEnabled();
     settings->setMultiTouchEnabled(true);
+    settings->setFullScreen();
 }
 
 CINDER_APP( VoidApp, app::RendererGl, prepareSettings)
@@ -171,7 +172,7 @@ IAudioPlayerRef VoidApp::SetupAudio() {
     auto context = audio::Context::master();
     auto sourceFile = audio::load(loadAsset("Music/" + _MusicFilename), context->getSampleRate());
 
-    auto player = context->makeNode(new audio::FilePlayerNode(sourceFile));
+    auto player = context->makeNode(new audio::FilePlayerNode(sourceFile, false));
     auto gain = context->makeNode(new audio::GainNode(1.0f));
 
     player >> gain >> context->getOutput();
