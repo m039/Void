@@ -7,6 +7,8 @@ include ("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
 include_directories (${THIRD_PARTY_PATH}/gainput/lib/include)
 
+add_definitions(-DSUPPORT_GAMEPADS)
+
 ci_make_app (
         APP_NAME    VoidCinder
         SOURCES     ${FILES}
@@ -24,5 +26,6 @@ if (APPLE)
 			MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/resources/macosx/Info.plist.in"
 	)
 elseif (UNIX)
+	add_definitions(-DREAD_AUDIO_SYNC)
 	target_link_libraries (VoidCinder VoidCore X11)
 endif()

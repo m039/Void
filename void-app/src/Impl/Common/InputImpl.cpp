@@ -22,7 +22,7 @@ InputImpl::InputImpl(VoidApp &app)
         : VoidAppObject(app),
           _timesToSkipUpdate(-1) {
 
-#if SUPPORT_GAMEPADS
+#if defined(SUPPORT_GAMEPADS)
     // Add a classic controller support.
 
     _inputManager = std::make_unique<gainput::InputManager>();
@@ -47,7 +47,7 @@ InputImpl::InputImpl(VoidApp &app)
 bool InputImpl::GetKeyDown(vd::KeyCode keyCode) {
     // True if the key has just been pressed.
 
-#if SUPPORT_GAMEPADS
+#if defined(SUPPORT_GAMEPADS)
 
     if (keyCode == vd::KeyCode::Q && _inputMap->GetBoolIsNew(ButtonSelect)) {
         return true;
@@ -88,7 +88,7 @@ bool InputImpl::GetKeyDown(vd::KeyCode keyCode) {
 }
 
 bool InputImpl::IsAnyKeyDown() {
-#if SUPPORT_GAMEPADS
+#if defined(SUPPORT_GAMEPADS)
     
     if (_inputMap->GetBoolIsNew(Button) ||
             MathF::Abs(_inputMap->GetFloatDelta(JoystickX)) > 0.5f ||
@@ -110,7 +110,7 @@ ITouchRef InputImpl::GetTouch(int index) {
 }
 
 void InputImpl::Update() {
-#if SUPPORT_GAMEPADS
+#if defined(SUPPORT_GAMEPADS)
 
     _inputManager->Update();
 

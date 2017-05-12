@@ -12,9 +12,7 @@
 
 #include "../../VoidAppObject.h"
 
-#define SUPPORT_GAMEPADS true
-
-#if SUPPORT_GAMEPADS
+#if defined(SUPPORT_GAMEPADS)
 
 #include <gainput/gainput.h>
 
@@ -82,7 +80,7 @@ private:
 
     std::vector<uint32_t> _touchIds;
 
-#if SUPPORT_GAMEPADS
+#if defined(SUPPORT_GAMEPADS)
 
     std::unique_ptr<gainput::InputManager> _inputManager;
 

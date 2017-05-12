@@ -24,7 +24,13 @@ using namespace vd;
 
 //region Constants
 
-const std::string _MusicFilename = "Void.ogg";
+static const std::string _MusicFilename = "Void.ogg";
+
+#if READ_AUDIO_SYNC
+static const bool _ReadAudioAsync = false;
+#else
+static const bool _ReadAudioAsync = true;
+#endif
 
 //endregion
 
@@ -171,7 +177,7 @@ IAudioPlayerRef VoidApp::SetupAudio() {
     auto context = audio::Context::master();
     auto sourceFile = audio::load(loadAsset("Music/" + _MusicFilename), context->getSampleRate());
 
-    auto player = context->makeNode(new audio::FilePlayerNode(sourceFile, false));
+    auto player = context->makeNode(new audio::FilePlayerNode(sourceFile, _ReadAudioAsync));
     auto gain = context->makeNode(new audio::GainNode(1.0f));
 
     player >> gain >> context->getOutput();
