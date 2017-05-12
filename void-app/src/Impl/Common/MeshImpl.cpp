@@ -12,17 +12,29 @@
 using namespace vd;
 using namespace ci;
 
-MeshImpl::MeshImpl(const std::vector<Vector3> &vertices,
-               const std::vector<int> &triangles) {
-    for (auto &v : vertices) {
-        _vertices.push_back(v.x);
-        _vertices.push_back(v.y);
-        _vertices.push_back(v.z);
+MeshImpl::MeshImpl(
+        VoidApp& app,
+        const std::vector<Vector3> &vertices,
+        const std::vector<int> &triangles
+) {
+    ci::gl::VertBatch vertBatch;
+
+    vertBatch.begin(GL_TRIANGLES);
+
+    for (auto& el: triangles) {
+        auto& v = vertices[el];
+
+        vertBatch.vertex(v.x, v.y, v.z);
     }
 
-    _elements = std::vector<GLubyte>(triangles.begin(), triangles.end());
+    vertBatch.end();
+
+    _batch = gl::Batch::create(
+            vertBatch,
+            app.GetShader()->GetInternalShader()
+    );
 }
 
 void MeshImpl::Draw(const VoidApp &app) {
-    DrawHelper::Draw(app, _vertices, _elements);
+    _batch->draw();
 }

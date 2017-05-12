@@ -24,14 +24,13 @@ using namespace vd;
 
 //region Constants
 
-const std::string _MusicFilename = "Void.mp3";
+const std::string _MusicFilename = "Void.ogg";
 
 //endregion
 
 void prepareSettings(VoidApp::Settings *settings) {
     settings->setHighDensityDisplayEnabled();
     settings->setMultiTouchEnabled(true);
-    settings->setFullScreen();
 }
 
 CINDER_APP( VoidApp, app::RendererGl, prepareSettings)
@@ -56,7 +55,7 @@ void VoidApp::setup() {
     // Create and start the game.
     _game = std::make_unique<VoidGameHut>(
             gameContext,
-            std::make_shared<MeshFactoryImpl>(),
+            std::make_shared<MeshFactoryImpl>(*this),
             audio,
             _objectPool,
             _camera,

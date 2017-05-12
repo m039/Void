@@ -13,16 +13,17 @@ class MeshImpl : public IMesh {
 
 public:
 
-    MeshImpl(const std::vector<Vector3> &vertices,
-           const std::vector<int> &triangles);
+    MeshImpl(
+            VoidApp& app,
+            const std::vector<Vector3> &vertices,
+            const std::vector<int> &triangles
+    );
 
     void Draw(const VoidApp &app);
 
 private:
 
-    std::vector<GLfloat> _vertices;
-
-    std::vector<GLubyte> _elements;
+    ci::gl::BatchRef _batch;
 
 };
 

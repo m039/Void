@@ -7,11 +7,14 @@
 
 using namespace vd;
 
+MeshFactoryImpl::MeshFactoryImpl(VoidApp& app) : VoidAppObject(app) {
+}
+
 IMeshRef MeshFactoryImpl::Create(
         const std::vector<Vector3> &vertices,
         const std::vector<int> &triangles,
         const std::vector<Vector3> &normals,
         const std::vector<Vector2> &uv) {
     // Note: normals and uv are ignored for the current game.
-    return std::make_shared<MeshImpl>(vertices, triangles);
+    return std::make_shared<MeshImpl>(app, vertices, triangles);
 }

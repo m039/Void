@@ -5,12 +5,15 @@
 #pragma once
 
 #include <Common/Mesh.h>
+#include "../../VoidAppObject.h"
 
 namespace vd {
 
-class MeshFactoryImpl : public IMeshFactory {
+class MeshFactoryImpl : public VoidAppObject, public IMeshFactory {
 
 public:
+
+    MeshFactoryImpl(VoidApp &app);
 
     virtual IMeshRef Create(
             const std::vector<Vector3> &vertices,
