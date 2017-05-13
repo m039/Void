@@ -45,7 +45,7 @@ void CameraImpl::Setup() {
 
     // The game uses left-handed coordinates, but OpenGL is right-handed
     _camera.lookAt(ci::vec3(-p.x, p.y, p.z), ci::vec3(-p.x, p.y, p.z + 1));
-    _camera.setPerspective(35, aspectRatio, _nearClipPlane, 1000.0f);
+    _camera.setPerspective(60, aspectRatio, _nearClipPlane, 1000.0f);
 }
 
 void CameraImpl::LoadMatrices() {
