@@ -26,6 +26,8 @@ using namespace vd;
 
 static const std::string _MusicFilename = "Void.ogg";
 
+static const std::string _MusicEmptyFilename = "VoidEmpty.ogg";
+
 #if READ_AUDIO_SYNC
 static const bool _ReadAudioAsync = false;
 #else
@@ -175,7 +177,15 @@ AdaptiveTextureFontRef VoidApp::LoadFont(const std::string& name, float size) {
 
 IAudioPlayerRef VoidApp::SetupAudio() {
     auto context = audio::Context::master();
-    auto sourceFile = audio::load(loadAsset("Music/" + _MusicFilename), context->getSampleRate());
+
+    ci::audio::SourceFileRef sourceFile;
+    auto sampleRate = context->getSampleRate();
+
+    try {
+        sourceFile = audio::load(loadAsset("Music/" + _MusicFilename), sampleRate);
+    } catch (ci::app::AssetLoadExc e) {
+        sourceFile = audio::load(loadAsset("Music/" + _MusicEmptyFilename), sampleRate);
+    }
 
     auto player = context->makeNode(new audio::FilePlayerNode(sourceFile, _ReadAudioAsync));
     auto gain = context->makeNode(new audio::GainNode(1.0f));

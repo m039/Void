@@ -37,7 +37,6 @@ public:
     virtual int GetTouchCount() override;
 
     virtual ITouchRef GetTouch(int index) override;
-    
 
     //endregion
 
