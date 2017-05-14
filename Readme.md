@@ -1,6 +1,6 @@
 # Void
 
-With **Void** I tried to answer the question: "How someone could implements a game that doesn't depend on a particular game engine?" or a preparation for "Is it possible to swap a game engine on the fly?".
+With **Void** I tried to answer the question: *"How someone could implements a game that doesn't depend on a particular game engine?"* or a preparation for *"Is it possible to swap a game engine on the fly?"*
 
 Also, **Void** is a narrow copy of the second level of [Last Voyage](http://lastvoyage.co) that I used as a starting point.
 
@@ -13,16 +13,16 @@ Notes:
 
 * Many ideas are borrowed from Unity or MonoGame.
 * It is a concept, future of the project is unknown.
-* I've written the same code for Unity, MonoGame, UrhoSharp, this is the four time, but with C++, libCinder and Raspberry Pi in mind.
+* I've written the same code for Unity, MonoGame and UrhoSharp. This is the fourth time, but with C++, libCinder and Raspberry Pi in mind.
 * The project is tested on Mac, iOS and Raspberry Pi 3.
 
 ## Structure of the project
 
 Project consists of 3 levels: Dirty, Clean, Pure.
  
-### Dirty: implementation level
+### Dirty
 
-It is a low-level of a project, which mostly consist of implementation detailed code.
+It is a low-level of a project, which mostly consist of implementation code.
 
 All code in `void-app` belong here.
 
@@ -30,15 +30,15 @@ All code in `void-app` belong here.
 
 It is a proxy-level between Dirty and Pure.
 
-All classes that are instantiated after `VoidGameHut` initialization belong here.
+All classes that are instantiated after `VoidGameHut`'s initialization belong here.
 
 ### Pure
 
 It is a business-level where all preparations are made and we are ready to implement main part of a game.
 
-All classes that are instantiated after `Game` initialization belong here.
+All classes that are instantiated after `Game`'s initialization belong here.
 
-## Preparations
+## How to build
 
     # 1. Clone the repository
     git clone git@gitlab.com:m0391n/void-cinder.git --recursive
