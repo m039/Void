@@ -26,7 +26,7 @@ using namespace vd;
 
 static const std::string _MusicFilename = "Void.ogg";
 
-static const std::string _MusicEmptyFilename = "VoidEmpty.ogg";
+static const std::string _EmptyMusicFilename = "VoidEmpty.ogg";
 
 #if READ_AUDIO_SYNC
 static const bool _ReadAudioAsync = false;
@@ -184,7 +184,8 @@ IAudioPlayerRef VoidApp::SetupAudio() {
     try {
         sourceFile = audio::load(loadAsset("Music/" + _MusicFilename), sampleRate);
     } catch (ci::app::AssetLoadExc e) {
-        sourceFile = audio::load(loadAsset("Music/" + _MusicEmptyFilename), sampleRate);
+        // Fallback.
+        sourceFile = audio::load(loadAsset("Music/" + _EmptyMusicFilename), sampleRate);
     }
 
     auto player = context->makeNode(new audio::FilePlayerNode(sourceFile, _ReadAudioAsync));
