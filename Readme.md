@@ -44,7 +44,7 @@ More build instructions will be written soon.
 
 ### Music
 
-If you try to play the game you may notice that something wrong. The strong point of Last Voyage is a soundtrack and I've no rights to share the song. So, that is why I added empty file, but you may always buy the soundtrack and convert the song to ogg.
+If you try to play the game you may notice that something wrong. The strong point of Last Voyage is a soundtrack and I've no rights to share the song. That is why I added empty file, but you may always buy the soundtrack and convert the song to ogg.
 
 ### Raspberry Pi 3
 
