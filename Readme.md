@@ -74,4 +74,4 @@ Open `projects/xcode-ios/VoidCinder.xcodeproj` in XCode and do the rest.
     # 2. Build Cinder.
     cd Void/third-party/Cinder/ && mkdir -p build && cd build && cmake .. && make -j 8
 
-Open `CMakeLists.txt` in CLion (or your preferred tool) and do the rest.
+Open root `CMakeLists.txt` in CLion (or your preferred tool) and do the rest.
