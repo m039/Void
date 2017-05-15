@@ -11,7 +11,7 @@ Main goals:
 
 Notes:
 
-* Many ideas are borrowed from Unity or MonoGame.
+* Many ideas are borrowed from Unity and MonoGame.
 * It is a concept, future of the project is unknown.
 * I've written the same code for Unity, MonoGame and UrhoSharp. This is the fourth time, but with C++, libCinder and Raspberry Pi in mind.
 * The project is tested on Mac, iOS and Raspberry Pi 3.
