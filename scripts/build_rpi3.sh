@@ -10,7 +10,7 @@
 #
 # - Don't use Clang: there is a bug and audio won't play.
 # - Sometimes Raspberry Pi hangs when a compilation with several jobs
-#   are enabled, even with -j2 option.
+#   is enabled, even with -j2 option.
 #
 # References:
 #
