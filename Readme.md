@@ -48,7 +48,7 @@ If you try to play the game you may notice that something wrong. The strong poin
 
 ### Raspberry Pi 3
 
-    # 1. Clone the repository
+    # 1. Clone the repository.
     git clone https://github.com/m039/Void.git --recursive
     
     # 2. Build all necessary stuff.
@@ -57,3 +57,13 @@ If you try to play the game you may notice that something wrong. The strong poin
     
     # 3. Run the game.
     ./scripts/run_rpi3.sh
+
+### iOS
+
+    # 1. Clone the repository.
+    git clone https://github.com/m039/Void.git --recursive
+    
+    # 2. Build Cinder.
+    cd Void/third-party/Cinder/ && mkdir -p build && cd build && cmake .. && make -j 8
+
+Open `projects/xcode-ios/VoidCinder.xcodeproj` in XCode and do the rest.
