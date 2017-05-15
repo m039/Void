@@ -6,13 +6,14 @@ set (CMAKE_CXX_STANDARD 14)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 set (CMAKE_CXX_EXTENSIONS OFF)
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic")
-set (CMAKE_BUILD_TYPE Debug)
+
+# Set VOID_RPI via -DVOID_RPI
 
 set (THIRD_PARTY_PATH ${CMAKE_CURRENT_SOURCE_DIR}/third-party)
 if (APPLE)
-set (PRECOMPILED_PATH ${CMAKE_CURRENT_SOURCE_DIR}/precompiled/lib/macosx)
+set (PRECOMPILED_PATH ${CMAKE_CURRENT_SOURCE_DIR}/precompiled/macosx)
 elseif (UNIX)
-set (PRECOMPILED_PATH ${CMAKE_CURRENT_SOURCE_DIR}/precompiled/lib/rpi3)
+set (PRECOMPILED_PATH ${CMAKE_CURRENT_SOURCE_DIR}/precompiled/linux)
 endif()
 
 # Boost
