@@ -67,3 +67,13 @@ If you try to play the game you may notice that something wrong. The strong poin
     cd Void/third-party/Cinder/ && mkdir -p build && cd build && cmake .. && make -j 8
 
 Open `projects/xcode-ios/VoidCinder.xcodeproj` in XCode and do the rest.
+
+### macOS
+
+    # 1. Clone the repository.
+    git clone https://github.com/m039/Void.git --recursive
+    
+    # 2. Build Cinder.
+    cd Void/third-party/Cinder/ && mkdir -p build && cd build && cmake .. && make -j 8
+
+Open `CMakeLists.txt` in CLion (or your preferred tool) and do the rest.
