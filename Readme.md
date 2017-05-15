@@ -38,10 +38,18 @@ It is a business-level where all preparations are made and we are ready to imple
 
 All classes that are instantiated after `Game`'s initialization belong here.
 
-## How to build
+## How to use
+
+More build instructions will be written soon.
+
+### Raspberry Pi 3
 
     # 1. Clone the repository
-    git clone git@gitlab.com:m0391n/void-cinder.git --recursive
+    git clone https://github.com/m039/Void.git --recursive
     
-    # 2. Build Cinder
-    pushd void-cinder/third-party/Cinder/ && mkdir build && cd build && cmake .. && make -j 8 && popd
+    # 2. Build all necessary stuff.
+    cd Void
+    ./scripts/build_rpi3.sh
+    
+    # 3. Run the game.
+    ./scripts/run_rpi3.sh

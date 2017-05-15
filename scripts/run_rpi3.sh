@@ -3,8 +3,8 @@
 
 set -e
 
-BASEDIR=$(dirname "$0")
+pushd $(dirname "$0")/..
 
-sudo amixer cset numid=3 1 # Force output to headphone jack.
+sudo amixer cset numid=3 1 # Force output to a headphone jack.
 pulseaudio -D
-cd ${BASEDIR}/../build && ./Debug/VoidCinder/VoidCinder
+cd build && ./Debug/VoidCinder/VoidCinder

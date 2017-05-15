@@ -20,7 +20,7 @@
 
 set -e
 
-BASEDIR=$(dirname "$0")
+pushd $(dirname "$0")/..
 
 # 0. Preliminaries.
 
@@ -70,3 +70,4 @@ popd
 mkdir -p build && cd build && cmake .. -DCINDER_TARGET_GL=es2-rpi && make
 ln -s ../void-app/assets/ assets
 
+popd
