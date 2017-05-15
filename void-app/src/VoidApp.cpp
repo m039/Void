@@ -28,12 +28,6 @@ static const std::string _MusicFilename = "Void.ogg";
 
 static const std::string _EmptyMusicFilename = "VoidEmpty.ogg";
 
-#if READ_AUDIO_SYNC
-static const bool _ReadAudioAsync = false;
-#else
-static const bool _ReadAudioAsync = true;
-#endif
-
 //endregion
 
 void prepareSettings(VoidApp::Settings *settings) {
@@ -188,7 +182,7 @@ IAudioPlayerRef VoidApp::SetupAudio() {
         sourceFile = audio::load(loadAsset("Music/" + _EmptyMusicFilename), sampleRate);
     }
 
-    auto player = context->makeNode(new audio::FilePlayerNode(sourceFile, _ReadAudioAsync));
+    auto player = context->makeNode(new audio::FilePlayerNode(sourceFile));
     auto gain = context->makeNode(new audio::GainNode(1.0f));
 
     player >> gain >> context->getOutput();

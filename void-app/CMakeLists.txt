@@ -26,6 +26,5 @@ if (APPLE)
 			MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/resources/macosx/Info.plist.in"
 	)
 elseif (UNIX)
-	add_definitions(-DREAD_AUDIO_SYNC)
 	target_link_libraries (VoidCinder VoidCore X11)
 endif()
