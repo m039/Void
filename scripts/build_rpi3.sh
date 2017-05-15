@@ -24,7 +24,7 @@ pushd $(dirname "$0")/..
 
 # 0. Preliminaries.
 
-sudo apt-get install 	
+sudo apt-get install \
 				cmake\
 				libxcursor-dev \
 				libgles2-mesa-dev \
