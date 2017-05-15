@@ -1,6 +1,6 @@
 # Void
 
-With **Void** I tried to answer the question: *"How someone could implements a game that doesn't depend on a particular game engine?"* or a preparation for *"Is it possible to swap a game engine on the fly?"*
+With **Void** I tried to answer the question: *"How someone could implement a game that doesn't depend on a particular game engine?"* or a preparation for *"Is it possible to swap a game engine on the fly?"*
 
 Also, **Void** is a narrow copy of the second level of [Last Voyage](http://lastvoyage.co) that I used as a starting point.
 
