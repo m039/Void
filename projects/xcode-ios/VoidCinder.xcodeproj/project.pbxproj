@@ -884,6 +884,7 @@
 					"-lz",
 					"\"$(CINDER_PATH)/blocks/FMOD/lib/ios/libfmodex_iphonesimulator.a\"",
 				);
+				PRECOMPILED_PATH = ../../precompiled/;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.libcinder.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				THIRD_PARTY_PATH = "../../third-party/";
@@ -922,6 +923,7 @@
 					"-lz",
 					"\"$(CINDER_PATH)/blocks/FMOD/lib/ios/libfmodex_iphonesimulator.a\"",
 				);
+				PRECOMPILED_PATH = ../../precompiled/;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.libcinder.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				THIRD_PARTY_PATH = "../../third-party/";
