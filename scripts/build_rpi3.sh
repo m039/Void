@@ -42,7 +42,8 @@ sudo apt-get install \
 				gstreamer1.0-libav \
 				gstreamer1.0-alsa \
 				gstreamer1.0-pulseaudio \
-				gstreamer1.0-plugins-bad
+				gstreamer1.0-plugins-bad \
+				python-dev
 
 # 1. Build Cinder.
 
