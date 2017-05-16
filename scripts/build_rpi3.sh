@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------
 #
 #           This script is tested on Raspbian Jessie.
-#    You need to run it only once to build all necessary stuff.
+#        You need to run it only once to build all stuff.
 #
 # ---------------------------------------------------------------------
 #
