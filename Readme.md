@@ -16,7 +16,7 @@ Notes:
 * I've written the same code for Unity, MonoGame and UrhoSharp. This is the fourth time, but with C++, libCinder and Raspberry Pi in mind.
 * The project is tested on Mac, iOS and Raspberry Pi 3.
 
-*If you like programming try to read code.*
+*If you like programming try to read the code.*
 
 ## Structure of the project
 
