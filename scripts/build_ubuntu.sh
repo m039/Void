@@ -19,7 +19,7 @@ pushd $(dirname "$0")/..
 # 0. Preliminaries.
 
 sudo apt-get install \
-		 cmake\
+     cmake\
      libxcursor-dev \
      libxrandr-dev \
      libxinerama-dev \
@@ -41,7 +41,7 @@ sudo apt-get install \
      gstreamer1.0-alsa \
      gstreamer1.0-pulseaudio \
      gstreamer1.0-plugins-bad \
-		 python-dev
+     python-dev
 
 # 1. Build Cinder.
 
