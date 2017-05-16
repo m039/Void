@@ -19,6 +19,8 @@ Notes:
 ## Structure of the project
 
 Project consists of 3 levels: Dirty, Clean, Pure.
+
+*If you like programming try to read code.*
  
 ### Dirty
 
